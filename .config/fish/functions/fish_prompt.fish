@@ -37,7 +37,7 @@ function fish_prompt --description 'Write out the prompt'
 
     # git
     set_color $fish_color_normal
-    printf ' on %s' (__fish_git_prompt '%s')
+    printf '%s' (__fish_git_prompt ' on %s')
 
     echo
 
