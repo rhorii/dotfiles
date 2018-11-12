@@ -69,6 +69,10 @@
   :config
   (exec-path-from-shell-initialize))
 
+(use-package fish-mode
+  :ensure t
+  :defer t)
+
 (use-package flycheck
   :ensure t
   :config
