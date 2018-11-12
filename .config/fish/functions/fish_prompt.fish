@@ -20,32 +20,32 @@ function fish_prompt --description 'Write out the prompt'
     echo
 
     # user
-    set_color brred
+    set_color $fish_color_user
     printf '%s' $USER
 
     # hostname
-    set_color normal
+    set_color $fish_color_normal
     printf ' at '
-    set_color yellow
+    set_color $fish_color_host
     printf '%s' (prompt_hostname)
 
     # pwd
-    set_color normal
+    set_color $fish_color_normal
     printf ' in '
-    set_color green
+    set_color $fish_color_cwd
     printf '%s' (prompt_pwd)
 
     # git
-    set_color normal
+    set_color $fish_color_normal
     printf ' on %s' (__fish_git_prompt '%s')
 
     echo
 
     # symbol
     if test $last_status -eq 0
-        set_color normal
+        set_color $fish_color_normal
     else
-        set_color red
+        set_color $fish_color_error
     end
     switch $USER
         case root toor
@@ -54,5 +54,5 @@ function fish_prompt --description 'Write out the prompt'
             printf '$ '
     end
 
-    set_color normal
+    set_color $fish_color_normal
 end
