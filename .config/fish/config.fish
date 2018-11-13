@@ -1,3 +1,5 @@
+# PATH
+test -d $HOME/.local/bin; and set -x PATH $HOME/.local/bin $PATH
+
 # golang
 set -x GOPATH $HOME
-test -d $GOPATH/bin ; and set -x PATH $GOPATH/bin $PATH
