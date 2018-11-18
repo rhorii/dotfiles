@@ -174,6 +174,7 @@
   (smex-initialize))
 
 (use-package solarized-theme
+  :disabled t
   :ensure t
   :if window-system
   :config
@@ -203,5 +204,11 @@
 
 (use-package yasnippet-snippets
   :ensure t)
+
+(use-package zenburn-theme
+  :ensure t
+  :if window-system
+  :config
+  (load-theme 'zenburn t))
 
 ;;; init.el ends here
