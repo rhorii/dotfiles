@@ -174,7 +174,6 @@
   (smex-initialize))
 
 (use-package solarized-theme
-  :disabled t
   :ensure t
   :if window-system
   :config
@@ -206,6 +205,7 @@
   :ensure t)
 
 (use-package zenburn-theme
+  :disabled t
   :ensure t
   :if window-system
   :config
