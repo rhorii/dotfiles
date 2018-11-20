@@ -90,6 +90,10 @@
 (use-package hideshow
   :hook (prog-mode . hs-minor-mode))
 
+(use-package inf-ruby
+  :ensure t
+  :hook (ruby-mode . inf-ruby-minor-mode))
+
 (use-package ivy-rich
   :ensure t
   :config
