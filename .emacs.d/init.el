@@ -38,13 +38,13 @@
 (use-package counsel
   :ensure t
   :demand t
-  :bind (([remap isearch-forward]  . swiper)
+  :bind (([remap isearch-forward] . swiper)
          ([remap isearch-backward] . swiper))
   :config
   (ivy-mode +1)
 
-  (setq counsel-describe-function-function 'helpful-callable
-        counsel-describe-variable-function 'helpful-variable)
+  (setq counsel-describe-function-function 'helpful-callable)
+  (setq counsel-describe-variable-function 'helpful-variable)
   (counsel-mode +1))
 
 (use-package css-mode
@@ -151,8 +151,7 @@
 (use-package projectile
   :ensure t
   :demand t
-  :bind-keymap
-  ("C-c p" . projectile-command-map)
+  :bind-keymap ("C-c p" . projectile-command-map)
   :config
   (setq projectile-completion-system 'ivy)
   (projectile-mode +1))
@@ -208,6 +207,10 @@
 
 (use-package yasnippet-snippets
   :ensure t)
+
+(use-package yari
+  :ensure t
+  :bind (:map help-map ("R" . yari)))
 
 (use-package zenburn-theme
   :disabled t
