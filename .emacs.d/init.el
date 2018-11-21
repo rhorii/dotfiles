@@ -160,6 +160,12 @@
   :ensure t
   :hook (prog-mode . rainbow-delimiters-mode))
 
+(use-package recentf
+  :config
+  (setq recentf-max-menu-items 10)
+  (setq recentf-max-saved-items 512)
+  (recentf-mode +1))
+
 (use-package sh-script
   :defer t
   :config
