@@ -53,6 +53,11 @@
   :config
   (setq css-indent-offset 2))
 
+(use-package dired
+  :defer t
+  :config
+  (put 'dired-find-alternate-file 'disabled nil))
+
 (use-package docker
   :ensure t
   :bind ("C-c d" . docker))
