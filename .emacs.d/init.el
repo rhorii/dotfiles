@@ -11,7 +11,6 @@
 
 (blink-cursor-mode -1)
 (column-number-mode +1)
-(global-hl-line-mode +1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (setq make-backup-files nil)
@@ -95,6 +94,10 @@
 
 (use-package hideshow
   :hook (prog-mode . hs-minor-mode))
+
+(use-package hl-line
+  :config
+  (global-hl-line-mode +1))
 
 (use-package inf-ruby
   :ensure t
@@ -223,12 +226,5 @@
 (use-package yari
   :ensure t
   :bind (:map help-map ("R" . yari)))
-
-(use-package zenburn-theme
-  :disabled t
-  :ensure t
-  :if window-system
-  :config
-  (load-theme 'zenburn t))
 
 ;;; init.el ends here
