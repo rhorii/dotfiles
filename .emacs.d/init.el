@@ -27,6 +27,9 @@
 (use-package company
   :ensure t
   :config
+  (setq company-minimum-prefix-length 2)
+  (setq company-selection-wrap-around t)
+  (setq company-show-numbers t)
   (global-company-mode +1))
 
 (use-package company-quickhelp
