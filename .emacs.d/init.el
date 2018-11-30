@@ -14,6 +14,7 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (setq make-backup-files nil)
+(setq require-final-newline t)
 (setq scroll-conservatively 1)
 (setq-default indent-tabs-mode nil)
 (set-fontset-font nil 'unicode (font-spec :family "Ricty Diminished" :size 14))
