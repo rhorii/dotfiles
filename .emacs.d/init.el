@@ -19,6 +19,8 @@
 (setq-default indent-tabs-mode nil)
 (set-fontset-font nil 'unicode (font-spec :family "Ricty Diminished" :size 14))
 
+(global-set-key (kbd "C-x C-b") #'ibuffer)
+
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
