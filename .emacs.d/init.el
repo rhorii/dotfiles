@@ -47,6 +47,7 @@
          ([remap isearch-backward] . swiper))
   :config
   (setq ivy-use-virtual-buffers t)
+  (setq ivy-virtual-abbreviate 'abbreviate)
   (ivy-mode +1)
 
   (setq counsel-describe-function-function 'helpful-callable)
