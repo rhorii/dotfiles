@@ -17,7 +17,9 @@
 (setq require-final-newline t)
 (setq scroll-conservatively 1)
 (setq-default indent-tabs-mode nil)
-(set-fontset-font nil 'unicode (font-spec :family "Ricty Diminished" :size 14))
+
+(set-fontset-font t 'ascii (font-spec :family "Ricty Diminished"))
+(set-fontset-font t 'unicode (font-spec :family "Ricty Diminished"))
 
 (global-set-key (kbd "C-x C-b") #'ibuffer)
 
