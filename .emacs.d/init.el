@@ -6,9 +6,6 @@
              '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file t)
-
 (blink-cursor-mode -1)
 (column-number-mode +1)
 (scroll-bar-mode -1)
@@ -18,10 +15,13 @@
 (setq scroll-conservatively 1)
 (setq-default indent-tabs-mode nil)
 
-(set-fontset-font t 'ascii (font-spec :family "Ricty Diminished"))
-(set-fontset-font t 'unicode (font-spec :family "Ricty Diminished"))
+(set-face-attribute 'default nil :family "Ricty Diminished" :height 140)
+(set-fontset-font t 'unicode (font-spec :family "Ricty Dminished"))
 
 (global-set-key (kbd "C-x C-b") #'ibuffer)
+
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file t)
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
