@@ -1,6 +1,11 @@
-;;; init.el --- init.el
+;;; init.el --- Emacs configuration
+
 ;;; Commentary:
+
+;; Emacs configuration.
+
 ;;; Code:
+
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
@@ -147,6 +152,7 @@
   (minions-mode +1))
 
 (use-package ns-auto-titlebar
+  :disabled t
   :ensure t
   :if (memq window-system '(mac ns))
   :config
