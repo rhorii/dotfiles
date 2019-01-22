@@ -15,6 +15,7 @@
 (column-number-mode +1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
+(setq auto-save-default nil)
 (setq make-backup-files nil)
 (setq require-final-newline t)
 (setq scroll-conservatively 1)
