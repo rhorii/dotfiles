@@ -66,11 +66,6 @@
   :config
   (setq css-indent-offset 2))
 
-(use-package dired
-  :defer t
-  :config
-  (put 'dired-find-alternate-file 'disabled nil))
-
 (use-package docker
   :ensure t
   :bind ("C-c d" . docker))
@@ -151,13 +146,6 @@
   (setq minions-direct '(flycheck-mode))
   (minions-mode +1))
 
-(use-package ns-auto-titlebar
-  :disabled t
-  :ensure t
-  :if (memq window-system '(mac ns))
-  :config
-  (ns-auto-titlebar-mode +1))
-
 (use-package ob
   :defer t
   :config
@@ -224,11 +212,6 @@
   :ensure t
   :config
   (which-key-mode +1))
-
-(use-package windmove
-  :disabled t
-  :config
-  (windmove-default-keybindings))
 
 (use-package yasnippet
   :ensure t
