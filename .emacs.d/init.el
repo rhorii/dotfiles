@@ -34,6 +34,10 @@
 (require 'use-package)
 (setq use-package-verbose t)
 
+(use-package autorevert
+  :config
+  (global-auto-revert-mode +1))
+
 (use-package company
   :ensure t
   :config
