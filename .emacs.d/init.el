@@ -102,6 +102,10 @@
   :ensure t
   :after (flycheck ledger-mode))
 
+(use-package flyspell
+  :hook ((prog-mode . flyspell-prog-mode)
+         (text-mode . flyspell-mode)))
+
 (use-package helpful
   :ensure t
   :bind ([remap describe-key] . helpful-key))
