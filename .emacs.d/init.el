@@ -7,6 +7,7 @@
 ;;; Code:
 
 (setq confirm-kill-emacs 'yes-or-no-p)
+(put 'narrow-to-region 'disabled nil)
 
 (require 'package)
 (add-to-list 'package-archives
