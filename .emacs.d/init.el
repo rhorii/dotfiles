@@ -110,7 +110,9 @@
 
 (use-package helpful
   :ensure t
-  :bind ([remap describe-key] . helpful-key))
+  :bind (("C-h f" . helpful-callable)
+         ("C-h v" . helpful-variable)
+         ("C-h k" . helpful-key)))
 
 (use-package hideshow
   :hook (prog-mode . hs-minor-mode))
