@@ -34,6 +34,7 @@
  '(global-flycheck-mode t)
  '(global-hl-line-mode t)
  '(global-undo-tree-mode t)
+ '(highlight-symbol-idle-delay 0.5)
  '(indent-tabs-mode nil)
  '(ivy-mode t)
  '(ivy-rich-mode t)
@@ -51,12 +52,12 @@
      ("melpa" . "https://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (async company company-quickhelp counsel docker docker-compose-mode dockerfile-mode exec-path-from-shell fish-mode flycheck flycheck-ledger helpful ivy ivy-rich json-mode ledger-mode magit markdown-mode minions paradox projectile rainbow-delimiters smartparens smex solarized-theme swiper undo-tree which-key yaml-mode yasnippet yasnippet-snippets)))
+    (highlight-symbol async company company-quickhelp counsel docker docker-compose-mode dockerfile-mode exec-path-from-shell fish-mode flycheck flycheck-ledger helpful ivy ivy-rich json-mode ledger-mode magit markdown-mode minions paradox projectile rainbow-delimiters smartparens smex solarized-theme swiper undo-tree which-key yaml-mode yasnippet yasnippet-snippets)))
  '(paradox-execute-asynchronously t)
  '(paradox-github-token t)
  '(prog-mode-hook
    (quote
-    (flyspell-prog-mode hs-minor-mode rainbow-delimiters-mode)))
+    (flyspell-prog-mode hs-minor-mode rainbow-delimiters-mode highlight-symbol-mode highlight-symbol-nav-mode)))
  '(projectile-completion-system (quote ivy))
  '(projectile-mode t nil (projectile))
  '(recentf-max-saved-items 512)
