@@ -66,6 +66,7 @@
  '(scroll-conservatively 10000)
  '(sh-basic-offset 2)
  '(show-smartparens-global-mode t)
+ '(shr-use-fonts nil)
  '(smartparens-global-mode t)
  '(solarized-scale-org-headlines nil)
  '(text-mode-hook (quote (turn-on-flyspell text-mode-hook-identify)))
