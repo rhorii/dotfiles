@@ -29,10 +29,6 @@
  '(counsel-describe-variable-function (quote helpful-variable))
  '(counsel-mode t)
  '(css-indent-offset 2)
- '(custom-enabled-themes (quote (solarized-dark)))
- '(custom-safe-themes
-   (quote
-    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(global-auto-revert-mode t)
  '(global-company-mode t)
  '(global-flycheck-mode t)
@@ -86,6 +82,9 @@
 
 ;; Narrowing
 (put 'narrow-to-region 'disabled nil)
+
+;; Theme
+(load-theme 'solarized-dark t)
 
 ;; Font
 (set-face-attribute 'default nil :family "Ricty Diminished" :height 140)
