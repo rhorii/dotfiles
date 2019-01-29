@@ -52,7 +52,7 @@
      ("melpa" . "https://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (volatile-highlights highlight-symbol async company company-quickhelp counsel docker docker-compose-mode dockerfile-mode exec-path-from-shell fish-mode flycheck flycheck-ledger helpful ivy ivy-rich json-mode ledger-mode magit markdown-mode minions paradox projectile rainbow-delimiters smartparens smex solarized-theme swiper undo-tree which-key yaml-mode yasnippet yasnippet-snippets)))
+    (expand-region volatile-highlights highlight-symbol async company company-quickhelp counsel docker docker-compose-mode dockerfile-mode exec-path-from-shell fish-mode flycheck flycheck-ledger helpful ivy ivy-rich json-mode ledger-mode magit markdown-mode minions paradox projectile rainbow-delimiters smartparens smex solarized-theme swiper undo-tree which-key yaml-mode yasnippet yasnippet-snippets)))
  '(paradox-execute-asynchronously t)
  '(paradox-github-token t)
  '(prog-mode-hook
@@ -95,6 +95,7 @@
 
 ;; Key Bindings
 (global-set-key (kbd "C-s") 'swiper)
+(global-set-key (kbd "C-=") 'er/expand-region)
 (global-set-key (kbd "C-h k") 'helpful-key)
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
