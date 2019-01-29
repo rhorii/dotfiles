@@ -52,7 +52,7 @@
      ("melpa" . "https://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (highlight-symbol async company company-quickhelp counsel docker docker-compose-mode dockerfile-mode exec-path-from-shell fish-mode flycheck flycheck-ledger helpful ivy ivy-rich json-mode ledger-mode magit markdown-mode minions paradox projectile rainbow-delimiters smartparens smex solarized-theme swiper undo-tree which-key yaml-mode yasnippet yasnippet-snippets)))
+    (volatile-highlights highlight-symbol async company company-quickhelp counsel docker docker-compose-mode dockerfile-mode exec-path-from-shell fish-mode flycheck flycheck-ledger helpful ivy ivy-rich json-mode ledger-mode magit markdown-mode minions paradox projectile rainbow-delimiters smartparens smex solarized-theme swiper undo-tree which-key yaml-mode yasnippet yasnippet-snippets)))
  '(paradox-execute-asynchronously t)
  '(paradox-github-token t)
  '(prog-mode-hook
@@ -72,6 +72,7 @@
  '(solarized-scale-org-headlines nil)
  '(text-mode-hook (quote (turn-on-flyspell text-mode-hook-identify)))
  '(tool-bar-mode nil)
+ '(volatile-highlights-mode t)
  '(which-key-mode t)
  '(x-underline-at-descent-line t)
  '(yas-global-mode t))
