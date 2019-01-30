@@ -29,6 +29,7 @@
  '(counsel-describe-variable-function (quote helpful-variable))
  '(counsel-mode t)
  '(css-indent-offset 2)
+ '(current-language-environment "Japanese")
  '(global-auto-revert-mode t)
  '(global-company-mode t)
  '(global-flycheck-mode t)
