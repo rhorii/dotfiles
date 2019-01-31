@@ -70,6 +70,7 @@
  '(shr-use-fonts nil)
  '(smartparens-global-mode t)
  '(solarized-scale-org-headlines nil)
+ '(tab-width 2)
  '(text-mode-hook (quote (turn-on-flyspell text-mode-hook-identify)))
  '(tool-bar-mode nil)
  '(volatile-highlights-mode t)
