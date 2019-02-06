@@ -30,6 +30,7 @@
  '(counsel-describe-variable-function (quote helpful-variable))
  '(counsel-mode t)
  '(css-indent-offset 2)
+ '(flycheck-python-flake8-executable "flake8")
  '(global-auto-revert-mode t)
  '(global-company-mode t)
  '(global-flycheck-mode t)
