@@ -202,7 +202,7 @@
   (setq minions-direct '(flycheck-mode))
   (minions-mode +1))
 
-(use-package org
+(use-package ob
   :defer t
   :config
   (org-babel-do-load-languages
