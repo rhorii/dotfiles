@@ -24,6 +24,12 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 
+;; Language
+(set-language-environment "Japanese")
+
+;; Coding
+(prefer-coding-system 'utf-8)
+
 ;; Font
 (set-face-attribute 'default nil :family "Ricty Diminished" :height 140)
 (set-fontset-font t 'unicode (font-spec :family "Ricty Dminished"))
