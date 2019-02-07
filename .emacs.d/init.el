@@ -28,7 +28,7 @@
 (set-face-attribute 'default nil :family "Ricty Diminished" :height 140)
 (set-fontset-font t 'unicode (font-spec :family "Ricty Dminished"))
 
-;; Customize
+;; custom-file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file t)
 
@@ -40,14 +40,7 @@
   (require 'use-package))
 (setq use-package-verbose t)
 
-(use-package org
-  :defer t
-  :config
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((emacs-lisp . nil)
-     (shell . t))))
-
+;; Packages
 (use-package async
   :ensure t
   :defer t)
@@ -202,6 +195,14 @@
   :config
   (setq minions-direct '(flycheck-mode))
   (minions-mode +1))
+
+(use-package org
+  :defer t
+  :config
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . nil)
+     (shell . t))))
 
 (use-package osx-dictionary
   :ensure t
