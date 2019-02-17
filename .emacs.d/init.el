@@ -242,6 +242,11 @@
   (setq recentf-max-saved-items 512)
   (recentf-mode +1))
 
+(use-package ruby-mode
+  :defer t
+  :config
+  (setq ruby-insert-encoding-magic-comment nil))
+
 (use-package sh-script
   :defer t
   :config
