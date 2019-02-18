@@ -185,6 +185,8 @@
   :ensure t
   :defer t
   :config
+  (add-hook 'ledger-mode-hook
+            (lambda() (add-hook 'before-save-hook 'ledger-mode-clean-buffer nil t)))
   (setq ledger-post-amount-alignment-column 62))
 
 (use-package magit
