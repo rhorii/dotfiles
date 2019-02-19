@@ -19,6 +19,8 @@
 (prefer-coding-system 'utf-8)
 
 (global-set-key (kbd "C-=")         'er/expand-region)
+(global-set-key (kbd "C-c a")       'org-agenda)
+(global-set-key (kbd "C-c c")       'org-capture)
 (global-set-key (kbd "C-c m")       'magit-status)
 (global-set-key (kbd "C-c p")       'projectile-command-map)
 (global-set-key (kbd "C-c <down>")  'windmove-down)
