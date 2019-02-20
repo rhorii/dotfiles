@@ -15,6 +15,8 @@
  '(counsel-mode t)
  '(create-lockfiles nil)
  '(electric-pair-mode t)
+ '(flycheck-python-flake8-executable "flake8")
+ '(flycheck-python-pycompile-executable "python3")
  '(global-auto-revert-mode t)
  '(global-company-mode t)
  '(global-flycheck-mode t)
