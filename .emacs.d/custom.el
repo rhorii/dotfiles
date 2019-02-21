@@ -32,7 +32,7 @@
  '(minions-mode t)
  '(org-agenda-files (quote ("~/org")))
  '(org-babel-load-languages (quote ((emacs-lisp . t) (shell . t))))
- '(org-default-notes-file "~/org/notes.org")
+ '(org-default-notes-file "~/org/inbox.org")
  '(package-archives
    (quote
     (("gnu" . "https://elpa.gnu.org/packages/")
