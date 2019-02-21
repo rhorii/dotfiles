@@ -33,6 +33,9 @@
  '(org-agenda-files (quote ("~/org")))
  '(org-babel-load-languages (quote ((emacs-lisp . t) (shell . t))))
  '(org-default-notes-file "~/org/inbox.org")
+ '(org-outline-path-complete-in-steps nil)
+ '(org-refile-targets (quote ((org-agenda-files :maxlevel . 3))))
+ '(org-refile-use-outline-path (quote file))
  '(package-archives
    (quote
     (("gnu" . "https://elpa.gnu.org/packages/")
