@@ -52,6 +52,7 @@
  '(savehist-mode t)
  '(scroll-bar-mode nil)
  '(scroll-conservatively 10000)
+ '(sh-basic-offset 2)
  '(show-paren-mode t)
  '(solarized-scale-org-headlines nil)
  '(solarized-use-variable-pitch nil)
