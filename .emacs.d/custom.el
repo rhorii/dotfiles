@@ -32,6 +32,20 @@
  '(minions-mode t)
  '(org-agenda-files (quote ("~/org")))
  '(org-babel-load-languages (quote ((emacs-lisp . t) (shell . t))))
+ '(org-capture-templates
+   (quote
+    (("t" "Task" entry
+      (file "~/org/inbox.org")
+      "* TODO %?
+  :PROPERTIES:
+  :CREATED:  %U
+  :END:")
+     ("n" "Note" entry
+      (file "~/org/inbox.org")
+      "* %?
+  :PROPERTIES:
+  :CREATED:  %U
+  :END:"))))
  '(org-default-notes-file "~/org/inbox.org")
  '(org-outline-path-complete-in-steps nil)
  '(org-refile-targets (quote ((org-agenda-files :maxlevel . 3))))
