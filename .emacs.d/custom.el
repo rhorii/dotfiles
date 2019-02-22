@@ -38,15 +38,18 @@
       (file "~/org/inbox.org")
       "* TODO %?
   :PROPERTIES:
-  :CREATED:  %U
+  :Created:  %U
   :END:")
      ("n" "Note" entry
       (file "~/org/inbox.org")
       "* %?
   :PROPERTIES:
-  :CREATED:  %U
+  :Created:  %U
   :END:"))))
  '(org-default-notes-file "~/org/inbox.org")
+ '(org-enforce-todo-dependencies t)
+ '(org-log-done (quote time))
+ '(org-log-into-drawer t)
  '(org-outline-path-complete-in-steps nil)
  '(org-refile-targets (quote ((org-agenda-files :maxlevel . 3))))
  '(org-refile-use-outline-path (quote file))
