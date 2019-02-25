@@ -53,6 +53,14 @@
  '(org-outline-path-complete-in-steps nil)
  '(org-refile-targets (quote ((org-agenda-files :maxlevel . 3))))
  '(org-refile-use-outline-path (quote file))
+ '(org-tag-alist
+   (quote
+    ((:startgroup)
+     ("@home" . 104)
+     ("@office" . 111)
+     ("@pc" . 112)
+     ("@errand" . 101)
+     (:endgroup))))
  '(org-todo-keywords
    (quote
     ((sequence "TODO(t)" "NEXT(n)" "WAITING(w@/!)" "|" "DONE(d)" "CANCELED(c@/!)"))))
