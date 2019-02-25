@@ -35,18 +35,18 @@
  '(org-capture-templates
    (quote
     (("t" "Task" entry
-      (file "~/org/inbox.org")
+      (file "~/org/refile.org")
       "* TODO %?
   :PROPERTIES:
   :Created:  %U
   :END:")
      ("n" "Note" entry
-      (file "~/org/inbox.org")
+      (file "~/org/refile.org")
       "* %?
   :PROPERTIES:
   :Created:  %U
   :END:"))))
- '(org-default-notes-file "~/org/inbox.org")
+ '(org-default-notes-file "~/org/refile.org")
  '(org-enforce-todo-dependencies t)
  '(org-log-done (quote time))
  '(org-log-into-drawer t)
