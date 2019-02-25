@@ -53,6 +53,9 @@
  '(org-outline-path-complete-in-steps nil)
  '(org-refile-targets (quote ((org-agenda-files :maxlevel . 3))))
  '(org-refile-use-outline-path (quote file))
+ '(org-todo-keywords
+   (quote
+    ((sequence "TODO(t)" "NEXT(n)" "WAITING(w@/!)" "|" "DONE(d)" "CANCELED(c@/!)"))))
  '(package-archives
    (quote
     (("gnu" . "https://elpa.gnu.org/packages/")
