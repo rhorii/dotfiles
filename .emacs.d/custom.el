@@ -30,23 +30,29 @@
  '(make-backup-files nil)
  '(minions-direct (quote (flycheck-mode)))
  '(minions-mode t)
+ '(org-agenda-custom-commands
+   (quote
+    (("n" "Agenda and all TODOs"
+      ((agenda "" nil)
+       (alltodo "" nil))
+      nil)
+     ("g" . "GTD")
+     ("gi" "inbox" tags "inbox" nil)
+     ("gw" "waiting for" todo "WAITING" nil)
+     ("gs" "someday/maybe" todo "SOMEDAY" nil))))
  '(org-agenda-files (quote ("~/org")))
  '(org-babel-load-languages (quote ((emacs-lisp . t) (shell . t))))
  '(org-capture-templates
    (quote
     (("t" "Task" entry
-      (file "~/org/refile.org")
+      (file "~/org/inbox.org")
       "* TODO %?
-  :PROPERTIES:
-  :Created:  %U
-  :END:")
+  %U")
      ("n" "Note" entry
-      (file "~/org/refile.org")
+      (file "~/org/inbox.org")
       "* %?
-  :PROPERTIES:
-  :Created:  %U
-  :END:"))))
- '(org-default-notes-file "~/org/refile.org")
+  %U"))))
+ '(org-default-notes-file "~/org/inbox.org")
  '(org-enforce-todo-dependencies t)
  '(org-log-done (quote time))
  '(org-log-into-drawer t)
@@ -58,12 +64,14 @@
     ((:startgroup)
      ("@home" . 104)
      ("@office" . 111)
-     ("@pc" . 112)
-     ("@errand" . 101)
-     (:endgroup))))
+     ("@errands" . 101)
+     (:endgroup)
+     ("project" . 112)
+     ("note" . 110))))
+ '(org-tags-exclude-from-inheritance (quote ("project")))
  '(org-todo-keywords
    (quote
-    ((sequence "TODO(t)" "NEXT(n)" "WAITING(w@/!)" "|" "DONE(d)" "CANCELED(c@/!)"))))
+    ((sequence "TODO(t)" "SOMEDAY(s)" "WAITING(w@/!)" "|" "DONE(d)" "CANCELED(c@/!)"))))
  '(package-archives
    (quote
     (("gnu" . "https://elpa.gnu.org/packages/")
