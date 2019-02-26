@@ -56,7 +56,7 @@
   %U")
      ("n" "Note" entry
       (file "~/org/inbox.org")
-      "* %?
+      "* %? :note:
   %U"))))
  '(org-default-notes-file "~/org/inbox.org")
  '(org-enforce-todo-dependencies t)
