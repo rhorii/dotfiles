@@ -40,7 +40,7 @@
                   ((org-agenda-overriding-header "next actions")))
        (tags-todo "/+WAITING"
                   ((org-agenda-overriding-header "waiting for")))
-       (tags "project/-SOMEDAY-WAITING-DONE-CANCELED"
+       (tags "+project/-SOMEDAY-WAITING-DONE-CANCELED"
              ((org-agenda-overriding-header "projects")))
        (tags-todo "/+SOMEDAY"
                   ((org-agenda-overriding-header "someday/maybe"))))
