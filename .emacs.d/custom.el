@@ -32,14 +32,20 @@
  '(minions-mode t)
  '(org-agenda-custom-commands
    (quote
-    (("n" "Agenda and all TODOs"
+    (("g" "GTD lists"
       ((agenda "" nil)
-       (alltodo "" nil))
-      nil)
-     ("g" . "GTD")
-     ("gi" "inbox" tags "inbox" nil)
-     ("gw" "waiting for" todo "WAITING" nil)
-     ("gs" "someday/maybe" todo "SOMEDAY" nil))))
+       (tags "+inbox"
+             ((org-agenda-overriding-header "inbox")))
+       (tags-todo "-inbox-project/+TODO"
+                  ((org-agenda-overriding-header "next actions")))
+       (tags-todo "/+WAITING"
+                  ((org-agenda-overriding-header "waiting for")))
+       (tags "project/-SOMEDAY-WAITING-DONE-CANCELED"
+             ((org-agenda-overriding-header "projects")))
+       (tags-todo "/+SOMEDAY"
+                  ((org-agenda-overriding-header "someday/maybe"))))
+      nil nil)
+     ("n" "notes" tags "+note" nil))))
  '(org-agenda-files (quote ("~/org")))
  '(org-babel-load-languages (quote ((emacs-lisp . t) (shell . t))))
  '(org-capture-templates
