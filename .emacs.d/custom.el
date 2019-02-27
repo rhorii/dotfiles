@@ -106,6 +106,7 @@
  '(text-mode-hook (quote (turn-on-flyspell text-mode-hook-identify)))
  '(tool-bar-mode nil)
  '(which-key-mode t)
+ '(winner-mode t)
  '(x-underline-at-descent-line t)
  '(yas-global-mode t))
 (custom-set-faces
