@@ -84,7 +84,7 @@
      ("melpa" . "https://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (async company company-quickhelp counsel docker docker-compose-mode dockerfile-mode edit-indirect exec-path-from-shell expand-region fish-mode flycheck flycheck-ledger helpful ivy json-mode ledger-mode magit markdown-mode minions paradox projectile smex solarized-theme swiper undo-tree which-key yaml-mode yasnippet yasnippet-snippets)))
+    (shackle async company company-quickhelp counsel docker docker-compose-mode dockerfile-mode edit-indirect exec-path-from-shell expand-region fish-mode flycheck flycheck-ledger helpful ivy json-mode ledger-mode magit markdown-mode minions paradox projectile smex solarized-theme swiper undo-tree which-key yaml-mode yasnippet yasnippet-snippets)))
  '(paradox-execute-asynchronously t)
  '(paradox-github-token t)
  '(prog-mode-hook (quote (flyspell-prog-mode hs-minor-mode)))
@@ -98,6 +98,7 @@
  '(scroll-bar-mode nil)
  '(scroll-conservatively 10000)
  '(sh-basic-offset 2)
+ '(shackle-mode t)
  '(show-paren-mode t)
  '(shr-use-fonts nil)
  '(solarized-scale-org-headlines nil)
