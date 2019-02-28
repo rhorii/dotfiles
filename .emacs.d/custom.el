@@ -44,8 +44,9 @@
        (tags-todo "-CANCELED/!+WAITING"
                   ((org-agenda-overriding-header "Waiting for")
                    (org-tags-match-list-sublevels nil)))
-       (tags-todo "+project/!"
-                  ((org-agenda-overriding-header "Projects")))
+       (tags-todo "+PROJECT/!"
+                  ((org-agenda-overriding-header "Projects")
+                   (org-tags-match-list-sublevels nil)))
        (tags-todo "+SOMEDAY-CANCELED/!"
                   ((org-agenda-overriding-header "Someday/Maybe")
                    (org-tags-match-list-sublevels nil))))
@@ -71,7 +72,7 @@
  '(org-outline-path-complete-in-steps nil)
  '(org-refile-targets (quote ((org-agenda-files :maxlevel . 3))))
  '(org-refile-use-outline-path (quote file))
- '(org-stuck-projects (quote ("+project/!" ("NEXT" "WAITING") nil "SCHEDULED:")))
+ '(org-stuck-projects (quote ("+PROJECT/!" ("NEXT" "WAITING") nil "SCHEDULED:")))
  '(org-tag-alist
    (quote
     ((:startgroup)
@@ -79,9 +80,7 @@
      ("@office" . 111)
      ("@errands" . 101)
      (:endgroup)
-     ("project" . 112)
      ("note" . 110))))
- '(org-tags-exclude-from-inheritance (quote ("project")))
  '(org-todo-keywords
    (quote
     ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
