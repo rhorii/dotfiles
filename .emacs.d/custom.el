@@ -64,6 +64,8 @@
       "* %? :note:
   %U"))))
  '(org-default-notes-file "~/org/inbox.org")
+ '(org-enforce-todo-checkbox-dependencies t)
+ '(org-enforce-todo-dependencies t)
  '(org-log-done (quote time))
  '(org-log-into-drawer t)
  '(org-outline-path-complete-in-steps nil)
