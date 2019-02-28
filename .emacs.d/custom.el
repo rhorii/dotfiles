@@ -46,7 +46,7 @@
                    (org-tags-match-list-sublevels nil)))
        (tags-todo "+project/!"
                   ((org-agenda-overriding-header "Projects")))
-       (tags-todo "-CANCELED/!+SOMEDAY"
+       (tags-todo "+SOMEDAY-CANCELED/!"
                   ((org-agenda-overriding-header "Someday/Maybe")
                    (org-tags-match-list-sublevels nil))))
       nil nil)
@@ -85,31 +85,22 @@
  '(org-todo-keywords
    (quote
     ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-     (sequence "SOMEDAY(s)" "WAITING(w@/!)" "|" "CANCELED(c@/!)"))))
+     (sequence "WAITING(w@/!)" "|" "CANCELED(c@/!)"))))
  '(org-todo-state-tags-triggers
    (quote
     (("TODO"
-      ("SOMEDAY")
       ("WAITING")
       ("CANCELED"))
      ("NEXT"
-      ("SOMEDAY")
       ("WAITING")
       ("CANCELED"))
      ("DONE"
-      ("SOMEDAY")
       ("WAITING")
       ("CANCELED"))
-     ("SOMEDAY"
-      ("SOMEDAY" . t)
-      ("WAITING")
-      ("CANCELD"))
      ("WAITING"
-      ("SOMEDAY")
       ("WAITING" . t)
       ("CANCELED"))
      ("CANCELED"
-      ("SOMEDAY")
       ("WAITING")
       ("CANCELED" . t)))))
  '(package-archives
