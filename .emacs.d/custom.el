@@ -32,20 +32,25 @@
  '(minions-mode t)
  '(org-agenda-custom-commands
    (quote
-    (("g" "GTD lists"
+    ((" " "Agenda"
       ((agenda "" nil)
-       (tags "+inbox"
-             ((org-agenda-overriding-header "inbox")))
-       (tags-todo "-inbox-project/+TODO"
-                  ((org-agenda-overriding-header "next actions")))
-       (tags-todo "/+WAITING"
-                  ((org-agenda-overriding-header "waiting for")))
-       (tags "+project/-SOMEDAY-WAITING-DONE-CANCELED"
-             ((org-agenda-overriding-header "projects")))
-       (tags-todo "/+SOMEDAY"
-                  ((org-agenda-overriding-header "someday/maybe"))))
+       (tags "+INBOX"
+             ((org-agenda-overriding-header "Inbox")
+              (org-tags-match-list-sublevels nil)))
+       (stuck ""
+              ((org-agenda-overriding-header "Stuck Projects")))
+       (tags-todo "-WAITING-SOMEDAY-CANCELED/!+NEXT"
+                  ((org-agenda-overriding-header "Next Actions")))
+       (tags-todo "-CANCELED/!+WAITING"
+                  ((org-agenda-overriding-header "Waiting for")
+                   (org-tags-match-list-sublevels nil)))
+       (tags-todo "+project/!"
+                  ((org-agenda-overriding-header "Projects")))
+       (tags-todo "-CANCELED/!+SOMEDAY"
+                  ((org-agenda-overriding-header "Someday/Maybe")
+                   (org-tags-match-list-sublevels nil))))
       nil nil)
-     ("n" "notes" tags "+note" nil))))
+     ("n" "Notes" tags "+note" nil))))
  '(org-agenda-files (quote ("~/org")))
  '(org-babel-load-languages (quote ((emacs-lisp . t) (shell . t))))
  '(org-capture-templates
@@ -59,12 +64,12 @@
       "* %? :note:
   %U"))))
  '(org-default-notes-file "~/org/inbox.org")
- '(org-enforce-todo-dependencies t)
  '(org-log-done (quote time))
  '(org-log-into-drawer t)
  '(org-outline-path-complete-in-steps nil)
  '(org-refile-targets (quote ((org-agenda-files :maxlevel . 3))))
  '(org-refile-use-outline-path (quote file))
+ '(org-stuck-projects (quote ("+project/!" ("NEXT" "WAITING") nil "SCHEDULED:")))
  '(org-tag-alist
    (quote
     ((:startgroup)
@@ -77,7 +82,34 @@
  '(org-tags-exclude-from-inheritance (quote ("project")))
  '(org-todo-keywords
    (quote
-    ((sequence "TODO(t)" "SOMEDAY(s)" "WAITING(w@/!)" "|" "DONE(d)" "CANCELED(c@/!)"))))
+    ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+     (sequence "SOMEDAY(s)" "WAITING(w@/!)" "|" "CANCELED(c@/!)"))))
+ '(org-todo-state-tags-triggers
+   (quote
+    (("TODO"
+      ("SOMEDAY")
+      ("WAITING")
+      ("CANCELED"))
+     ("NEXT"
+      ("SOMEDAY")
+      ("WAITING")
+      ("CANCELED"))
+     ("DONE"
+      ("SOMEDAY")
+      ("WAITING")
+      ("CANCELED"))
+     ("SOMEDAY"
+      ("SOMEDAY" . t)
+      ("WAITING")
+      ("CANCELD"))
+     ("WAITING"
+      ("SOMEDAY")
+      ("WAITING" . t)
+      ("CANCELED"))
+     ("CANCELED"
+      ("SOMEDAY")
+      ("WAITING")
+      ("CANCELED" . t)))))
  '(package-archives
    (quote
     (("gnu" . "https://elpa.gnu.org/packages/")
