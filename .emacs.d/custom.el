@@ -37,14 +37,12 @@
        (tags "+INBOX"
              ((org-agenda-overriding-header "Inbox")
               (org-tags-match-list-sublevels nil)))
-       (stuck ""
-              ((org-agenda-overriding-header "Stuck Projects")))
        (tags-todo "-WAITING-SOMEDAY-CANCELED/!+NEXT"
                   ((org-agenda-overriding-header "Next Actions")))
        (tags-todo "-CANCELED/!+WAITING"
                   ((org-agenda-overriding-header "Waiting for")
                    (org-tags-match-list-sublevels nil)))
-       (tags-todo "+PROJECT/!"
+       (tags-todo "+PROJECT-WAITING-CANCELED/!"
                   ((org-agenda-overriding-header "Projects")
                    (org-tags-match-list-sublevels nil)))
        (tags-todo "+SOMEDAY-CANCELED/!"
@@ -72,7 +70,6 @@
  '(org-outline-path-complete-in-steps nil)
  '(org-refile-targets (quote ((org-agenda-files :maxlevel . 3))))
  '(org-refile-use-outline-path (quote file))
- '(org-stuck-projects (quote ("+PROJECT/!" ("NEXT" "WAITING") nil "SCHEDULED:")))
  '(org-tag-alist
    (quote
     ((:startgroup)
