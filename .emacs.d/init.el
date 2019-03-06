@@ -231,7 +231,7 @@
                   ((org-agenda-overriding-header "Someday/Maybe")
                    (org-tags-match-list-sublevels nil)))))))
   (setq org-stuck-projects
-        '("+PROJECT" ("TODO" "WAIT") () "SCHEDULED:")))
+        '("+PROJECT" ("TODO" "WAIT") () "")))
 
 (use-package org-capture
   :bind ("C-c c" . org-capture)
