@@ -174,20 +174,16 @@
   (setq org-refile-use-outline-path 'file)
   (setq org-tag-alist
         '((:startgroup)
+          ("PROJECT" . ?P)
+          ("SOMEDAY" . ?$)
+          (:endgroup)
           ("@home" . ?h)
           ("@office" . ?o)
-          ("@errands" . ?e)
-          (:endgroup)
-          ("note" . ?n)))
+          ("@computer" . ?c)
+          ("@phone" . ?p)))
+  (setq org-tags-exclude-from-inheritance '("PROJECT"))
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-          (sequence "WAITING(w@/!)" "|" "CANCELED(c@/!)")))
-  (setq org-todo-state-tags-triggers
-        '(("TODO" ("WAITING") ("CANCELED"))
-          ("NEXT" ("WAITING") ("CANCELED"))
-          ("DONE" ("WAITING") ("CANCELED"))
-          ("WAITING" ("WAITING" . t) ("CANCELED"))
-          ("CANCELED" ("WAITING") ("CANCELED" . t))))
+        '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d)")))
 
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -198,23 +194,38 @@
   :bind ("C-c a" . org-agenda)
   :config
   (setq org-agenda-custom-commands
-        '(("n" "Notes" tags "+note")
-          (" " "Agenda"
+        '(("i" "Inbox" tags "+INBOX"
+           ((org-agenda-overriding-header "Inbox")
+            (org-tags-match-list-sublevels nil)))
+          ("n" "Next Actions" tags-todo "-SOMEDAY/!+TODO"
+           ((org-agenda-overriding-header "Next Actions")))
+          ("w" "Waiting for" tags-todo "-SOMEDAY/!+WAIT"
+           ((org-agenda-overriding-header "Waiting for")))
+          ("P" "Projects" tags "+PROJECT"
+           ((org-agenda-overriding-header "Projects")
+            (org-tags-match-list-sublevels nil)))
+          ("$" "Someday/Maybe" tags "+SOMEDAY"
+           ((org-agenda-overriding-header "Someday/Maybe")
+            (org-tags-match-list-sublevels nil)))
+          ("r" "Weekly Review"
            ((agenda "")
             (tags "+INBOX"
                   ((org-agenda-overriding-header "Inbox")
                    (org-tags-match-list-sublevels nil)))
-            (tags-todo "-WAITING-SOMEDAY-CANCELED/!+NEXT"
+            (stuck ""
+                   ((org-agenda-overriding-header "Stuck Projects")))
+            (tags "+PROJECT"
+                  ((org-agenda-overriding-header "Projects")
+                   (org-tags-match-list-sublevels nil)))
+            (tags-todo "-SOMEDAY/!+TODO"
                        ((org-agenda-overriding-header "Next Actions")))
-            (tags-todo "-CANCELED/!+WAITING"
-                       ((org-agenda-overriding-header "Waiting for")
-                        (org-tags-match-list-sublevels nil)))
-            (tags-todo "+PROJECT-WAITING-CANCELED/!"
-                       ((org-agenda-overriding-header "Projects")
-                        (org-tags-match-list-sublevels nil)))
-            (tags-todo "+SOMEDAY-CANCELED/!"
-                       ((org-agenda-overriding-header "Someday/Maybe")
-                        (org-tags-match-list-sublevels nil))))))))
+            (tags-todo "-SOMEDAY/!+WAIT"
+                       ((org-agenda-overriding-header "Waiting for")))
+            (tags "+SOMEDAY"
+                  ((org-agenda-overriding-header "Someday/Maybe")
+                   (org-tags-match-list-sublevels nil)))))))
+  (setq org-stuck-projects
+        '("+PROJECT" ("TODO" "WAIT") () "SCHEDULED:")))
 
 (use-package org-capture
   :bind ("C-c c" . org-capture)
@@ -223,9 +234,9 @@
         '(("t" "Task" entry
            (file "~/org/inbox.org")
            "* TODO %?\n  %U")
-          ("n" "Note" entry
+          ("P" "Project" entry
            (file "~/org/inbox.org")
-           "* %? :note:\n  %U"))))
+           "* %? :PROJECT:\n  %U"))))
 
 (use-package paradox
   :ensure t
