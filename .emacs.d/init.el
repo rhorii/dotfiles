@@ -200,7 +200,9 @@
            ((org-agenda-overriding-header "Inbox")
             (org-tags-match-list-sublevels nil)))
           ("n" "Next Actions" tags-todo "-SOMEDAY/!+TODO"
-           ((org-agenda-overriding-header "Next Actions")))
+           ((org-agenda-overriding-header "Next Actions")
+            (org-agenda-skip-function
+             '(org-agenda-skip-entry-if 'scheduled))))
           ("w" "Waiting for" tags-todo "-SOMEDAY/!+WAIT"
            ((org-agenda-overriding-header "Waiting for")))
           ("P" "Projects" tags "+PROJECT"
@@ -220,7 +222,9 @@
                   ((org-agenda-overriding-header "Projects")
                    (org-tags-match-list-sublevels nil)))
             (tags-todo "-SOMEDAY/!+TODO"
-                       ((org-agenda-overriding-header "Next Actions")))
+                       ((org-agenda-overriding-header "Next Actions")
+                        (org-agenda-skip-function
+                         '(org-agenda-skip-entry-if 'scheduled))))
             (tags-todo "-SOMEDAY/!+WAIT"
                        ((org-agenda-overriding-header "Waiting for")))
             (tags "+SOMEDAY"
