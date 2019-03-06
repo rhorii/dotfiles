@@ -161,6 +161,8 @@
 
 (use-package org
   :bind (("C-c l" . org-store-link))
+  :init
+  (setq org-replace-disputed-keys t)
   :config
   (setq org-agenda-files '("~/org"))
   (setq org-default-notes-file "~/org/inbox.org")
@@ -308,6 +310,10 @@
   :ensure t
   :config
   (which-key-mode +1))
+
+(use-package windmove
+  :config
+  (windmove-default-keybindings))
 
 (use-package winner
   :config
