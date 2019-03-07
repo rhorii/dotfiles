@@ -211,7 +211,14 @@
           ("$" "Someday/Maybe" tags "+SOMEDAY"
            ((org-agenda-overriding-header "Someday/Maybe")
             (org-tags-match-list-sublevels nil)))
-          ("r" "Weekly Review"
+          ("D" "Daily Review"
+           ((agenda ""
+                    ((org-agenda-span 'day)))
+            (tags-todo "-SOMEDAY/!+TODO"
+                       ((org-agenda-overriding-header "Next Actions")
+                        (org-agenda-skip-function
+                         '(org-agenda-skip-entry-if 'scheduled))))))
+          ("W" "Weekly Review"
            ((agenda "")
             (tags "+INBOX"
                   ((org-agenda-overriding-header "Inbox")
