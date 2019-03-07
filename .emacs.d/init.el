@@ -164,8 +164,6 @@
   :init
   (setq org-replace-disputed-keys t)
   :config
-  (add-to-list 'org-modules 'org-habit)
-
   (setq org-agenda-files '("~/org"))
   (setq org-agenda-text-search-extra-files '(agenda-archives))
   (setq org-default-notes-file "~/org/inbox.org")
@@ -245,6 +243,12 @@
           ("P" "Project" entry
            (file "~/org/inbox.org")
            "* %? :PROJECT:\n  %U"))))
+
+(use-package org-habit
+  :after org
+  :config
+  (setq org-habit-graph-column 80)
+  (setq org-habit-show-habits-only-for-today nil))
 
 (use-package paradox
   :ensure t
