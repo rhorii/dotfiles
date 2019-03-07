@@ -175,10 +175,9 @@
         '((org-agenda-files :maxlevel . 3)))
   (setq org-refile-use-outline-path 'file)
   (setq org-tag-alist
-        '((:startgroup)
-          ("PROJECT" . ?P)
+        '(("PROJECT" . ?P)
           ("SOMEDAY" . ?$)
-          (:endgroup)
+          (:newline)
           ("@home" . ?h)
           ("@office" . ?o)
           ("@computer" . ?c)
@@ -205,7 +204,7 @@
              '(org-agenda-skip-entry-if 'scheduled))))
           ("w" "Waiting for" tags-todo "-SOMEDAY/!+WAIT"
            ((org-agenda-overriding-header "Waiting for")))
-          ("P" "Projects" tags "+PROJECT"
+          ("P" "Projects" tags "+PROJECT-SOMEDAY"
            ((org-agenda-overriding-header "Projects")
             (org-tags-match-list-sublevels nil)))
           ("$" "Someday/Maybe" tags "+SOMEDAY"
@@ -218,7 +217,7 @@
                    (org-tags-match-list-sublevels nil)))
             (stuck ""
                    ((org-agenda-overriding-header "Stuck Projects")))
-            (tags "+PROJECT"
+            (tags "+PROJECT-SOMEDAY"
                   ((org-agenda-overriding-header "Projects")
                    (org-tags-match-list-sublevels nil)))
             (tags-todo "-SOMEDAY/!+TODO"
