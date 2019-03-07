@@ -164,6 +164,8 @@
   :init
   (setq org-replace-disputed-keys t)
   :config
+  (add-to-list 'org-modules 'org-habit)
+
   (setq org-agenda-files '("~/org"))
   (setq org-agenda-text-search-extra-files '(agenda-archives))
   (setq org-default-notes-file "~/org/inbox.org")
