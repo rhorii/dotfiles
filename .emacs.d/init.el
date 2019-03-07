@@ -165,6 +165,7 @@
   (setq org-replace-disputed-keys t)
   :config
   (setq org-agenda-files '("~/org"))
+  (setq org-agenda-text-search-extra-files '(agenda-archives))
   (setq org-default-notes-file "~/org/inbox.org")
   (setq org-enforce-todo-checkbox-dependencies t)
   (setq org-enforce-todo-dependencies t)
