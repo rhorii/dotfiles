@@ -257,6 +257,12 @@
   (setq org-habit-graph-column 80)
   (setq org-habit-show-habits-only-for-today nil))
 
+(use-package org-src
+  :after org
+  :config
+  (setq org-edit-src-content-indentation 0)
+  (setq org-src-window-setup 'current-window))
+
 (use-package paradox
   :ensure t
   :defer t
