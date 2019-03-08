@@ -3,18 +3,19 @@
 ;;; Code:
 
 ;; Better Defaults
-(blink-cursor-mode -1)
-(column-number-mode +1)
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-(setq auto-save-default nil)
-(setq confirm-kill-emacs 'yes-or-no-p)
-(setq create-lockfiles nil)
-(setq make-backup-files nil)
-(setq require-final-newline t)
-(setq scroll-conservatively 10000)
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 2)
+(custom-set-variables
+ '(auto-save-default nil)
+ '(blink-cursor-mode nil)
+ '(column-number-mode t)
+ '(confirm-kill-emacs 'yes-or-no-p)
+ '(create-lockfiles nil)
+ '(indent-tabs-mode nil)
+ '(make-backup-files nil)
+ '(require-final-newline t)
+ '(scroll-conservatively 10000)
+ '(scroll-bar-mode nil)
+ '(tab-width 2)
+ '(tool-bar-mode nil))
 
 ;; coding
 (set-language-environment "Japanese")
@@ -23,6 +24,10 @@
 ;; font
 (set-face-attribute 'default nil :family "Ricty Diminished" :height 140)
 (set-fontset-font t 'unicode (font-spec :family "Ricty Dminished"))
+
+;; custom-file
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file t)
 
 ;; `package'
 (require 'package)
@@ -43,33 +48,34 @@
   :defer t)
 
 (use-package autorevert
-  :config
-  (setq auto-revert-check-vc-info t)
-  (global-auto-revert-mode +1))
+  :custom
+  (auto-revert-check-vc-info t)
+  (global-auto-revert-mode t))
 
 (use-package company
   :ensure t
-  :config
-  (setq company-minimum-prefix-length 2)
-  (setq company-selection-wrap-around t)
-  (setq company-show-numbers t)
-  (global-company-mode +1))
+  :custom
+  (company-minimum-prefix-length 2)
+  (company-selection-wrap-around t)
+  (company-show-numbers t)
+  (global-company-mode t))
 
 (use-package company-quickhelp
   :after company
   :ensure t
-  :config
-  (company-quickhelp-mode +1))
+  :custom
+  (company-quickhelp-mode t))
 
 (use-package counsel
   :after ivy
   :ensure t
-  :config
-  (counsel-mode +1))
+  :custom
+  (counsel-mode t))
 
 (use-package docker
   :ensure t
-  :bind ("C-c d" . docker))
+  :bind
+  ("C-c d" . docker))
 
 (use-package docker-compose-mode
   :ensure t
@@ -80,18 +86,19 @@
   :defer t)
 
 (use-package elec-pair
-  :config
-  (electric-pair-mode +1))
+  :custom
+  (electric-pair-mode t))
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns x))
   :ensure t
-  :config
+  :init
   (exec-path-from-shell-initialize))
 
 (use-package expand-region
   :ensure t
-  :bind ("C-=" . er/expand-region))
+  :bind
+  ("C-=" . er/expand-region))
 
 (use-package fish-mode
   :ensure t
@@ -99,38 +106,41 @@
 
 (use-package flycheck
   :ensure t
-  :config
-  (setq flycheck-python-flake8-executable "flake8")
-  (setq flycheck-python-pycompile-executable "python3")
-  (global-flycheck-mode +1))
+  :custom
+  (flycheck-python-flake8-executable "flake8")
+  (flycheck-python-pycompile-executable "python3")
+  (global-flycheck-mode t))
 
 (use-package flycheck-ledger
   :after (flycheck ledger-mode)
   :ensure t)
 
 (use-package flyspell
-  :hook ((text-mode . flyspell-mode)
-         (prog-mode . flyspell-prog-mode)))
+  :hook
+  (text-mode . flyspell-mode)
+  (prog-mode . flyspell-prog-mode))
 
 (use-package helpful
   :ensure t
-  :bind (("C-h f" . helpful-callable)
-         ("C-h k" . helpful-key)
-         ("C-h v" . helpful-variable)))
+  :bind
+  ("C-h f" . helpful-callable)
+  ("C-h k" . helpful-key)
+  ("C-h v" . helpful-variable))
 
 (use-package hideshow
-  :hook (prog-mode . hs-minor-mode))
+  :hook
+  (prog-mode . hs-minor-mode))
 
 (use-package hl-line
-  :config
-  (global-hl-line-mode +1))
+  :custom
+  (global-hl-line-mode t))
 
 (use-package ivy
   :ensure t
-  :config
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-virtual-abbreviate 'abbreviate)
-  (ivy-mode +1))
+  :custom
+  (ivy-mode t)
+  (ivy-use-virtual-buffers t)
+  (ivy-virtual-abbreviate 'abbreviate))
 
 (use-package json-mode
   :ensure t
@@ -139,15 +149,17 @@
 (use-package ledger-mode
   :ensure t
   :defer t
+  :custom
+  (ledger-post-amount-alignment-column 62)
   :config
-  (setq ledger-post-amount-alignment-column 62)
   (add-hook 'ledger-mode-hook
             (lambda() (add-hook 'before-save-hook
                                 'ledger-mode-clean-buffer nil t))))
 
 (use-package magit
   :ensure t
-  :bind ("C-c m" . magit-status))
+  :bind
+  ("C-c m" . magit-status))
 
 (use-package markdown-mode
   :ensure t
@@ -155,156 +167,154 @@
 
 (use-package minions
   :ensure t
-  :config
-  (setq minions-direct '(flycheck-mode))
-  (minions-mode +1))
+  :custom
+  (minions-direct '(flycheck-mode))
+  (minions-mode t))
 
 (use-package org
-  :bind (("C-c l" . org-store-link))
-  :init
-  (setq org-replace-disputed-keys t)
-  :config
-  (setq org-agenda-files '("~/org"))
-  (setq org-agenda-text-search-extra-files '(agenda-archives))
-  (setq org-default-notes-file "~/org/inbox.org")
-  (setq org-enforce-todo-checkbox-dependencies t)
-  (setq org-enforce-todo-dependencies t)
-  (setq org-log-done 'time)
-  (setq org-log-into-drawer t)
-  (setq org-outline-path-complete-in-steps nil)
-  (setq org-refile-targets
-        '((org-agenda-files :maxlevel . 3)))
-  (setq org-refile-use-outline-path 'file)
-  (setq org-tag-alist
-        '(("PROJECT" . ?P)
-          ("SOMEDAY" . ?$)
-          (:newline)
-          ("@home" . ?h)
-          ("@office" . ?o)
-          ("@computer" . ?c)
-          ("@phone" . ?p)))
-  (setq org-tags-exclude-from-inheritance '("PROJECT"))
-  (setq org-todo-keywords
-        '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d)")))
-
-  (org-babel-do-load-languages
-   'org-babel-load-languages
+  :bind
+  ("C-c l" . org-store-link)
+  :custom
+  (org-agenda-files '("~/org"))
+  (org-agenda-text-search-extra-files '(agenda-archives))
+  (org-babel-load-languages
    '((emacs-lisp . t)
-     (shell . t))))
+     (shell . t)))
+  (org-default-notes-file "~/org/inbox.org")
+  (org-enforce-todo-checkbox-dependencies t)
+  (org-enforce-todo-dependencies t)
+  (org-log-done 'time)
+  (org-log-into-drawer t)
+  (org-modules '(org-habit org-info))
+  (org-outline-path-complete-in-steps nil)
+  (org-refile-targets '((org-agenda-files :maxlevel . 3)))
+  (org-refile-use-outline-path 'file)
+  (org-replace-disputed-keys t)
+  (org-tag-alist
+   '(("PROJECT" . ?P)
+     ("SOMEDAY" . ?$)
+     (:newline)
+     ("@home" . ?h)
+     ("@office" . ?o)
+     ("@computer" . ?c)
+     ("@phone" . ?p)))
+  (org-tags-exclude-from-inheritance '("PROJECT"))
+  (org-todo-keywords '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d)"))))
 
 (use-package org-agenda
-  :bind ("C-c a" . org-agenda)
-  :config
-  (setq org-agenda-custom-commands
-        '(("i" "Inbox" tags "+INBOX"
-           ((org-agenda-overriding-header "Inbox")
-            (org-tags-match-list-sublevels nil)))
-          ("n" "Next Actions" tags-todo "-SOMEDAY/!+TODO"
-           ((org-agenda-overriding-header "Next Actions")
-            (org-agenda-skip-function
-             '(org-agenda-skip-entry-if 'scheduled))))
-          ("w" "Waiting for" tags-todo "-SOMEDAY/!+WAIT"
-           ((org-agenda-overriding-header "Waiting for")))
-          ("P" "Projects" tags "+PROJECT-SOMEDAY"
-           ((org-agenda-overriding-header "Projects")
-            (org-tags-match-list-sublevels nil)))
-          ("$" "Someday/Maybe" tags "+SOMEDAY"
-           ((org-agenda-overriding-header "Someday/Maybe")
-            (org-tags-match-list-sublevels nil)))
-          ("D" "Daily Review"
-           ((agenda ""
-                    ((org-agenda-span 'day)))
-            (tags-todo "-SOMEDAY/!+TODO"
-                       ((org-agenda-overriding-header "Next Actions")
-                        (org-agenda-skip-function
-                         '(org-agenda-skip-entry-if 'scheduled))))))
-          ("W" "Weekly Review"
-           ((agenda "")
-            (tags "+INBOX"
-                  ((org-agenda-overriding-header "Inbox")
-                   (org-tags-match-list-sublevels nil)))
-            (stuck ""
-                   ((org-agenda-overriding-header "Stuck Projects")))
-            (tags "+PROJECT-SOMEDAY"
-                  ((org-agenda-overriding-header "Projects")
-                   (org-tags-match-list-sublevels nil)))
-            (tags-todo "-SOMEDAY/!+TODO"
-                       ((org-agenda-overriding-header "Next Actions")
-                        (org-agenda-skip-function
-                         '(org-agenda-skip-entry-if 'scheduled))))
-            (tags-todo "-SOMEDAY/!+WAIT"
-                       ((org-agenda-overriding-header "Waiting for")))
-            (tags "+SOMEDAY"
-                  ((org-agenda-overriding-header "Someday/Maybe")
-                   (org-tags-match-list-sublevels nil)))))))
-  (setq org-stuck-projects
-        '("+PROJECT" ("TODO" "WAIT") () "")))
+  :bind
+  ("C-c a" . org-agenda)
+  :custom
+  (org-agenda-custom-commands
+   '(("i" "Inbox" tags "+INBOX"
+      ((org-agenda-overriding-header "Inbox")
+       (org-tags-match-list-sublevels nil)))
+     ("n" "Next Actions" tags-todo "-SOMEDAY/!+TODO"
+      ((org-agenda-overriding-header "Next Actions")
+       (org-agenda-skip-function
+        '(org-agenda-skip-entry-if 'scheduled))))
+     ("w" "Waiting for" tags-todo "-SOMEDAY/!+WAIT"
+      ((org-agenda-overriding-header "Waiting for")))
+     ("P" "Projects" tags "+PROJECT-SOMEDAY"
+      ((org-agenda-overriding-header "Projects")
+       (org-tags-match-list-sublevels nil)))
+     ("$" "Someday/Maybe" tags "+SOMEDAY"
+      ((org-agenda-overriding-header "Someday/Maybe")
+       (org-tags-match-list-sublevels nil)))
+     ("D" "Daily Review"
+      ((agenda ""
+               ((org-agenda-span 'day)))
+       (tags-todo "-SOMEDAY/!+TODO"
+                  ((org-agenda-overriding-header "Next Actions")
+                   (org-agenda-skip-function
+                    '(org-agenda-skip-entry-if 'scheduled))))))
+     ("W" "Weekly Review"
+      ((agenda "")
+       (tags "+INBOX"
+             ((org-agenda-overriding-header "Inbox")
+              (org-tags-match-list-sublevels nil)))
+       (stuck ""
+              ((org-agenda-overriding-header "Stuck Projects")))
+       (tags "+PROJECT-SOMEDAY"
+             ((org-agenda-overriding-header "Projects")
+              (org-tags-match-list-sublevels nil)))
+       (tags-todo "-SOMEDAY/!+TODO"
+                  ((org-agenda-overriding-header "Next Actions")
+                   (org-agenda-skip-function
+                    '(org-agenda-skip-entry-if 'scheduled))))
+       (tags-todo "-SOMEDAY/!+WAIT"
+                  ((org-agenda-overriding-header "Waiting for")))
+       (tags "+SOMEDAY"
+             ((org-agenda-overriding-header "Someday/Maybe")
+              (org-tags-match-list-sublevels nil)))))))
+  (org-stuck-projects '("+PROJECT" ("TODO" "WAIT") nil "")))
 
 (use-package org-capture
-  :bind ("C-c c" . org-capture)
-  :config
-  (setq org-capture-templates
-        '(("t" "Task" entry
-           (file "~/org/inbox.org")
-           "* TODO %?\n  %U")
-          ("P" "Project" entry
-           (file "~/org/inbox.org")
-           "* %? :PROJECT:\n  %U"))))
+  :bind
+  ("C-c c" . org-capture)
+  :custom
+  (org-capture-templates
+   '(("t" "Task" entry
+      (file "~/org/inbox.org")
+      "* TODO %?\n  %U")
+     ("P" "Project" entry
+      (file "~/org/inbox.org")
+      "* %? :PROJECT:\n  %U"))))
 
 (use-package org-habit
-  :after org
-  :config
-  (setq org-habit-graph-column 80)
-  (setq org-habit-show-habits-only-for-today nil))
+  :defer t
+  :custom
+  (org-habit-graph-column 80)
+  (org-habit-show-habits-only-for-today nil))
 
 (use-package org-src
-  :after org
-  :config
-  (setq org-edit-src-content-indentation 0)
-  (setq org-src-window-setup 'current-window))
+  :defer t
+  :custom
+  (org-edit-src-content-indentation 0)
+  (org-src-window-setup 'current-window))
 
 (use-package paradox
   :ensure t
   :defer t
-  :config
-  (setq paradox-execute-asynchronously t)
-  (setq paradox-github-token t))
+  :custom
+  (paradox-execute-asynchronously t)
+  (paradox-github-token t))
 
 (use-package paren
-  :config
-  (show-paren-mode +1))
+  :custom
+  (show-paren-mode t))
 
 (use-package projectile
   :ensure t
-  :demand t
-  :bind-keymap ("C-c p" . projectile-command-map)
-  :config
-  (setq projectile-completion-system 'ivy)
-  (projectile-mode +1))
+  :bind-keymap
+  ("C-c p" . projectile-command-map)
+  :custom
+  (projectile-completion-system 'ivy)
+  (projectile-mode t))
 
 (use-package recentf
-  :config
-  (setq recentf-max-saved-items 512)
-  (recentf-mode +1))
+  :custom
+  (recentf-max-saved-items 512)
+  (recentf-mode t))
 
 (use-package ruby-mode
   :defer t
-  :config
-  (setq ruby-insert-encoding-magic-comment nil))
+  :custom
+  (ruby-insert-encoding-magic-comment nil))
 
 (use-package savehist
-  :config
-  (savehist-mode +1))
+  :custom
+  (savehist-mode t))
 
 (use-package sh-script
   :defer t
-  :config
-  (setq sh-basic-offset 2))
+  :custom
+  (sh-basic-offset 2))
 
 (use-package shr
   :defer t
-  :config
-  (setq shr-use-fonts nil))
+  :custom
+  (shr-use-fonts nil))
 
 (use-package smex
   :ensure t
@@ -313,46 +323,44 @@
 (use-package solarized-theme
   :if window-system
   :ensure t
-  :config
-  (setq solarized-scale-org-headlines nil)
-  (setq solarized-use-variable-pitch nil)
-  (setq x-underline-at-descent-line t)
+  :custom
+  (solarized-scale-org-headlines nil)
+  (solarized-use-variable-pitch nil)
+  (x-underline-at-descent-line t)
+  :init
   (load-theme 'solarized-dark t))
 
 (use-package swiper
   :after ivy
   :ensure t
-  :bind ("C-s" . swiper))
+  :bind
+  ("C-s" . swiper))
 
 (use-package undo-tree
   :ensure t
-  :config
-  (global-undo-tree-mode +1))
+  :custom
+  (global-undo-tree-mode t))
 
 (use-package which-key
   :ensure t
-  :config
-  (which-key-mode +1))
+  :custom
+  (which-key-mode t))
 
 (use-package windmove
-  :config
+  :init
   (windmove-default-keybindings))
 
 (use-package winner
-  :config
-  (winner-mode +1))
+  :custom
+  (winner-mode t))
 
 (use-package yasnippet
   :ensure t
-  :config
-  (yas-global-mode +1))
+  :custom
+  (yas-global-mode t))
 
 (use-package yasnippet-snippets
   :after yasnippet
   :ensure t)
-
-;; custom-file
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file t)
 
 ;;; init.el ends here
