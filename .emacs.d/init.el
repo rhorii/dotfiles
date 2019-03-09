@@ -32,7 +32,7 @@
 ;; `package'
 (require 'package)
 (add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/") t)
+	           '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
 ;; `use-package'
@@ -191,63 +191,61 @@
   (org-refile-use-outline-path 'file)
   (org-replace-disputed-keys t)
   (org-tag-alist
-   '(("PROJECT" . ?P)
-     ("SOMEDAY" . ?$)
-     (:newline)
-     ("@home" . ?h)
-     ("@office" . ?o)
-     ("@computer" . ?c)
-     ("@phone" . ?p)))
-  (org-tags-exclude-from-inheritance '("PROJECT"))
-  (org-todo-keywords '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d)"))))
+   '(("@office" . ?o)
+     ("@home" . ?h)))
+  (org-todo-keywords
+   '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+     (sequence "WAITING(w@/!)" "|" "CANCELED(@c/!)"))))
 
 (use-package org-agenda
   :bind
   ("C-c a" . org-agenda)
   :custom
   (org-agenda-custom-commands
-   '(("i" "Inbox" tags "+INBOX"
-      ((org-agenda-overriding-header "Inbox")
-       (org-tags-match-list-sublevels nil)))
-     ("n" "Next Actions" tags-todo "-SOMEDAY/!+TODO"
-      ((org-agenda-overriding-header "Next Actions")
-       (org-agenda-skip-function
-        '(org-agenda-skip-entry-if 'scheduled))))
-     ("w" "Waiting for" tags-todo "-SOMEDAY/!+WAIT"
-      ((org-agenda-overriding-header "Waiting for")))
-     ("P" "Projects" tags "+PROJECT-SOMEDAY"
-      ((org-agenda-overriding-header "Projects")
-       (org-tags-match-list-sublevels nil)))
-     ("$" "Someday/Maybe" tags "+SOMEDAY"
-      ((org-agenda-overriding-header "Someday/Maybe")
-       (org-tags-match-list-sublevels nil)))
+   '(("i" "Inbox" tags "*"
+      ((org-agenda-files '("~/org/inbox.org"))
+       (org-tags-match-list-sublevels 'indented)))
+     ("n" "Next Actions" tags-todo "/+NEXT"
+      ((org-agenda-files '("~/org/next.org"
+                           "~/org/projects.org"))))
+     ("w" "Waiting for" tags-todo "/+WAITING"
+      ((org-agenda-files '("~/org/next.org"
+                           "~/org/projects.org"))))
+     ("P" "Projects" tags-todo "/!"
+      ((org-agenda-files '("~/org/projects.org"))
+       (org-tags-match-list-sublevels 'indented)))
+     ("$" "Someday/Maybe" tags "/!"
+      ((org-agenda-files '("~/org/someday.org"))
+       (org-tags-match-list-sublevels 'indented)))
      ("D" "Daily Review"
       ((agenda ""
                ((org-agenda-span 'day)))
-       (tags-todo "-SOMEDAY/!+TODO"
+       (tags-todo "/+NEXT"
                   ((org-agenda-overriding-header "Next Actions")
-                   (org-agenda-skip-function
-                    '(org-agenda-skip-entry-if 'scheduled))))))
+                   (org-agenda-files '("~/org/next.org"
+                                       "~/org/projects.org"))))))
      ("W" "Weekly Review"
       ((agenda "")
-       (tags "+INBOX"
+       (tags "*"
              ((org-agenda-overriding-header "Inbox")
-              (org-tags-match-list-sublevels nil)))
-       (stuck ""
-              ((org-agenda-overriding-header "Stuck Projects")))
-       (tags "+PROJECT-SOMEDAY"
-             ((org-agenda-overriding-header "Projects")
-              (org-tags-match-list-sublevels nil)))
-       (tags-todo "-SOMEDAY/!+TODO"
+              (org-agenda-files '("~/org/inbox.org"))
+              (org-tags-match-list-sublevels 'indented)))
+       (tags-todo "/+NEXT"
                   ((org-agenda-overriding-header "Next Actions")
-                   (org-agenda-skip-function
-                    '(org-agenda-skip-entry-if 'scheduled))))
-       (tags-todo "-SOMEDAY/!+WAIT"
-                  ((org-agenda-overriding-header "Waiting for")))
-       (tags "+SOMEDAY"
+                   (org-agenda-files '("~/org/next.org"
+                                       "~/org/projects.org"))))
+       (tags-todo "/+WAITING"
+                  ((org-agenda-overriding-header "Waiting for")
+                   (org-agenda-files '("~/org/next.org"
+                                       "~/org/projects.org"))))
+       (tags-todo "/!"
+                  ((org-agenda-overriding-header "Projects")
+                   (org-agenda-files '("~/org/projects.org"))
+                   (org-tags-match-list-sublevels 'indented)))
+       (tags "/!"
              ((org-agenda-overriding-header "Someday/Maybe")
-              (org-tags-match-list-sublevels nil)))))))
-  (org-stuck-projects '("+PROJECT" ("TODO" "WAIT") nil "")))
+              (org-agenda-files '("~/org/someday.org"))
+              (org-tags-match-list-sublevels 'indented))))))))
 
 (use-package org-capture
   :bind
@@ -256,10 +254,7 @@
   (org-capture-templates
    '(("t" "Task" entry
       (file "~/org/inbox.org")
-      "* TODO %?\n  %U")
-     ("P" "Project" entry
-      (file "~/org/inbox.org")
-      "* %? :PROJECT:\n  %U"))))
+      "* TODO %?\n%U"))))
 
 (use-package org-habit
   :defer t
