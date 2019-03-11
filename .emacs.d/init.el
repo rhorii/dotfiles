@@ -202,29 +202,30 @@
   ("C-c a" . org-agenda)
   :custom
   (org-agenda-custom-commands
-   '(("i" "Inbox" tags "*"
+   '(("g" . "GTD Lists")
+     ("gi" "Inbox" tags "*"
       ((org-agenda-files '("~/org/inbox.org"))
        (org-tags-match-list-sublevels 'indented)))
-     ("n" "Next Actions" tags-todo "/+NEXT"
+     ("gn" "Next Actions" tags-todo "/+NEXT"
       ((org-agenda-files '("~/org/next.org"
                            "~/org/projects.org"))))
-     ("w" "Waiting for" tags-todo "/+WAITING"
+     ("gw" "Waiting for" tags-todo "/+WAITING"
       ((org-agenda-files '("~/org/next.org"
                            "~/org/projects.org"))))
-     ("P" "Projects" tags-todo "/!"
+     ("gp" "Projects" tags-todo "/!"
       ((org-agenda-files '("~/org/projects.org"))
        (org-tags-match-list-sublevels 'indented)))
-     ("$" "Someday/Maybe" tags "/!"
+     ("gs" "Someday/Maybe" tags "/!"
       ((org-agenda-files '("~/org/someday.org"))
        (org-tags-match-list-sublevels 'indented)))
-     ("D" "Daily Review"
+     ("d" "Daily Review"
       ((agenda ""
                ((org-agenda-span 'day)))
        (tags-todo "/+NEXT"
                   ((org-agenda-overriding-header "Next Actions")
                    (org-agenda-files '("~/org/next.org"
                                        "~/org/projects.org"))))))
-     ("W" "Weekly Review"
+     ("w" "Weekly Review"
       ((agenda "")
        (tags "*"
              ((org-agenda-overriding-header "Inbox")
