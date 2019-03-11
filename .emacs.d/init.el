@@ -255,7 +255,10 @@
   (org-capture-templates
    '(("t" "Task" entry
       (file "~/org/inbox.org")
-      "* TODO %?\n%U"))))
+      "* TODO %?\n%U")
+     ("n" "Note" entry
+      (file "~/org/inbox.org")
+      "* %?\n%U"))))
 
 (use-package org-habit
   :defer t
