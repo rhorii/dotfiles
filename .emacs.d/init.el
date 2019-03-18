@@ -194,59 +194,11 @@
    '(("@office" . ?o)
      ("@home" . ?h)))
   (org-todo-keywords
-   '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-     (sequence "WAITING(w@/!)" "|" "CANCELED(@c/!)"))))
+   '((sequence "TODO(t)" "WAITING(w@/!)" "|" "DONE(d)" "CANCELED(@c/!)"))))
 
 (use-package org-agenda
   :bind
-  ("C-c a" . org-agenda)
-  :custom
-  (org-agenda-custom-commands
-   '(("g" . "GTD Lists")
-     ("gi" "Inbox" tags "*"
-      ((org-agenda-files '("~/org/inbox.org"))
-       (org-tags-match-list-sublevels 'indented)))
-     ("gn" "Next Actions" tags-todo "/+NEXT"
-      ((org-agenda-files '("~/org/next.org"
-                           "~/org/projects.org"))))
-     ("gw" "Waiting for" tags-todo "/+WAITING"
-      ((org-agenda-files '("~/org/next.org"
-                           "~/org/projects.org"))))
-     ("gp" "Projects" tags-todo "/!"
-      ((org-agenda-files '("~/org/projects.org"))
-       (org-tags-match-list-sublevels 'indented)))
-     ("gs" "Someday/Maybe" tags "/!"
-      ((org-agenda-files '("~/org/someday.org"))
-       (org-tags-match-list-sublevels 'indented)))
-     ("d" "Daily Review"
-      ((agenda ""
-               ((org-agenda-span 'day)))
-       (tags-todo "/+NEXT"
-                  ((org-agenda-overriding-header "Next Actions")
-                   (org-agenda-files '("~/org/next.org"
-                                       "~/org/projects.org"))))))
-     ("w" "Weekly Review"
-      ((agenda "")
-       (tags "*"
-             ((org-agenda-overriding-header "Inbox")
-              (org-agenda-files '("~/org/inbox.org"))
-              (org-tags-match-list-sublevels 'indented)))
-       (tags-todo "/+NEXT"
-                  ((org-agenda-overriding-header "Next Actions")
-                   (org-agenda-files '("~/org/next.org"
-                                       "~/org/projects.org"))))
-       (tags-todo "/+WAITING"
-                  ((org-agenda-overriding-header "Waiting for")
-                   (org-agenda-files '("~/org/next.org"
-                                       "~/org/projects.org"))))
-       (tags-todo "/!"
-                  ((org-agenda-overriding-header "Projects")
-                   (org-agenda-files '("~/org/projects.org"))
-                   (org-tags-match-list-sublevels 'indented)))
-       (tags "/!"
-             ((org-agenda-overriding-header "Someday/Maybe")
-              (org-agenda-files '("~/org/someday.org"))
-              (org-tags-match-list-sublevels 'indented))))))))
+  ("C-c a" . org-agenda))
 
 (use-package org-capture
   :bind
