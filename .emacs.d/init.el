@@ -23,7 +23,7 @@
 
 ;; font
 (set-face-attribute 'default nil :family "Ricty Diminished" :height 140)
-(set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty Diminished"))
+(set-fontset-font t 'japanese-jisx0208 (font-spec :family "Ricty Diminished"))
 
 ;; custom-file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
