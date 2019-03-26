@@ -215,8 +215,7 @@
 (use-package org-habit
   :defer t
   :custom
-  (org-habit-graph-column 80)
-  (org-habit-show-habits-only-for-today nil))
+  (org-habit-graph-column 80))
 
 (use-package org-src
   :defer t
