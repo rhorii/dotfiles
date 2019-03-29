@@ -45,33 +45,32 @@
   :defer t)
 
 (use-package autorevert
-  :config
-  (global-auto-revert-mode +1))
+  :custom
+  (global-auto-revert-mode t))
 
 (use-package company
   :ensure t
-  :config
-  (setq company-minimum-prefix-length 2)
-  (setq company-selection-wrap-around t)
-  (setq company-show-numbers t)
-  (global-company-mode +1))
+  :custom
+  (company-minimum-prefix-length 2)
+  (company-selection-wrap-around t)
+  (company-show-numbers t)
+  (global-company-mode t))
 
 (use-package company-quickhelp
   :after company
   :ensure t
-  :config
-  (company-quickhelp-mode +1))
+  :custom
+  (company-quickhelp-mode t))
 
 (use-package counsel
   :after ivy
   :ensure t
-  :config
-  (counsel-mode +1))
+  :custom
+  (counsel-mode t))
 
 (use-package cus-edit
-  :config
-  (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-  (load custom-file t))
+  :custom
+  (custom-file (expand-file-name "custom.el" user-emacs-directory)))
 
 (use-package docker
   :ensure t
@@ -87,8 +86,8 @@
   :defer t)
 
 (use-package elec-pair
-  :config
-  (electric-pair-mode +1))
+  :custom
+  (electric-pair-mode t))
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns x))
@@ -107,10 +106,10 @@
 
 (use-package flycheck
   :ensure t
-  :config
-  (setq flycheck-python-flake8-executable "flake8")
-  (setq flycheck-python-pycompile-executable "python3")
-  (global-flycheck-mode +1))
+  :custom
+  (flycheck-python-flake8-executable "flake8")
+  (flycheck-python-pycompile-executable "python3")
+  (global-flycheck-mode t))
 
 (use-package flycheck-ledger
   :after (flycheck ledger-mode)
@@ -133,8 +132,8 @@
   (prog-mode . hs-minor-mode))
 
 (use-package hl-line
-  :config
-  (global-hl-line-mode +1))
+  :custom
+  (global-hl-line-mode t))
 
 (use-package hydra
   :ensure t
@@ -142,10 +141,10 @@
 
 (use-package ivy
   :ensure t
-  :config
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-virtual-abbreviate 'abbreviate)
-  (ivy-mode +1))
+  :custom
+  (ivy-use-virtual-buffers t)
+  (ivy-virtual-abbreviate 'abbreviate)
+  (ivy-mode t))
 
 (use-package ivy-hydra
   :after (hydra ivy)
@@ -159,8 +158,9 @@
 (use-package ledger-mode
   :ensure t
   :defer t
+  :custom
+  (ledger-post-amount-alignment-column 62)
   :config
-  (setq ledger-post-amount-alignment-column 62)
   (add-hook 'ledger-mode-hook
             (lambda() (add-hook 'before-save-hook
                                 'ledger-mode-clean-buffer nil t))))
@@ -176,38 +176,30 @@
 
 (use-package minions
   :ensure t
-  :config
-  (setq minions-direct '(flycheck-mode))
-  (minions-mode +1))
+  :custom
+  (minions-direct '(flycheck-mode))
+  (minions-mode t))
 
 (use-package org
   :bind
   ("C-c l" . org-store-link)
-  :init
-  (setq org-replace-disputed-keys t)
-  :config
-  (add-to-list 'org-modules 'org-habit)
-
-  (setq org-agenda-files '("~/org"))
-  (setq org-agenda-text-search-extra-files '(agenda-archives))
-  (setq org-default-notes-file "~/org/inbox.org")
-  (setq org-enforce-todo-checkbox-dependencies t)
-  (setq org-enforce-todo-dependencies t)
-  (setq org-log-done 'time)
-  (setq org-log-into-drawer t)
-  (setq org-outline-path-complete-in-steps nil)
-  (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
-  (setq org-refile-use-outline-path 'file)
-  (setq org-tag-alist
-        '(("@office" . ?o)
-          ("@home" . ?h)))
-  (setq org-todo-keywords
-        '((sequence "TODO(t)" "WAITING(w@/!)" "|" "DONE(d)" "CANCELED(@c/!)")))
-
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((emacs-lisp . t)
-     (shell . t))))
+  :custom
+  (org-agenda-files '("~/org"))
+  (org-agenda-text-search-extra-files '(agenda-archives))
+  (org-babel-load-languages '((emacs-lisp . t) (shell . t)))
+  (org-default-notes-file "~/org/inbox.org")
+  (org-enforce-todo-checkbox-dependencies t)
+  (org-enforce-todo-dependencies t)
+  (org-log-done 'time)
+  (org-log-into-drawer t)
+  (org-module '(org-habit org-info))
+  (org-outline-path-complete-in-steps nil)
+  (org-refile-targets '((org-agenda-files :maxlevel . 3)))
+  (org-refile-use-outline-path 'file)
+  (org-replace-disputed-keys t)
+  (org-tag-alist '(("@office" . ?o) ("@home" . ?h)))
+  (org-todo-keywords
+   '((sequence "TODO(t)" "WAITING(w@/!)" "|" "DONE(d)" "CANCELED(@c/!)"))))
 
 (use-package org-agenda
   :bind
@@ -216,69 +208,65 @@
 (use-package org-capture
   :bind
   ("C-c c" . org-capture)
-  :config
-  (setq org-capture-templates
-        '(("t" "Task" entry
-           (file "~/org/inbox.org")
-           "* TODO %?\n%U")
-          ("n" "Note" entry
-           (file "~/org/inbox.org")
-           "* %?\n%U"))))
+  :custom
+  (org-capture-templates
+   '(("t" "Task" entry (file "~/org/inbox.org") "* TODO %?\n%U")
+     ("n" "Note" entry (file "~/org/inbox.org") "* %?\n%U"))))
 
 (use-package org-habit
   :defer t
-  :config
-  (setq org-habit-graph-column 80))
+  :custom
+  (org-habit-graph-column 80))
 
 (use-package org-src
   :defer t
-  :config
-  (setq org-edit-src-content-indentation 0)
-  (setq org-src-window-setup 'current-window))
+  :custom
+  (org-edit-src-content-indentation 0)
+  (org-src-window-setup 'current-window))
 
 (use-package paradox
   :ensure t
   :defer t
-  :config
-  (setq paradox-execute-asynchronously t)
-  (setq paradox-github-token t))
+  :custom
+  (paradox-execute-asynchronously t)
+  (paradox-github-token t))
 
 (use-package paren
-  :config
-  (show-paren-mode +1))
+  :custom
+  (show-paren-mode t))
 
 (use-package projectile
   :ensure t
   :demand t
   :bind-keymap
   ("C-c p" . projectile-command-map)
-  :config
-  (setq projectile-completion-system 'ivy)
-  (projectile-mode +1))
+  :custom
+  (projectile-completion-system 'ivy)
+  (projectile-mode t))
 
 (use-package recentf
-  :config
-  (setq recentf-max-saved-items 512)
-  (recentf-mode +1))
+  :custom
+  (recentf-max-saved-items 512)
+  (recentf-mode t))
 
 (use-package ruby-mode
   :defer t
-  :config
-  (setq ruby-insert-encoding-magic-comment nil))
+  :custom
+  (ruby-insert-encoding-magic-comment nil))
 
 (use-package savehist
-  :config
-  (savehist-mode +1))
+  :custom
+  (savehist-mode t))
 
 (use-package sh-script
   :defer t
-  :config
-  (setq sh-basic-offset 2))
+  :custom
+  (sh-basic-offset 2))
 
 (use-package shr
   :defer t
-  :config
-  (setq shr-use-fonts nil))
+  :custom
+  (shr-use-fonts nil))
 
 (use-package smex
   :ensure t
@@ -287,10 +275,11 @@
 (use-package solarized-theme
   :if window-system
   :ensure t
+  :custom
+  (solarized-scale-org-headlines nil)
+  (solarized-use-variable-pitch nil)
+  (x-underline-at-descent-line t)
   :config
-  (setq solarized-scale-org-headlines nil)
-  (setq solarized-use-variable-pitch nil)
-  (setq x-underline-at-descent-line t)
   (load-theme 'solarized-dark t))
 
 (use-package swiper
@@ -301,26 +290,26 @@
 
 (use-package undo-tree
   :ensure t
-  :config
-  (global-undo-tree-mode +1))
+  :custom
+  (global-undo-tree-mode t))
 
 (use-package which-key
   :ensure t
-  :config
-  (which-key-mode +1))
+  :custom
+  (which-key-mode t))
 
 (use-package windmove
   :config
   (windmove-default-keybindings))
 
 (use-package winner
-  :config
-  (winner-mode +1))
+  :custom
+  (winner-mode t))
 
 (use-package yasnippet
   :ensure t
-  :config
-  (yas-global-mode +1))
+  :custom
+  (yas-global-mode t))
 
 (use-package yasnippet-snippets
   :after yasnippet
