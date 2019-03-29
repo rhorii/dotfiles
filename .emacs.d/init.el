@@ -10,6 +10,7 @@
  '(confirm-kill-emacs 'yes-or-no-p)
  '(create-lockfiles nil)
  '(indent-tabs-mode nil)
+ '(load-prefer-newer t)
  '(make-backup-files nil)
  '(require-final-newline t)
  '(scroll-conservatively 10000)
