@@ -135,6 +135,10 @@
   :config
   (global-hl-line-mode +1))
 
+(use-package hydra
+  :ensure t
+  :defer t)
+
 (use-package ivy
   :ensure t
   :config
