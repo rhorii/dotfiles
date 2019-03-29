@@ -146,6 +146,11 @@
   (setq ivy-virtual-abbreviate 'abbreviate)
   (ivy-mode +1))
 
+(use-package ivy-hydra
+  :after (hydra ivy)
+  :ensure t
+  :defer t)
+
 (use-package json-mode
   :ensure t
   :defer t)
