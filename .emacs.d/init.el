@@ -192,7 +192,7 @@
   (org-enforce-todo-dependencies t)
   (org-log-done 'time)
   (org-log-into-drawer t)
-  (org-module '(org-habit org-info))
+  (org-modules '(org-habit org-info))
   (org-outline-path-complete-in-steps nil)
   (org-refile-targets '((org-agenda-files :maxlevel . 3)))
   (org-refile-use-outline-path 'file)
@@ -216,7 +216,8 @@
 (use-package org-habit
   :defer t
   :custom
-  (org-habit-graph-column 80))
+  (org-habit-graph-column 50)
+  (org-habit-show-habits-only-for-today nil))
 
 (use-package org-src
   :defer t
