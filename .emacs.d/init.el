@@ -139,6 +139,10 @@
   :ensure t
   :defer t)
 
+(use-package ibuffer
+  :bind
+  ("C-x C-b" . ibuffer))
+
 (use-package ivy
   :ensure t
   :custom
