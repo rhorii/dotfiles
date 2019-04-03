@@ -30,6 +30,8 @@
 (require 'package)
 (add-to-list 'package-archives
 	           '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives
+             '("org" . "https://orgmode.org/elpa/") t)
 (package-initialize)
 
 ;; `use-package'
@@ -185,6 +187,7 @@
   (minions-mode t))
 
 (use-package org
+  :ensure org-plus-contrib
   :bind
   ("C-c l" . org-store-link)
   :custom
@@ -196,7 +199,7 @@
   (org-enforce-todo-dependencies t)
   (org-log-done 'time)
   (org-log-into-drawer t)
-  (org-modules '(org-habit org-info))
+  (org-modules '(org-habit org-info org-depend))
   (org-outline-path-complete-in-steps nil)
   (org-refile-targets '((org-agenda-files :maxlevel . 3)))
   (org-refile-use-outline-path 'file)
