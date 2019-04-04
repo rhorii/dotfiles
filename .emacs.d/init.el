@@ -70,6 +70,10 @@
   :custom
   (counsel-mode t))
 
+(use-package csv-mode
+  :ensure t
+  :defer t)
+
 (use-package cus-edit
   :custom
   (custom-file (expand-file-name "custom.el" user-emacs-directory)))
