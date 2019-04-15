@@ -1,3 +1,9 @@
-eval "$(rbenv init -)"
+#
+# ~/.bash_profile
+#
 
-[ -f ~/.bashrc ] && source ~/.bashrc
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+
+if type rbenv > /dev/null; then
+  eval "$(rbenv init -)"
+fi
