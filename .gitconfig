@@ -1,7 +1,5 @@
 [include]
 	path = ~/.gitconfig.local
-[core]
-	excludesfile = ~/.gitignore.global
 [push]
 	default = simple
 [ghq]
