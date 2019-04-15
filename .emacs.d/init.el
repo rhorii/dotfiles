@@ -13,8 +13,8 @@
  '(load-prefer-newer t)
  '(make-backup-files nil)
  '(require-final-newline t)
- '(scroll-conservatively 10000)
  '(scroll-bar-mode nil)
+ '(scroll-conservatively 10000)
  '(tab-width 2)
  '(tool-bar-mode nil))
 
