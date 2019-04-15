@@ -18,6 +18,9 @@
  '(tab-width 2)
  '(tool-bar-mode nil))
 
+;; proxy
+(load (expand-file-name "proxy.el" user-emacs-directory) t)
+
 ;; coding
 (set-language-environment "Japanese")
 (prefer-coding-system 'utf-8)
