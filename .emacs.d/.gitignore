@@ -1,0 +1,12 @@
+/.org-id-locations
+/auto-save-list/*
+/bookmarks
+/custom.el
+/elpa/*
+/history
+/projectile-bookmarks.eld
+/proxy.el
+/recentf
+/smex-items
+/tramp
+/transient/*
