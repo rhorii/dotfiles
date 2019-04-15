@@ -26,8 +26,8 @@
 (prefer-coding-system 'utf-8)
 
 ;; font
-(set-face-attribute 'default nil :family "Ricty Diminished" :height 140)
-(set-fontset-font t 'japanese-jisx0208 (font-spec :family "Ricty Diminished"))
+(set-face-attribute 'default nil :family "Ricty" :height 120)
+(set-fontset-font t 'japanese-jisx0208 (font-spec :family "Ricty"))
 
 ;; `package'
 (require 'package)
