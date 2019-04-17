@@ -6,6 +6,9 @@ link:
 	ln -sfnv ${PWD}/.gitconfig    ${HOME}/.gitconfig
 	touch ${HOME}/.gitconfig.local
 
+bash:
+	sudo pacman -S bash-completion
+
 cups:
 	sudo pacman -S cups cups-pdf system-config-printer
 	sudo systemctl enable org.cups.cupsd.service
