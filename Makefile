@@ -59,6 +59,9 @@ gnome:
 ibus-mozc:
 	yay -S ibus-mozc
 
+jq:
+	yay -S jq
+
 libreoffice:
 	sudo pacman -S libreoffice-fresh libreoffice-fresh-ja
 
