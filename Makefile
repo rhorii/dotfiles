@@ -73,6 +73,9 @@ python:
 ruby:
 	yay -S rbenv ruby-build
 
+slack:
+	yay -S slack-desktop
+
 systemd-boot-pacman-hook:
 	yay -S systemd-boot-pacman-hook
 
