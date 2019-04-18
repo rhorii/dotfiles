@@ -212,7 +212,7 @@
   (org-enforce-todo-dependencies t)
   (org-log-done 'time)
   (org-log-into-drawer t)
-  (org-modules '(org-habit org-info org-depend))
+  (org-modules '(org-info org-depend))
   (org-outline-path-complete-in-steps nil)
   (org-refile-targets '((org-agenda-files :maxlevel . 3)))
   (org-refile-use-outline-path 'file)
@@ -232,12 +232,6 @@
   (org-capture-templates
    '(("t" "Task" entry (file "~/org/inbox.org") "* TODO %?\n%U")
      ("n" "Note" entry (file "~/org/inbox.org") "* %?\n%U"))))
-
-(use-package org-habit
-  :defer t
-  :custom
-  (org-habit-graph-column 50)
-  (org-habit-show-habits-only-for-today nil))
 
 (use-package org-src
   :defer t
