@@ -219,7 +219,7 @@
   (org-replace-disputed-keys t)
   (org-tag-alist '(("@office" . ?o) ("@home" . ?h)))
   (org-todo-keywords
-   '((sequence "TODO(t)" "WAITING(w@/!)" "|" "DONE(d)" "CANCELED(@c/!)"))))
+   '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d)" "CANCELED(@c/!)"))))
 
 (use-package org-agenda
   :bind
