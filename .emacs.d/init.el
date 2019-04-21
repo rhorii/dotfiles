@@ -102,7 +102,7 @@
 
 (use-package faces
   :config
-  (set-face-attribute 'default nil :family "Ricty" :height 120)
+  (set-face-attribute 'default nil :family "Ricty" :height 140)
   (set-fontset-font t 'japanese-jisx0208 (font-spec :family "Ricty")))
 
 (use-package files
