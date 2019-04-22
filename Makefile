@@ -6,6 +6,9 @@ link:
 	ln -sfnv ${PWD}/.gitconfig    ${HOME}/.gitconfig
 	touch ${HOME}/.gitconfig.local
 
+arc-theme:
+	sudo pacman -S arc-gtk-theme arc-icon-theme elementary-icon-theme
+
 bash:
 	sudo pacman -S bash-completion
 
