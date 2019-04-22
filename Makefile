@@ -7,50 +7,50 @@ link:
 	touch ${HOME}/.gitconfig.local
 
 arc-theme:
-	sudo pacman -S arc-gtk-theme arc-icon-theme elementary-icon-theme
+	sudo pacman -S --needed arc-gtk-theme arc-icon-theme elementary-icon-theme
 
 bash:
-	sudo pacman -S bash-completion
+	sudo pacman -S --needed bash bash-completion
 
 cups:
-	sudo pacman -S cups cups-pdf system-config-printer
+	sudo pacman -S --needed cups cups-pdf system-config-printer
 	sudo systemctl enable org.cups.cupsd.service
 
 docker:
-	sudo pacman -S docker docker-compose
+	sudo pacman -S --needed docker docker-compose
 	sudo systemctl enable docker.service
 	sudo usermod -aG docker rhorii
 
 emacs:
-	sudo pacman -S emacs aspell-en
+	sudo pacman -S --needed emacs aspell-en
 
 firefox:
-	sudo pacman -S firefox firefox-i18n-ja
+	sudo pacman -S --needed firefox firefox-i18n-ja
 
 fish:
-	sudo pacman -S fish
+	sudo pacman -S --needed fish
 
 fzf:
-	sudo pacman -S fzf
+	sudo pacman -S --needed fzf
 
 ghq:
-	yay -S ghq
+	yay -S --needed ghq
 
 gnome:
-	sudo pacman -S chrome-gnome-shell \
-                 evince \
-                 gdm \
-                 gnome-backgrounds \
-                 gnome-control-center \
-                 gnome-keyring \
-                 gnome-system-monitor \
-                 gnome-terminal \
-                 gnome-tweaks \
-                 gvfs-smb \
-                 libgnome-keyring \
-                 nautilus \
-                 networkmanager \
-                 xdg-user-dirs
+	sudo pacman -S --needed chrome-gnome-shell \
+                          evince \
+                          gdm \
+                          gnome-backgrounds \
+                          gnome-control-center \
+                          gnome-keyring \
+                          gnome-system-monitor \
+                          gnome-terminal \
+                          gnome-tweaks \
+                          gvfs-smb \
+                          libgnome-keyring \
+                          nautilus \
+                          networkmanager \
+                          xdg-user-dirs
 	sudo systemctl enable gdm.service
 	sudo systemctl enable NetworkManager.service
 
@@ -60,33 +60,36 @@ gnome:
 	  credential.helper /usr/lib/git-core/git-credential-gnome-keyring
 
 ibus-mozc:
-	yay -S ibus-mozc
+	yay -S --needed ibus-mozc
 
 ipafont:
-	sudo pacman -S otf-ipafont
+	sudo pacman -S --needed otf-ipafont
 
 jq:
-	yay -S jq
+	yay -S --needed jq
 
 libreoffice:
-	sudo pacman -S libreoffice-fresh libreoffice-fresh-ja
+	sudo pacman -S --needed libreoffice-fresh libreoffice-fresh-ja
 
 noto-fonts:
-	sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji
+	sudo pacman -S --needed noto-fonts noto-fonts-cjk noto-fonts-emoji
 
 python:
-	sudo pacman -S python python-pip
+	sudo pacman -S --needed python python-pip
 	pip install --user --upgrade pip
 	pip install --user flake8
 
 ricty:
-	yay -S ttf-ricty
+	yay -S --needed ttf-ricty
 
 ruby:
-	yay -S rbenv ruby-build
+	yay -S --needed rbenv ruby-build
 
 slack:
-	yay -S slack-desktop
+	yay -S --needed slack-desktop
 
 systemd-boot:
-	yay -S systemd-boot-pacman-hook
+	yay -S --needed systemd-boot-pacman-hook
+
+yay:
+	yay -S --needed yay
