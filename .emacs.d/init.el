@@ -2,32 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-;; Better Defaults
-(custom-set-variables
- '(auto-save-default nil)
- '(blink-cursor-mode nil)
- '(column-number-mode t)
- '(confirm-kill-emacs 'yes-or-no-p)
- '(create-lockfiles nil)
- '(indent-tabs-mode nil)
- '(load-prefer-newer t)
- '(make-backup-files nil)
- '(require-final-newline t)
- '(scroll-bar-mode nil)
- '(scroll-conservatively 10000)
- '(tab-width 2)
- '(tool-bar-mode nil))
-
-;; proxy
+;; proxy settings
 (load (expand-file-name "proxy.el" user-emacs-directory) t)
-
-;; coding
-(set-language-environment "Japanese")
-(prefer-coding-system 'utf-8)
-
-;; font
-(set-face-attribute 'default nil :family "Ricty" :height 120)
-(set-fontset-font t 'japanese-jisx0208 (font-spec :family "Ricty"))
 
 ;; `package'
 (require 'package)
@@ -36,6 +12,7 @@
 (add-to-list 'package-archives
              '("org" . "https://orgmode.org/elpa/") t)
 (package-initialize)
+(setq package-enable-at-startup nil)
 
 ;; `use-package'
 (unless (package-installed-p 'use-package)
@@ -43,6 +20,9 @@
   (package-install 'use-package))
 (eval-when-compile
   (require 'use-package))
+
+(use-package bind-key
+  :ensure t)
 
 ;; packages
 (use-package async
@@ -104,6 +84,15 @@
   :custom
   (electric-pair-mode t))
 
+(use-package emacs
+  :custom
+  (create-lockfiles nil)
+  (indent-tabs-mode nil)
+  (load-prefer-newer t)
+  (scroll-conservatively 10000)
+  (tab-width 2)
+  (tool-bar-mode nil))
+
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns x))
   :ensure t
@@ -114,6 +103,18 @@
   :ensure t
   :bind
   ("C-=" . er/expand-region))
+
+(use-package faces
+  :config
+  (set-face-attribute 'default nil :family "Ricty" :height 120)
+  (set-fontset-font t 'japanese-jisx0208 (font-spec :family "Ricty")))
+
+(use-package files
+  :custom
+  (auto-save-default nil)
+  (confirm-kill-emacs 'yes-or-no-p)
+  (make-backup-files nil)
+  (require-final-newline t))
 
 (use-package fish-mode
   :ensure t
@@ -134,6 +135,10 @@
   :hook
   (text-mode . flyspell-mode)
   (prog-mode . flyspell-prog-mode))
+
+(use-package frame
+  :custom
+  (blink-cursor-mode nil))
 
 (use-package helpful
   :ensure t
@@ -198,6 +203,11 @@
   :custom
   (minions-direct '(flycheck-mode))
   (minions-mode t))
+
+(use-package mule
+  :config
+  (set-language-environment "Japanese")
+  (prefer-coding-system 'utf-8))
 
 (use-package org
   :ensure org-plus-contrib
@@ -273,6 +283,10 @@
   :custom
   (savehist-mode t))
 
+(use-package scroll-bar
+  :custom
+  (scroll-bar-mode nil))
+
 (use-package sh-script
   :defer t
   :custom
@@ -282,6 +296,10 @@
   :defer t
   :custom
   (shr-use-fonts nil))
+
+(use-package simple
+  :custom
+  (column-number-mode t))
 
 (use-package smex
   :ensure t
