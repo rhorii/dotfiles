@@ -38,11 +38,13 @@ ghq:
 
 gnome:
 	sudo pacman -S --needed chrome-gnome-shell \
+                          eog \
                           evince \
                           gdm \
                           gnome-backgrounds \
                           gnome-control-center \
                           gnome-keyring \
+                          gnome-screenshot \
                           gnome-system-monitor \
                           gnome-terminal \
                           gnome-tweaks \
@@ -57,7 +59,7 @@ gnome:
 	cd /usr/share/git/credential/gnome-keyring;\
 	sudo make
 	git config --file ${HOME}/.gitconfig.local \
-	  credential.helper /usr/lib/git-core/git-credential-gnome-keyring
+    credential.helper /usr/lib/git-core/git-credential-gnome-keyring
 
 ibus-mozc:
 	yay -S --needed ibus-mozc
