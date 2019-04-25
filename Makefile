@@ -1,20 +1,16 @@
-link:
-	ln -sfnv ${PWD}/.aspell.conf  ${HOME}/.aspell.conf
-	ln -sfnv ${PWD}/.bash_profile ${HOME}/.bash_profile
-	ln -sfnv ${PWD}/.bashrc       ${HOME}/.bashrc
-	ln -sfnv ${PWD}/.emacs.d      ${HOME}/.emacs.d
-	ln -sfnv ${PWD}/.gitconfig    ${HOME}/.gitconfig
-	touch ${HOME}/.gitconfig.local
-
 bash:
 	brew install bash bash-completion@2
+	ln -sfnv ${PWD}/.bash_profile ${HOME}/.bash_profile
+	ln -sfnv ${PWD}/.bashrc ${HOME}/.bashrc
 
 docker:
 	brew cask install docker
 
 emacs:
 	brew install aspell
+	ln -sfnv ${PWD}/.aspell.conf ${HOME}/.aspell.conf
 	brew cask install emacs
+	ln -sfnv ${PWD}/.emacs.d ${HOME}/.emacs.d
 
 firefox:
 	brew cask install firefox
@@ -27,6 +23,11 @@ fzf:
 
 ghq:
 	brew install ghq
+
+git:
+	brew install git
+	ln -sfnv ${PWD}/.gitconfig ${HOME}/.gitconfig
+	touch ${HOME}/.gitconfig.local
 
 jq:
 	brew install jq
