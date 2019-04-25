@@ -1,49 +1,9 @@
-bash:
-	brew install bash bash-completion@2
-	ln -sfnv ${PWD}/.bash_profile ${HOME}/.bash_profile
-	ln -sfnv ${PWD}/.bashrc ${HOME}/.bashrc
+UNAME := $(shell uname)
 
-docker:
-	brew cask install docker
+ifeq ($(UNAME),Darwin)
+	include macos.mk
+endif
 
-emacs:
-	brew install aspell
-	ln -sfnv ${PWD}/.aspell.conf ${HOME}/.aspell.conf
-	brew cask install emacs
-	ln -sfnv ${PWD}/.emacs.d ${HOME}/.emacs.d
-
-firefox:
-	brew cask install firefox
-
-fish:
-	brew install fish
-
-fzf:
-	brew install fzf
-
-ghq:
-	brew install ghq
-
-git:
-	brew install git
-	ln -sfnv ${PWD}/.gitconfig ${HOME}/.gitconfig
-	touch ${HOME}/.gitconfig.local
-
-jq:
-	brew install jq
-
-python:
-	brew install python@2 python
-	pip3 install --user --upgrade pip
-
-ricty:
-	brew tap sanemat/font
-	brew install ricty
-	cp -f /usr/local/opt/ricty/share/fonts/Ricty*.ttf ~/Library/Fonts/
-	fc-cache -vf
-
-ruby:
-	brew install rbenv ruby-build
-
-slack:
-	brew cask install slack
+ifeq ($(UNAME),Linux)
+	include archlinux.mk
+endif
