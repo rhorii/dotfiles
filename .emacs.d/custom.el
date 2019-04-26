@@ -28,10 +28,10 @@
  '(ledger-post-amount-alignment-column 62)
  '(ledger-reports
    (quote
-    (("Balance Sheet" "%(binary) -f %(ledger-file) bal --explicit --pedantic --cleared ^資産 ^負債 ^資本")
-     ("Monthly Balance" "%(binary) -f %(ledger-file) reg --explicit --pedantic --cleared --monthly ^資産 ^負債 ^資本 --collapse")
-     ("Monthly Expence" "%(binary) -f %(ledger-file) reg --explicit --pedantic --cleared --monthly ^支出 --sort -amount")
-     ("Account Statement" "%(binary) -f %(ledger-file) reg --explicit --pedantic --cleared ^%(account)"))))
+    (("Balance Sheet" "%(binary) -f %(ledger-file) bal --explicit --pedantic --cleared 資産 負債 資本")
+     ("Monthly Balance" "%(binary) -f %(ledger-file) reg --explicit --pedantic --cleared --monthly 資産 負債 資本 --collapse")
+     ("Monthly Expence" "%(binary) -f %(ledger-file) reg --explicit --pedantic --cleared --monthly 支出 --sort -amount")
+     ("Account Statement" "%(binary) -f %(ledger-file) reg --explicit --pedantic --cleared %(account)"))))
  '(load-prefer-newer t)
  '(make-backup-files nil)
  '(minions-direct (quote (flycheck-mode)))
