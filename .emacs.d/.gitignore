@@ -1,12 +1,11 @@
 /.org-id-locations
 /auto-save-list/*
 /bookmarks
-/custom.el
 /elpa/*
 /history
 /network-security.data
 /projectile-bookmarks.eld
-/proxy.el
+/local.el
 /recentf
 /session.*
 /smex-items
