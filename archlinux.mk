@@ -33,7 +33,7 @@ ghq:
 	yay -S --needed ghq
 
 git:
-  sudo pacman -S --needed git
+	sudo pacman -S --needed git
 	ln -sfnv ${PWD}/.gitconfig ${HOME}/.gitconfig
 	touch ${HOME}/.gitconfig.local
 
