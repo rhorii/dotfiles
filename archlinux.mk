@@ -20,6 +20,9 @@ emacs:
 	ln -sfnv ${PWD}/.aspell.conf ${HOME}/.aspell.conf
 	ln -sfnv ${PWD}/.emacs.d ${HOME}/.emacs.d
 
+exfat:
+	sudo pacman -S --needed exfat-utils
+
 firefox:
 	sudo pacman -S --needed firefox firefox-i18n-ja
 
