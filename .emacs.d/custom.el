@@ -13,6 +13,7 @@
  '(confirm-kill-emacs (quote yes-or-no-p))
  '(counsel-mode t)
  '(create-lockfiles nil)
+ '(default-input-method "japanese-mozc")
  '(docker-tramp-use-names t)
  '(electric-pair-mode t)
  '(flycheck-python-flake8-executable "flake8")

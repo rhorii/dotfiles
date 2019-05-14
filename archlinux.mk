@@ -66,9 +66,6 @@ gnome:
 	git config --file ${HOME}/.gitconfig.local \
 		credential.helper /usr/lib/git-core/git-credential-gnome-keyring
 
-ibus-mozc:
-	yay -S --needed ibus-mozc
-
 ipafont:
 	sudo pacman -S --needed otf-ipafont
 
@@ -77,6 +74,11 @@ jq:
 
 libreoffice:
 	sudo pacman -S --needed libreoffice-fresh libreoffice-fresh-ja
+
+mozc:
+	yay -S --needed ibus-mozc
+	@echo 'UNCOMMENT: _emacs_mozc="yes"'
+	yay -S --needed --editmenu emacs-mozc
 
 noto-fonts:
 	sudo pacman -S --needed noto-fonts noto-fonts-cjk noto-fonts-emoji

@@ -138,6 +138,9 @@
 (use-package minions
   :ensure t)
 
+(use-package mozc
+  :if (memq window-system '(x)))
+
 (use-package org
   :ensure org-plus-contrib
   :bind
