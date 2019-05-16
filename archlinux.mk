@@ -42,7 +42,6 @@ git:
 
 gnome:
 	sudo pacman -S --needed \
-		chrome-gnome-shell \
 		eog \
 		evince \
 		gdm \
@@ -50,6 +49,7 @@ gnome:
 		gnome-control-center \
 		gnome-keyring \
 		gnome-screenshot \
+		gnome-shell-extensions \
 		gnome-system-monitor \
 		gnome-terminal \
 		gnome-tweaks \
@@ -58,6 +58,9 @@ gnome:
 		nautilus \
 		networkmanager \
 		xdg-user-dirs
+
+	yay -S --needed gnome-shell-pomodoro
+
 	sudo systemctl enable gdm.service
 	sudo systemctl enable NetworkManager.service
 
