@@ -69,6 +69,11 @@
   :ensure t
   :defer t)
 
+(use-package edit-server
+  :ensure t
+  :config
+  (edit-server-start))
+
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns x))
   :ensure t

@@ -15,6 +15,7 @@
  '(create-lockfiles nil)
  '(default-input-method "japanese-mozc")
  '(docker-tramp-use-names t)
+ '(edit-server-new-frame nil)
  '(electric-pair-mode t)
  '(flycheck-python-flake8-executable "flake8")
  '(flycheck-python-pycompile-executable "python3")
@@ -69,7 +70,7 @@
  '(org-use-speed-commands t)
  '(package-selected-packages
    (quote
-    (yasnippet-snippets which-key use-package undo-tree solarized-theme smex projectile paradox org-plus-contrib minions markdown-mode magit ledger-mode ivy-hydra helpful flycheck-ledger fish-mode expand-region exec-path-from-shell dockerfile-mode docker-compose-mode docker csv-mode counsel company-quickhelp)))
+    (edit-server yasnippet-snippets which-key use-package undo-tree solarized-theme smex projectile paradox org-plus-contrib minions markdown-mode magit ledger-mode ivy-hydra helpful flycheck-ledger fish-mode expand-region exec-path-from-shell dockerfile-mode docker-compose-mode docker csv-mode counsel company-quickhelp)))
  '(paradox-execute-asynchronously t)
  '(paradox-github-token t)
  '(prog-mode-hook (quote (flyspell-prog-mode hs-minor-mode)))
