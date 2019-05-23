@@ -103,5 +103,16 @@ slack:
 systemd-boot:
 	yay -S --needed systemd-boot-pacman-hook
 
+systemd-swap:
+	sudo pacman -S --needed systemd-swap
+	xdg-open 'https://wiki.archlinux.org/index.php/Swap#systemd-swap'
+	sudo nano /etc/systemd/swap.conf
+
+	xdg-open 'https://github.com/Nefelim4ag/systemd-swap'
+	sudo nano /etc/sysctl.d/99-sysctl.conf
+
+	sudo sysctl -p /etc/sysctl.d/99-sysctl.conf
+	sudo systemctl enable systemd-swap.service
+
 yay:
 	yay -S --needed yay
