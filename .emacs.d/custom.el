@@ -70,7 +70,7 @@
  '(org-use-speed-commands t)
  '(package-selected-packages
    (quote
-    (edit-server yasnippet-snippets which-key use-package undo-tree solarized-theme smex projectile paradox org-plus-contrib minions markdown-mode magit ledger-mode ivy-hydra helpful flycheck-ledger fish-mode expand-region exec-path-from-shell dockerfile-mode docker-compose-mode docker csv-mode counsel company-quickhelp)))
+    (shackle edit-server yasnippet-snippets which-key use-package undo-tree solarized-theme smex projectile paradox org-plus-contrib minions markdown-mode magit ledger-mode ivy-hydra helpful flycheck-ledger fish-mode expand-region exec-path-from-shell dockerfile-mode docker-compose-mode docker csv-mode counsel company-quickhelp)))
  '(paradox-execute-asynchronously t)
  '(paradox-github-token t)
  '(prog-mode-hook (quote (flyspell-prog-mode hs-minor-mode)))

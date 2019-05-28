@@ -165,6 +165,11 @@
   :config
   (projectile-mode +1))
 
+(use-package shackle
+  :ensure t
+  :config
+  (shackle-mode +1))
+
 (use-package smex
   :ensure t
   :defer t)
