@@ -106,7 +106,7 @@ systemd-boot:
 systemd-swap:
 	sudo pacman -S --needed systemd-swap
 	xdg-open 'https://wiki.archlinux.org/index.php/Swap#systemd-swap'
-	sudo nano /etc/systemd/swap.conf
+	sudo nano /etc/systemd/swap.conf.d/99-swap.conf
 
 	xdg-open 'https://github.com/Nefelim4ag/systemd-swap'
 	sudo nano /etc/sysctl.d/99-sysctl.conf
