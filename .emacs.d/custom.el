@@ -38,20 +38,20 @@
  '(make-backup-files nil)
  '(minions-direct (quote (flycheck-mode)))
  '(minions-mode t)
- '(org-agenda-files (quote ("~/org")))
+ '(org-agenda-files (quote ("~/Dropbox/org")))
  '(org-agenda-text-search-extra-files (quote (agenda-archives)))
  '(org-babel-load-languages (quote ((emacs-lisp . t) (shell . t))))
  '(org-capture-templates
    (quote
     (("t" "Task" entry
-      (file "~/org/inbox.org")
+      (file "~/Dropbox/org/inbox.org")
       "* TODO %?
 %U")
      ("n" "Note" entry
-      (file "~/org/inbox.org")
+      (file "~/Dropbox/org/inbox.org")
       "* %?
 %U"))))
- '(org-default-notes-file "~/org/inbox.org")
+ '(org-default-notes-file "~/Dropbox/org/inbox.org")
  '(org-edit-src-content-indentation 0)
  '(org-enforce-todo-checkbox-dependencies t)
  '(org-enforce-todo-dependencies t)
