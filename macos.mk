@@ -6,6 +6,9 @@ bash:
 docker:
 	brew cask install docker
 
+dropbox:
+	brew cask install dropbox
+
 emacs:
 	brew install aspell
 	brew cask install emacs
