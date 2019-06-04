@@ -99,9 +99,7 @@
 (use-package helpful
   :ensure t
   :bind
-  ("C-h f" . helpful-callable)
-  ("C-h k" . helpful-key)
-  ("C-h v" . helpful-variable))
+  ("C-h k" . helpful-key))
 
 (use-package hydra
   :ensure t
@@ -112,6 +110,10 @@
   ("C-x C-b" . ibuffer))
 
 (use-package ivy
+  :ensure t)
+
+(use-package ivy-rich
+  :after ivy
   :ensure t)
 
 (use-package ivy-hydra

@@ -11,6 +11,8 @@
  '(company-selection-wrap-around t)
  '(company-show-numbers t)
  '(confirm-kill-emacs (quote yes-or-no-p))
+ '(counsel-describe-function-function (quote helpful-callable))
+ '(counsel-describe-variable-function (quote helpful-variable))
  '(counsel-mode t)
  '(create-lockfiles nil)
  '(default-input-method "japanese-mozc")
@@ -24,7 +26,9 @@
  '(global-flycheck-mode t)
  '(global-hl-line-mode t)
  '(indent-tabs-mode nil)
+ '(ivy-format-function (quote ivy-format-function-line))
  '(ivy-mode t)
+ '(ivy-rich-mode t)
  '(ivy-use-virtual-buffers t)
  '(ivy-virtual-abbreviate (quote abbreviate))
  '(ledger-post-amount-alignment-column 62)
@@ -70,7 +74,7 @@
  '(org-use-speed-commands t)
  '(package-selected-packages
    (quote
-    (shackle edit-server yasnippet-snippets which-key use-package undo-tree solarized-theme smex projectile paradox org-plus-contrib minions markdown-mode magit ledger-mode ivy-hydra helpful flycheck-ledger fish-mode expand-region exec-path-from-shell dockerfile-mode docker-compose-mode docker csv-mode counsel company-quickhelp)))
+    (ivy-rich shackle edit-server yasnippet-snippets which-key use-package undo-tree solarized-theme smex projectile paradox org-plus-contrib minions markdown-mode magit ledger-mode ivy-hydra helpful flycheck-ledger fish-mode expand-region exec-path-from-shell dockerfile-mode docker-compose-mode docker csv-mode counsel company-quickhelp)))
  '(paradox-execute-asynchronously t)
  '(paradox-github-token t)
  '(prog-mode-hook (quote (flyspell-prog-mode hs-minor-mode)))
