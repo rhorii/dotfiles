@@ -42,10 +42,12 @@ git:
 
 gnome:
 	sudo pacman -S --needed \
+		file-roller \
 		eog \
 		evince \
 		gdm \
 		gnome-backgrounds \
+		gnome-calculator \
 		gnome-control-center \
 		gnome-keyring \
 		gnome-screenshot \
@@ -57,6 +59,7 @@ gnome:
 		libgnome-keyring \
 		nautilus \
 		networkmanager \
+		sushi \
 		xdg-user-dirs
 
 	yay -S --needed gnome-shell-pomodoro
