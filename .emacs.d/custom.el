@@ -31,7 +31,7 @@
  '(ivy-rich-mode t)
  '(ivy-use-virtual-buffers t)
  '(ivy-virtual-abbreviate (quote abbreviate))
- '(ledger-post-amount-alignment-column 62)
+ '(ledger-post-amount-alignment-column 64)
  '(ledger-reports
    (quote
     (("Balance Sheet" "%(binary) -f %(ledger-file) bal --explicit --pedantic --cleared 資産 負債 資本")
