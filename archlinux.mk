@@ -26,9 +26,6 @@ exfat:
 firefox:
 	sudo pacman -S --needed firefox firefox-i18n-ja
 
-fish:
-	sudo pacman -S --needed fish
-
 fzf:
 	sudo pacman -S --needed fzf
 
