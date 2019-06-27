@@ -18,9 +18,6 @@ emacs:
 firefox:
 	brew cask install firefox
 
-fish:
-	brew install fish
-
 fzf:
 	brew install fzf
 
