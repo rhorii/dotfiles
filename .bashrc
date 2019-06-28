@@ -25,6 +25,12 @@ HISTSIZE=32768
 HISTFILESIZE="${HISTSIZE}"
 HISTCONTROL='ignoreboth'
 
+# bash-completion
+if [[ -r /usr/local/etc/profile.d/bash_completion.sh  ]]; then
+  BASH_COMPLETION_COMPAT_DIR='/usr/local/etc/bash_completion.d'
+  . /usr/local/etc/profile.d/bash_completion.sh
+fi
+
 # fzf
 if [[ -d /usr/share/fzf ]]; then
   . /usr/share/fzf/key-bindings.bash
