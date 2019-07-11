@@ -26,7 +26,7 @@
  '(global-flycheck-mode t)
  '(global-hl-line-mode t)
  '(indent-tabs-mode nil)
- '(ivy-format-function (quote ivy-format-function-line))
+ '(ivy-format-function (quote ivy-format-function-line) t)
  '(ivy-mode t)
  '(ivy-rich-mode t)
  '(ivy-use-virtual-buffers t)
@@ -50,22 +50,25 @@
     (("t" "Task" entry
       (file "~/Dropbox/org/inbox.org")
       "* TODO %?
-%U")
+%U
+%a" :prepend t)
      ("n" "Note" entry
       (file "~/Dropbox/org/inbox.org")
       "* %?
-%U"))))
+%U
+%a" :prepend t))))
  '(org-default-notes-file "~/Dropbox/org/inbox.org")
  '(org-edit-src-content-indentation 0)
  '(org-enforce-todo-checkbox-dependencies t)
  '(org-enforce-todo-dependencies t)
  '(org-log-done (quote time))
  '(org-log-into-drawer t)
- '(org-modules (quote (org-habit org-depend)))
+ '(org-modules (quote (org-docview org-habit org-info)))
  '(org-outline-path-complete-in-steps nil)
  '(org-refile-targets (quote ((org-agenda-files :maxlevel . 3))))
  '(org-refile-use-outline-path (quote file))
  '(org-replace-disputed-keys t)
+ '(org-reverse-note-order t)
  '(org-src-window-setup (quote current-window))
  '(org-tag-alist (quote (("@office" . 111) ("@home" . 104))))
  '(org-todo-keywords
