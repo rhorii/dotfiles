@@ -2,213 +2,132 @@
 ;;; Commentary:
 ;;; Code:
 
-(progn ;     custom.el
-  (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-  (load custom-file t))
+(package-initialize)
 
-(progn ;     local.el
-  (let ((local-file (expand-file-name "local.el" user-emacs-directory)))
-    (load local-file t)))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(blink-cursor-mode nil)
+ '(column-number-mode t)
+ '(company-minimum-prefix-length 2)
+ '(company-quickhelp-mode t)
+ '(company-selection-wrap-around t)
+ '(company-show-numbers t)
+ '(confirm-kill-emacs (quote yes-or-no-p))
+ '(counsel-describe-function-function (quote helpful-callable))
+ '(counsel-describe-variable-function (quote helpful-variable))
+ '(counsel-mode t)
+ '(custom-enabled-themes (quote (solarized-dark)))
+ '(custom-safe-themes
+   (quote
+    ("0598c6a29e13e7112cfbc2f523e31927ab7dce56ebb2016b567e1eff6dc1fd4f" default)))
+ '(docker-tramp-use-names t)
+ '(electric-pair-mode t)
+ '(flycheck-global-modes t)
+ '(global-auto-revert-mode t)
+ '(global-company-mode t)
+ '(global-flycheck-mode t)
+ '(global-hl-line-mode t)
+ '(global-undo-tree-mode t)
+ '(indent-tabs-mode nil)
+ '(ivy-mode t)
+ '(ivy-rich-mode t)
+ '(ivy-use-virtual-buffers t)
+ '(ivy-virtual-abbreviate (quote abbreviate))
+ '(ledger-post-amount-alignment-column 64)
+ '(ledger-reports
+   (quote
+    (("Balance Sheet" "%(binary) -f %(ledger-file) bal --explicit --pedantic --cleared 資産 負債 資本")
+     ("Monthly Balance" "%(binary) -f %(ledger-file) reg --explicit --pedantic --cleared --monthly 資産 負債 資本 --collapse")
+     ("Monthly Expence" "%(binary) -f %(ledger-file) reg --explicit --pedantic --cleared --monthly 支出 --sort -amount")
+     ("Account Statement" "%(binary) -f %(ledger-file) reg --explicit --pedantic --cleared %(account)"))))
+ '(minions-direct (quote (flycheck-mode)))
+ '(minions-mode t)
+ '(org-agenda-files
+   (quote
+    ("~/Dropbox/org/inbox.org" "~/Dropbox/org/gtd.org" "~/Dropbox/org/tickler.org")))
+ '(org-agenda-text-search-extra-files (quote (agenda-archives)))
+ '(org-babel-load-languages (quote ((emacs-lisp . t) (shell . t))))
+ '(org-capture-templates
+   (quote
+    (("t" "Task" entry
+      (file "~/Dropbox/org/inbox.org")
+      "* TODO %?
+%U
+%a" :prepend t)
+     ("n" "Note" entry
+      (file "~/Dropbox/org/inbox.org")
+      "* %?
+%U
+%a" :prepend t))))
+ '(org-edit-src-content-indentation 0)
+ '(org-log-done (quote time))
+ '(org-log-into-drawer t)
+ '(org-modules (quote (org-docview org-habit org-info)))
+ '(org-outline-path-complete-in-steps nil)
+ '(org-refile-targets (quote ((org-agenda-files :maxlevel . 3))))
+ '(org-refile-use-outline-path (quote file))
+ '(org-reverse-note-order t)
+ '(org-src-window-setup (quote current-window))
+ '(org-tag-alist (quote (("@office" . 111) ("@home" . 104))))
+ '(org-todo-keywords
+   (quote
+    ((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d)" "CANCELED(@c/!)"))))
+ '(org-use-speed-commands t)
+ '(package-archives
+   (quote
+    (("gnu" . "https://elpa.gnu.org/packages/")
+     ("melpa" . "https://melpa.org/packages/"))))
+ '(package-enable-at-startup nil)
+ '(package-selected-packages
+   (quote
+    (solarized-theme exec-path-from-shell minions ivy counsel swiper ivy-rich smex company company-quickhelp yasnippet yasnippet-snippets flycheck expand-region undo-tree which-key helpful magit projectile docker docker-tramp dockerfile-mode docker-compose-mode markdown-mode json-mode ledger-mode flycheck-ledger)))
+ '(prog-mode-hook (quote (flyspell-prog-mode hs-minor-mode)))
+ '(projectile-completion-system (quote ivy))
+ '(projectile-mode t nil (projectile))
+ '(scroll-bar-mode nil)
+ '(scroll-conservatively 10000)
+ '(show-paren-mode t)
+ '(solarized-scale-org-headlines nil)
+ '(solarized-use-variable-pitch nil)
+ '(tab-width 2)
+ '(text-mode-hook (quote (turn-on-flyspell text-mode-hook-identify)))
+ '(tool-bar-mode nil)
+ '(which-key-mode t)
+ '(x-underline-at-descent-line t)
+ '(yas-global-mode t))
 
-(progn ;     coding
-  (set-language-environment "Japanese")
-  (prefer-coding-system 'utf-8))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Ricty")))))
 
-(progn ;     font
-  (cond
-   ((eq window-system 'ns)
-    (set-face-attribute 'default nil :family "Ricty" :height 140))
-   ((eq window-system 'x)
-    (set-face-attribute 'default nil :family "Ricty" :height 120)))
-  (set-fontset-font t 'japanese-jisx0208 (font-spec :family "Ricty")))
+;; local.el
+(let ((local-file (expand-file-name "local.el" user-emacs-directory)))
+  (load local-file t))
 
-(progn ;    `package'
-  (package-initialize)
-  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-  (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t))
+;; font
+(set-fontset-font t 'japanese-jisx0208 (font-spec :family "Ricty"))
 
-(progn ;    `use-package'
-  (unless (package-installed-p 'use-package)
-    (package-refresh-contents)
-    (package-install 'use-package))
-  (require 'use-package))
+;; key bindings
+(global-set-key (kbd "C-=") 'er/expand-region)
+(global-set-key (kbd "C-s") 'swiper)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
+(global-set-key (kbd "C-c d") 'docker)
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c m") 'magit-status)
+(global-set-key (kbd "C-c p") 'projectile-command-map)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(global-set-key (kbd "C-h k") 'helpful-key)
 
-(use-package async
-  :ensure t
-  :defer t)
-
-(use-package company
-  :ensure t)
-
-(use-package company-quickhelp
-  :after company
-  :ensure t)
-
-(use-package counsel
-  :after ivy
-  :ensure t)
-
-(use-package csv-mode
-  :ensure t
-  :defer t)
-
-(use-package docker
-  :ensure t
-  :bind
-  ("C-c d" . docker))
-
-(use-package docker-compose-mode
-  :ensure t
-  :defer t)
-
-(use-package docker-tramp
-  :ensure t
-  :defer t)
-
-(use-package dockerfile-mode
-  :ensure t
-  :defer t)
-
-(use-package edit-server
-  :ensure t
-  :config
-  (edit-server-start))
-
-(use-package exec-path-from-shell
-  :if (memq window-system '(mac ns x))
-  :ensure t
-  :config
+;; exec-path-from-shell
+(when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 
-(use-package expand-region
-  :ensure t
-  :bind
-  ("C-=" . er/expand-region))
-
-(use-package fish-mode
-  :ensure t
-  :defer t)
-
-(use-package flycheck
-  :ensure t)
-
-(use-package flycheck-ledger
-  :after (flycheck ledger-mode)
-  :ensure t)
-
-(use-package helpful
-  :ensure t
-  :bind
-  ("C-h k" . helpful-key))
-
-(use-package hydra
-  :ensure t
-  :defer t)
-
-(use-package ibuffer
-  :bind
-  ("C-x C-b" . ibuffer))
-
-(use-package ivy
-  :ensure t)
-
-(use-package ivy-rich
-  :after ivy
-  :ensure t)
-
-(use-package ivy-hydra
-  :after (hydra ivy)
-  :ensure t
-  :defer t)
-
-(use-package json-mode
-  :ensure t
-  :defer t)
-
-(use-package ledger-mode
-  :ensure t
-  :defer t
-  :config
-  (add-hook 'ledger-mode-hook
-            (lambda() (add-hook 'before-save-hook
-                                'ledger-mode-clean-buffer nil t))))
-
-(use-package magit
-  :ensure t
-  :bind
-  ("C-c m" . magit-status))
-
-(use-package markdown-mode
-  :ensure t
-  :defer t)
-
-(use-package minions
-  :ensure t)
-
-(use-package mozc
-  :if (memq window-system '(x)))
-
-(use-package org
-  :ensure org-plus-contrib
-  :bind
-  ("C-c a" . org-agenda)
-  ("C-c c" . org-capture)
-  ("C-c l" . org-store-link))
-
-(use-package paradox
-  :ensure t
-  :defer t)
-
-(use-package projectile
-  :ensure t
-  :demand t
-  :bind-keymap
-  ("C-c p" . projectile-command-map)
-  :config
-  (projectile-mode +1))
-
-(use-package shackle
-  :ensure t
-  :config
-  (shackle-mode +1))
-
-(use-package smex
-  :ensure t
-  :defer t)
-
-(use-package solarized-theme
-  :if window-system
-  :ensure t
-  :config
-  (load-theme 'solarized-dark t))
-
-(use-package swiper
-  :after ivy
-  :ensure t
-  :bind
-  ("C-s" . swiper))
-
-(use-package undo-tree
-  :ensure t
-  :config
-  (global-undo-tree-mode +1))
-
-(use-package which-key
-  :ensure t
-  :config
-  (which-key-mode +1))
-
-(use-package windmove
-  :config
-  (windmove-default-keybindings))
-
-(use-package yasnippet
-  :ensure t
-  :config
-  (yas-global-mode t))
-
-(use-package yasnippet-snippets
-  :after yasnippet
-  :ensure t)
-
+(provide 'init)
 ;;; init.el ends here

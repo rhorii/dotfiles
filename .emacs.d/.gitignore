@@ -1,14 +1,8 @@
-/.org-id-locations
 /auto-save-list/*
-/bookmarks
 /elpa/*
-/history
+/local.el
 /network-security.data
 /projectile-bookmarks.eld
-/local.el
 /recentf
-/session.*
 /smex-items
-/tramp
 /transient/*
-/url/*
