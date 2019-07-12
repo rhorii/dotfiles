@@ -9,6 +9,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(auto-save-default nil)
  '(blink-cursor-mode nil)
  '(column-number-mode t)
  '(company-minimum-prefix-length 2)
@@ -19,6 +20,7 @@
  '(counsel-describe-function-function (quote helpful-callable))
  '(counsel-describe-variable-function (quote helpful-variable))
  '(counsel-mode t)
+ '(create-lockfiles nil)
  '(custom-enabled-themes (quote (solarized-dark)))
  '(custom-safe-themes
    (quote
@@ -43,6 +45,7 @@
      ("Monthly Balance" "%(binary) -f %(ledger-file) reg --explicit --pedantic --cleared --monthly 資産 負債 資本 --collapse")
      ("Monthly Expence" "%(binary) -f %(ledger-file) reg --explicit --pedantic --cleared --monthly 支出 --sort -amount")
      ("Account Statement" "%(binary) -f %(ledger-file) reg --explicit --pedantic --cleared %(account)"))))
+ '(make-backup-files nil)
  '(minions-direct (quote (flycheck-mode)))
  '(minions-mode t)
  '(org-agenda-files
@@ -87,6 +90,7 @@
  '(prog-mode-hook (quote (flyspell-prog-mode hs-minor-mode)))
  '(projectile-completion-system (quote ivy))
  '(projectile-mode t nil (projectile))
+ '(require-final-newline t)
  '(scroll-bar-mode nil)
  '(scroll-conservatively 10000)
  '(show-paren-mode t)
@@ -104,13 +108,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Ricty")))))
-
-;; local.el
-(let ((local-file (expand-file-name "local.el" user-emacs-directory)))
-  (load local-file t))
+ )
 
 ;; font
+(set-face-attribute 'default nil :family "Ricty")
 (set-fontset-font t 'japanese-jisx0208 (font-spec :family "Ricty"))
 
 ;; key bindings
@@ -128,6 +129,10 @@
 ;; exec-path-from-shell
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
+
+;; local.el
+(let ((local-file (expand-file-name "local.el" user-emacs-directory)))
+  (load local-file t))
 
 (provide 'init)
 ;;; init.el ends here
