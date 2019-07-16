@@ -90,7 +90,6 @@
     (solarized-theme exec-path-from-shell edit-server minions ivy counsel swiper ivy-rich smex company company-quickhelp yasnippet yasnippet-snippets flycheck expand-region undo-tree which-key helpful magit projectile docker docker-tramp dockerfile-mode docker-compose-mode markdown-mode json-mode ledger-mode flycheck-ledger)))
  '(prog-mode-hook (quote (flyspell-prog-mode hs-minor-mode)))
  '(projectile-completion-system (quote ivy))
- '(projectile-mode t nil (projectile))
  '(require-final-newline t)
  '(scroll-bar-mode nil)
  '(scroll-conservatively 10000)
@@ -111,12 +110,26 @@
  ;; If there is more than one, they won't work right.
  )
 
-;; theme
-(load-theme 'solarized-dark t)
-
 ;; font
 (set-face-attribute 'default nil :family "Ricty" :height 120)
 (set-fontset-font t 'japanese-jisx0208 (font-spec :family "Ricty"))
+
+;; theme
+(when (require 'solarized-theme nil t)
+  (load-theme 'solarized-dark t))
+
+;; exec-path-from-shell
+(when (and (require 'exec-path-from-shell nil t)
+           (memq window-system '(mac ns x)))
+  (exec-path-from-shell-initialize))
+
+;; edit-server
+(when (require 'edit-server nil t)
+  (edit-server-start))
+
+;; projectile
+(when (require 'projectile nil t)
+  (projectile-mode +1))
 
 ;; key bindings
 (global-set-key (kbd "C-=") 'er/expand-region)
@@ -129,13 +142,6 @@
 (global-set-key (kbd "C-c p") 'projectile-command-map)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (global-set-key (kbd "C-h k") 'helpful-key)
-
-;; exec-path-from-shell
-(when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
-
-;; edit-server
-(edit-server-start)
 
 ;; local.el
 (let ((local-file (expand-file-name "local.el" user-emacs-directory)))
