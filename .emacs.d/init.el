@@ -21,10 +21,6 @@
  '(counsel-describe-variable-function (quote helpful-variable))
  '(counsel-mode t)
  '(create-lockfiles nil)
- '(custom-enabled-themes (quote (solarized-dark)))
- '(custom-safe-themes
-   (quote
-    ("0598c6a29e13e7112cfbc2f523e31927ab7dce56ebb2016b567e1eff6dc1fd4f" default)))
  '(docker-tramp-use-names t)
  '(electric-pair-mode t)
  '(flycheck-global-modes t)
@@ -109,6 +105,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; theme
+(load-theme 'solarized-dark t)
 
 ;; font
 (set-face-attribute 'default nil :family "Ricty")
