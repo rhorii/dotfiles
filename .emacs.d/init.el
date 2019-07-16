@@ -114,7 +114,7 @@
 (load-theme 'solarized-dark t)
 
 ;; font
-(set-face-attribute 'default nil :family "Ricty")
+(set-face-attribute 'default nil :family "Ricty" :height 120)
 (set-fontset-font t 'japanese-jisx0208 (font-spec :family "Ricty"))
 
 ;; key bindings
