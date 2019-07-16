@@ -66,7 +66,11 @@
  '(org-log-into-drawer t)
  '(org-modules (quote (org-docview org-habit org-info)))
  '(org-outline-path-complete-in-steps nil)
- '(org-refile-targets (quote ((org-agenda-files :maxlevel . 3))))
+ '(org-refile-targets
+   (quote
+    (("~/Dropbox/org/gtd.org" :maxlevel . 3)
+     ("~/Dropbox/org/someday.org" :level . 1)
+     ("~/Dropbox/org/tickler.org" :maxlevel . 3))))
  '(org-refile-use-outline-path (quote file))
  '(org-reverse-note-order t)
  '(org-src-window-setup (quote current-window))
