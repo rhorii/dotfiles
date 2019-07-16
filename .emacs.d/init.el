@@ -22,6 +22,7 @@
  '(counsel-mode t)
  '(create-lockfiles nil)
  '(docker-tramp-use-names t)
+ '(edit-server-new-frame nil)
  '(electric-pair-mode t)
  '(flycheck-global-modes t)
  '(global-auto-revert-mode t)
@@ -86,7 +87,7 @@
  '(package-enable-at-startup nil)
  '(package-selected-packages
    (quote
-    (solarized-theme exec-path-from-shell minions ivy counsel swiper ivy-rich smex company company-quickhelp yasnippet yasnippet-snippets flycheck expand-region undo-tree which-key helpful magit projectile docker docker-tramp dockerfile-mode docker-compose-mode markdown-mode json-mode ledger-mode flycheck-ledger)))
+    (solarized-theme exec-path-from-shell edit-server minions ivy counsel swiper ivy-rich smex company company-quickhelp yasnippet yasnippet-snippets flycheck expand-region undo-tree which-key helpful magit projectile docker docker-tramp dockerfile-mode docker-compose-mode markdown-mode json-mode ledger-mode flycheck-ledger)))
  '(prog-mode-hook (quote (flyspell-prog-mode hs-minor-mode)))
  '(projectile-completion-system (quote ivy))
  '(projectile-mode t nil (projectile))
@@ -132,6 +133,9 @@
 ;; exec-path-from-shell
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
+
+;; edit-server
+(edit-server-start)
 
 ;; local.el
 (let ((local-file (expand-file-name "local.el" user-emacs-directory)))
