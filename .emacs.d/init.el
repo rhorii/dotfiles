@@ -88,7 +88,7 @@
  '(package-selected-packages
    (quote
     (solarized-theme exec-path-from-shell edit-server minions ivy counsel swiper ivy-rich smex company company-quickhelp yasnippet yasnippet-snippets flycheck expand-region undo-tree which-key helpful magit projectile docker docker-tramp dockerfile-mode docker-compose-mode markdown-mode json-mode ledger-mode flycheck-ledger)))
- '(prog-mode-hook (quote (flyspell-prog-mode hs-minor-mode)))
+ '(prog-mode-hook (quote (flyspell-prog-mode hs-minor-mode yas-minor-mode)))
  '(projectile-completion-system (quote ivy))
  '(require-final-newline t)
  '(scroll-bar-mode nil)
@@ -100,8 +100,7 @@
  '(text-mode-hook (quote (turn-on-flyspell text-mode-hook-identify)))
  '(tool-bar-mode nil)
  '(which-key-mode t)
- '(x-underline-at-descent-line t)
- '(yas-global-mode t))
+ '(x-underline-at-descent-line t))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
