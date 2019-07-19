@@ -1,5 +1,6 @@
 /auto-save-list/*
 /bookmarks
+/custom.el
 /elpa/*
 /local.el
 /network-security.data
