@@ -159,7 +159,7 @@
   :ensure
   :defer
   :custom
-  (ledger-post-amount-alignment-column 64)
+  (ledger-post-amount-alignment-column 65)
   (ledger-reports
    '(("Balance Sheet"
       "%(binary) bal -f %(ledger-file) --explicit --pedantic --cleared 資産 負債 資本")
@@ -226,8 +226,8 @@
   (org-reverse-note-order t)
   (org-src-window-setup 'current-window)
   (org-tag-alist
-   '(("@office" . "o")
-     ("@home" . "h")))
+   '(("@office" . ?o)
+     ("@home" . ?h)))
   (org-todo-keywords
    '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d)" "CANCELED(@c/!)")))
   (org-use-speed-commands t))
@@ -254,6 +254,7 @@
   :custom
   (solarized-high-contrast-mode-line t)
   (solarized-scale-org-headlines nil)
+  (solarized-use-variable-pitch nil)
   :config
   (load-theme 'solarized-dark t))
 
