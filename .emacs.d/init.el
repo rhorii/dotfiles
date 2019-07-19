@@ -185,6 +185,11 @@
   (minions-direct '(flycheck-mode))
   (minions-mode t))
 
+(use-package mozc
+  :if (memq window-system '(x))
+  :custom
+  (default-input-method "japanese-mozc"))
+
 (use-package org
   :bind
   ("C-c a" . org-agenda)
