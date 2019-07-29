@@ -19,7 +19,7 @@ dropbox:
 	yay -S --needed dropbox nautilus-dropbox
 
 emacs:
-	sudo pacman -S --needed emacs aspell-en
+	sudo pacman -S --needed emacs aspell-en ledger
 	ln -sfnv ${PWD}/.aspell.conf ${HOME}/.aspell.conf
 	ln -sfnv ${PWD}/.emacs.d ${HOME}/.emacs.d
 
