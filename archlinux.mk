@@ -15,6 +15,9 @@ docker:
 	sudo systemctl enable docker.service
 	sudo usermod -aG docker rhorii
 
+dropbox:
+	yay -S --needed dropbox nautilus-dropbox
+
 emacs:
 	sudo pacman -S --needed emacs aspell-en
 	ln -sfnv ${PWD}/.aspell.conf ${HOME}/.aspell.conf
