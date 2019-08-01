@@ -232,6 +232,12 @@
    '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d)" "CANCELED(@c/!)")))
   (org-use-speed-commands t))
 
+(use-package paradox
+  :ensure
+  :defer
+  :custom
+  (paradox-github-token t))
+
 (use-package paren
   :custom
   (show-paren-mode t))
