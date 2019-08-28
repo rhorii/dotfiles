@@ -230,7 +230,9 @@
      ("@home" . ?h)))
   (org-todo-keywords
    '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d)" "CANCELED(@c/!)")))
-  (org-use-speed-commands t))
+  (org-use-speed-commands t)
+  :config
+  (setq system-time-locale "C"))
 
 (use-package paradox
   :ensure
