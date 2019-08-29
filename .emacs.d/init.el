@@ -190,6 +190,12 @@
   :custom
   (default-input-method "japanese-mozc"))
 
+(use-package mozc-popup
+  :ensure
+  :if (memq window-system '(x))
+  :custom
+  (mozc-candidate-style 'popup))
+
 (use-package org
   :bind
   ("C-c a" . org-agenda)
