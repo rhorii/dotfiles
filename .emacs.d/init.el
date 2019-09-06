@@ -59,13 +59,21 @@
   (company-show-numbers t)
   (global-company-mode t))
 
+(use-package company-lsp
+  :ensure
+  :after (company lsp-mode)
+  :config
+  (add-to-list 'company-backends 'company-lsp))
+
 (use-package company-quickhelp
   :ensure
+  :after company
   :custom
   (company-quickhelp-mode t))
 
 (use-package counsel
   :ensure
+  :after ivy
   :custom
   (counsel-describe-function-function 'helpful-callable)
   (counsel-describe-variable-function 'helpful-variable)
@@ -119,7 +127,7 @@
 
 (use-package flycheck-ledger
   :ensure
-  :defer)
+  :after (flycheck ledger-mode))
 
 (use-package flyspell
   :hook
@@ -148,6 +156,7 @@
 
 (use-package ivy-rich
   :ensure
+  :after ivy
   :custom
   (ivy-rich-mode t))
 
@@ -169,6 +178,16 @@
       "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 支出 --monthly --sort -amount")
      ("Account Statement"
       "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared %(account)"))))
+
+(use-package lsp-mode
+  :ensure
+  :hook
+  (ruby-mode . lsp))
+
+(use-package lsp-ui
+  :ensure
+  :hook
+  (lsp-mode . lsp-ui-mode))
 
 (use-package magit
   :ensure
@@ -192,7 +211,7 @@
 
 (use-package mozc-popup
   :ensure
-  :if (memq window-system '(x))
+  :after mozc
   :custom
   (mozc-candidate-style 'popup))
 
@@ -274,6 +293,7 @@
 
 (use-package swiper
   :ensure
+  :after ivy
   :bind
   ("C-s" . swiper))
 
@@ -298,7 +318,7 @@
 
 (use-package yasnippet-snippets
   :ensure
-  :defer)
+  :after yasnippet)
 
 (provide 'init)
 ;;; init.el ends here
