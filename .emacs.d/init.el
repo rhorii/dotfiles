@@ -264,6 +264,7 @@
   :ensure
   :defer
   :custom
+  (paradox-execute-asynchronously t)
   (paradox-github-token t))
 
 (use-package paren
