@@ -211,6 +211,7 @@
 
 (use-package mozc-popup
   :ensure
+  :if (memq window-system '(x))
   :after mozc
   :custom
   (mozc-candidate-style 'popup))
