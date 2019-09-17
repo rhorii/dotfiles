@@ -14,6 +14,7 @@ docker:
 	sudo pacman -S --needed docker docker-compose
 	sudo systemctl enable docker.service
 	sudo usermod -aG docker rhorii
+	yay -S --needed hadolint-bin
 
 dropbox:
 	yay -S --needed dropbox nautilus-dropbox
