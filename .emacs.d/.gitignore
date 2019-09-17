@@ -1,4 +1,3 @@
-/.lsp-session-*
 /auto-save-list/*
 /bookmarks
 /custom.el
@@ -11,3 +10,4 @@
 /smex-items
 /tramp
 /transient/*
+/url/cache/*

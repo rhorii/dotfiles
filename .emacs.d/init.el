@@ -59,12 +59,6 @@
   (company-show-numbers t)
   (global-company-mode t))
 
-(use-package company-lsp
-  :ensure
-  :after (company lsp-mode)
-  :config
-  (add-to-list 'company-backends 'company-lsp))
-
 (use-package company-quickhelp
   :ensure
   :after company
@@ -178,16 +172,6 @@
       "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 支出 --monthly --sort -amount")
      ("Account Statement"
       "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared %(account)"))))
-
-(use-package lsp-mode
-  :ensure
-  :hook
-  (ruby-mode . lsp))
-
-(use-package lsp-ui
-  :ensure
-  :hook
-  (lsp-mode . lsp-ui-mode))
 
 (use-package magit
   :ensure
