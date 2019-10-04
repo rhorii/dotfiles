@@ -90,6 +90,9 @@ mozc:
 noto-fonts:
 	sudo pacman -S --needed noto-fonts noto-fonts-cjk noto-fonts-emoji
 
+pandoc:
+	sudo pacman -S --needed pandoc
+
 python:
 	sudo pacman -S --needed python python-pip
 	pip install --user --upgrade pip
