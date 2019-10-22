@@ -288,6 +288,13 @@
   :custom
   (global-undo-tree-mode t))
 
+(use-package web-mode
+  :ensure
+  :mode
+  ("\\.erb\\'")
+  :custom
+  (web-mode-markup-indent-offset 2))
+
 (use-package which-key
   :ensure
   :custom
