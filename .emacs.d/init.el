@@ -249,7 +249,9 @@
   :defer
   :custom
   (paradox-execute-asynchronously t)
-  (paradox-github-token t))
+  (paradox-github-token t)
+  :custom-face
+  (paradox-mode-line-face ((t nil))))
 
 (use-package paren
   :custom
@@ -262,6 +264,11 @@
   (projectile-mode t)
   :bind-keymap
   ("C-c p" . projectile-command-map))
+
+(use-package ruby-mode
+  :defer
+  :custom
+  (ruby-insert-encoding-magic-comment nil))
 
 (use-package smex
   :ensure
