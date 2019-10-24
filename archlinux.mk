@@ -24,6 +24,12 @@ emacs:
 	ln -sfnv ${PWD}/.aspell.conf ${HOME}/.aspell.conf
 	ln -sfnv ${PWD}/.emacs.d ${HOME}/.emacs.d
 
+eog:
+	sudo pacman -S --needed eog
+
+evince:
+	sudo pacman -S --needed evince poppler-data
+
 exfat:
 	sudo pacman -S --needed exfat-utils
 
@@ -43,9 +49,6 @@ git:
 
 gnome:
 	sudo pacman -S --needed \
-		file-roller \
-		eog \
-		evince \
 		gdm \
 		gnome-backgrounds \
 		gnome-calculator \
@@ -56,11 +59,8 @@ gnome:
 		gnome-system-monitor \
 		gnome-terminal \
 		gnome-tweaks \
-		gvfs-smb \
 		libgnome-keyring \
-		nautilus \
 		networkmanager \
-		sushi \
 		xdg-user-dirs
 
 	yay -S --needed gnome-shell-pomodoro
@@ -86,6 +86,9 @@ mozc:
 	yay -S --needed ibus-mozc
 	@echo 'UNCOMMENT: _emacs_mozc="yes"'
 	yay -S --needed --editmenu emacs-mozc
+
+nautilus:
+	sudo pacman -S --needed nautilus file-roller gvfs-smb sushi
 
 noto-fonts:
 	sudo pacman -S --needed noto-fonts noto-fonts-cjk noto-fonts-emoji
