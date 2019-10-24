@@ -180,7 +180,16 @@
 
 (use-package markdown-mode
   :ensure
-  :defer)
+  :defer
+  :custom
+  (markdown-code-lang-modes
+   '(("C" . c-mode)
+     ("cpp" . c++-mode)
+     ("C++" . c++-mode)
+     ("shell" . sh-mode)
+     ("bash" . sh-mode)
+     ("ruby" . ruby-mode)))
+  (markdown-fontify-code-blocks-natively t))
 
 (use-package minions
   :ensure
