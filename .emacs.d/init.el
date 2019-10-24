@@ -189,7 +189,9 @@
      ("shell" . sh-mode)
      ("bash" . sh-mode)
      ("ruby" . ruby-mode)))
-  (markdown-fontify-code-blocks-natively t))
+  (markdown-fontify-code-blocks-natively t)
+  :custom-face
+  (markdown-code-face ((t (:inherit default :foreground "#839496")))))
 
 (use-package minions
   :ensure
