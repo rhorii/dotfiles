@@ -30,6 +30,9 @@ eog:
 evince:
 	sudo pacman -S --needed evince poppler-data
 
+evolution:
+	sudo pacman -S --needed evolution evolution-ews
+
 exfat:
 	sudo pacman -S --needed exfat-utils
 
