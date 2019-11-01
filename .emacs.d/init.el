@@ -268,6 +268,10 @@
   :custom
   (show-paren-mode t))
 
+(use-package php-mode
+  :ensure
+  :defer)
+
 (use-package projectile
   :ensure
   :custom

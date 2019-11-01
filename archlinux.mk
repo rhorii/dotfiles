@@ -99,6 +99,9 @@ noto-fonts:
 pandoc:
 	sudo pacman -S --needed pandoc
 
+php:
+	sudo pacman -S --needed php
+
 python:
 	sudo pacman -S --needed python python-pip
 	pip install --user --upgrade pip
