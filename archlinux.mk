@@ -130,5 +130,15 @@ systemd-swap:
 	sudo sysctl -p /etc/sysctl.d/99-sysctl.conf
 	sudo systemctl enable systemd-swap.service
 
+vagrant:
+	sudo pacman -S --needed vagrant
+
+virtualbox:
+	sudo pacman -S --needed \
+		virtualbox \
+		virtualbox-guest-iso \
+		virtualbox-host-modules-arch
+	sudo gpasswd -a ${USER} vboxusers
+
 yay:
 	yay -S --needed yay
