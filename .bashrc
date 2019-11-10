@@ -6,7 +6,13 @@
 [[ $- != *i* ]] && return
 
 # aliases
-alias ls='ls --color=auto'
+alias la='ls -alh'
+alias ll='ls -lh'
+if [ "$(uname)" == 'Darwin' ]; then
+    alias ls='ls -G'
+else
+    alias ls='ls --color=auto'
+fi
 
 # prompt
 if [[ -f /usr/share/git/completion/git-prompt.sh ]]; then
