@@ -264,9 +264,7 @@
   :defer
   :custom
   (paradox-execute-asynchronously t)
-  (paradox-github-token t)
-  :custom-face
-  (paradox-mode-line-face ((t nil))))
+  (paradox-github-token t))
 
 (use-package paren
   :custom
@@ -297,9 +295,9 @@
   :ensure
   :if window-system
   :custom
-  (solarized-high-contrast-mode-line t)
   (solarized-scale-org-headlines nil)
   (solarized-use-variable-pitch nil)
+  (x-underline-at-descent-line t)
   :config
   (load-theme 'solarized-dark t))
 
