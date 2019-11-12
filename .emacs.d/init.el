@@ -128,6 +128,10 @@
   (prog-mode . flyspell-prog-mode)
   (text-mode . flyspell-mode))
 
+(use-package git-timemachine
+  :ensure
+  :defer)
+
 (use-package helpful
   :ensure
   :bind
