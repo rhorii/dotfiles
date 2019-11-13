@@ -282,6 +282,10 @@
   :bind-keymap
   ("C-c p" . projectile-command-map))
 
+(use-package recentf
+  :custom
+  (recentf-max-saved-items 1024))
+
 (use-package ruby-mode
   :defer
   :custom
