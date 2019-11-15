@@ -147,6 +147,8 @@
 
 (use-package ivy
   :ensure
+  :bind
+  ("C-c C-r" . ivy-resume)
   :custom
   (ivy-mode t)
   (ivy-use-virtual-buffers t)
