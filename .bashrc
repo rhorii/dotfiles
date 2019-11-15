@@ -9,9 +9,9 @@
 alias la='ls -alh'
 alias ll='ls -lh'
 if [ "$(uname)" == 'Darwin' ]; then
-    alias ls='ls -G'
+  alias ls='ls -G'
 else
-    alias ls='ls --color=auto'
+  alias ls='ls --color=auto'
 fi
 
 # prompt
@@ -45,3 +45,7 @@ elif [[ -d /usr/local/opt/fzf/shell ]]; then
   . /usr/local/opt/fzf/shell/key-bindings.bash
   . /usr/local/opt/fzf/shell/completion.bash
 fi
+
+cr() {
+  local repo=$(ghq list | fzf) && cd $(ghq root)/${repo}
+}
