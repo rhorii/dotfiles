@@ -116,6 +116,9 @@ ruby:
 slack:
 	yay -S --needed slack-desktop
 
+sshpass:
+	sudo pacman -S --needed sshpass
+
 systemd-boot:
 	yay -S --needed systemd-boot-pacman-hook
 
