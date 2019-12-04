@@ -39,7 +39,11 @@
 (leaf *fonts
   :when window-system
   :config
-  (set-face-attribute 'default nil :family "Ricty" :height 120))
+  (cond
+   ((eq window-system 'x)
+    (set-face-attribute 'default nil :family "Ricty" :height 120))
+   ((eq window-system 'ns)
+    (set-fontset-font nil 'ascii (font-spec :family "Ricty" :size 14)))))
 
 (leaf autorevert
   :custom
@@ -235,7 +239,7 @@
   (minions-mode   . t))
 
 (leaf mozc
-  :when (memq window-system '(x))
+  :when (eq window-system 'x)
   :straight t
   :custom
   (default-input-method . "japanese-mozc")
