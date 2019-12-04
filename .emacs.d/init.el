@@ -183,13 +183,16 @@
     :bind
     ([remap isearch-forward] . swiper))
 
-  (leaf smex
+  (leaf ivy-hydra
     :straight t)
 
   (leaf ivy-rich
     :straight t
     :custom
-    (ivy-rich-mode . t)))
+    (ivy-rich-mode . t))
+
+  (leaf smex
+    :straight t))
 
 (leaf json-mode
   :straight t)
