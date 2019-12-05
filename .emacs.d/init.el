@@ -43,7 +43,7 @@
    ((eq window-system 'x)
     (set-face-attribute 'default nil :family "Ricty" :height 120))
    ((eq window-system 'ns)
-    (set-fontset-font nil 'ascii (font-spec :family "Ricty" :size 14)))))
+    (set-face-attribute 'default nil :family "Ricty" :height 140))))
 
 (leaf autorevert
   :custom
