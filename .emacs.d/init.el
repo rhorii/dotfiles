@@ -112,6 +112,10 @@
   :custom
   (ruby-insert-encoding-magic-comment . nil))
 
+(leaf sh-script
+  :custom
+  (sh-basic-offset . 2))
+
 (leaf windmove
   :config
   (windmove-default-keybindings))
