@@ -1,4 +1,5 @@
 /auto-save-list/*
+/bookmarks
 /flycheck_*.el
 /projectile-bookmarks.eld
 /recentf
