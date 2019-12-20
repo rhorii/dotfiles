@@ -110,6 +110,9 @@ python:
 ricty:
 	yay -S --needed ttf-ricty
 
+ripgrep:
+	sudo pacman -S --needed ripgrep
+
 ruby:
 	yay -S --needed rbenv ruby-build
 

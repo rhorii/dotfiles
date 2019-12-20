@@ -265,6 +265,11 @@
   :bind
   ("C-c p" . projectile-command-map))
 
+(leaf rg
+  :straight t
+  :bind
+  ("C-c s" . rg-menu))
+
 (leaf solarized-theme
   :when window-system
   :straight t
