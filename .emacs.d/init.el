@@ -298,5 +298,11 @@
   (leaf yasnippet-snippets
     :straight t))
 
+(leaf zeal-at-point
+  :when (eq window-system 'x)
+  :straight t
+  :bind
+  ("C-c d" . zeal-at-point))
+
 (provide 'init)
 ;;; init.el ends here
