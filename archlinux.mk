@@ -6,6 +6,9 @@ bash:
 	ln -sfnv ${PWD}/.bash_profile ${HOME}/.bash_profile
 	ln -sfnv ${PWD}/.bashrc ${HOME}/.bashrc
 
+chromium:
+	sudo pacman -S --needed chromium
+
 cups:
 	sudo pacman -S --needed cups cups-pdf system-config-printer
 	sudo systemctl enable org.cups.cupsd.service
