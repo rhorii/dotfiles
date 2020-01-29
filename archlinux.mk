@@ -155,5 +155,3 @@ yay:
 zeal:
 	sudo pacman -S --needed zeal qt5-styleplugins qt5ct
 	sudo ln -sfnv ${PWD}/etc/environment /etc/environment
-	mkdir -p ${HOME}/.config/Zeal
-	ln -sfnv ${PWD}/.config/Zeal/Zeal.conf ${HOME}/.config/Zeal/Zeal.conf
