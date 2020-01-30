@@ -55,12 +55,12 @@
 
 (leaf flyspell
   :hook
-  (prog-mode . flyspell-prog-mode)
-  (text-mode . flyspell-mode))
+  (prog-mode-hook . flyspell-prog-mode)
+  (text-mode-hook . flyspell-mode))
 
 (leaf hideshow
   :hook
-  (prog-mode . hs-minor-mode))
+  (prog-mode-hook . hs-minor-mode))
 
 (leaf hl-line
   :custom
