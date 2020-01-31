@@ -66,44 +66,6 @@
   :custom
   (global-hl-line-mode . t))
 
-(leaf org
-  :custom
-  (org-agenda-files                   . '("~/Dropbox/org/inbox.org"
-                                          "~/Dropbox/org/gtd.org"
-                                          "~/Dropbox/org/tickler.org"))
-  (org-agenda-text-search-extra-files . '(agenda-archives))
-  (org-babel-load-languages           . '((emacs-lisp . t)
-                                          (shell      . t)))
-  (org-capture-templates              . '(("t" "Task" entry
-                                           (file "~/Dropbox/org/inbox.org")
-                                           "* TODO %?\n%U\n%a"
-                                           :prepend t)
-                                          ("n" "Note" entry
-                                           (file "~/Dropbox/org/inbox.org")
-                                           "* %?\n%U\n%a"
-                                           :prepend t)))
-  (org-edit-src-content-indentation   . 0)
-  (org-log-done                       . 'time)
-  (org-log-into-drawer                . t)
-  (org-modules                        . '(org-docview org-habit org-info))
-  (org-outline-path-complete-in-steps . nil)
-  (org-refile-targets                 . '(("~/Dropbox/org/gtd.org"     :maxlevel . 3)
-                                          ("~/Dropbox/org/someday.org" :level    . 1)
-                                          ("~/Dropbox/org/tickler.org" :maxlevel . 3)))
-  (org-refile-use-outline-path        . 'file)
-  (org-reverse-note-order             . t)
-  (org-src-window-setup               . 'current-window)
-  (org-tag-alist                      . '(("@office" . ?o)
-                                          ("@home"   . ?h)))
-  (org-todo-keywords                  . '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d)" "CANCELED(@c/!)")))
-  (org-use-speed-commands             . t)
-  :bind
-  ("C-c a" . org-agenda)
-  ("C-c c" . org-capture)
-  ("C-c l" . org-store-link)
-  :config
-  (setq system-time-locale "C"))
-
 (leaf paren
   :custom
   (show-paren-mode . t))
@@ -253,6 +215,49 @@
     :require t
     :custom
     (mozc-candidate-style . 'popup)))
+
+(leaf org
+  :straight t
+  :custom
+  (org-agenda-files                   . '("~/Dropbox/org/inbox.org"
+                                          "~/Dropbox/org/gtd.org"
+                                          "~/Dropbox/org/tickler.org"))
+  (org-agenda-text-search-extra-files . '(agenda-archives))
+  (org-babel-load-languages           . '((emacs-lisp . t)
+                                          (shell      . t)))
+  (org-capture-templates              . '(("t" "Task" entry
+                                           (file "~/Dropbox/org/inbox.org")
+                                           "* TODO %?\n%U\n%a"
+                                           :prepend t)
+                                          ("n" "Note" entry
+                                           (file "~/Dropbox/org/inbox.org")
+                                           "* %?\n%U\n%a"
+                                           :prepend t)))
+  (org-edit-src-content-indentation   . 0)
+  (org-log-done                       . 'time)
+  (org-log-into-drawer                . t)
+  (org-modules                        . '(org-docview org-habit org-info))
+  (org-outline-path-complete-in-steps . nil)
+  (org-refile-targets                 . '(("~/Dropbox/org/gtd.org"     :maxlevel . 3)
+                                          ("~/Dropbox/org/someday.org" :level    . 1)
+                                          ("~/Dropbox/org/tickler.org" :maxlevel . 3)))
+  (org-refile-use-outline-path        . 'file)
+  (org-reverse-note-order             . t)
+  (org-src-window-setup               . 'current-window)
+  (org-tag-alist                      . '(("@office" . ?o)
+                                          ("@home"   . ?h)))
+  (org-todo-keywords                  . '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d)" "CANCELED(@c/!)")))
+  (org-use-speed-commands             . t)
+  :bind
+  ("C-c a" . org-agenda)
+  ("C-c c" . org-capture)
+  ("C-c l" . org-store-link)
+  :config
+  (setq system-time-locale "C")
+
+  (leaf ob-async
+    :straight t
+    :require t))
 
 (leaf php-mode
   :straight t)
