@@ -48,6 +48,9 @@ fzf:
 ghq:
 	yay -S --needed ghq
 
+gimp:
+	sudo pacman -S --needed gimp
+
 git:
 	sudo pacman -S --needed git
 	ln -sfnv ${PWD}/.gitconfig ${HOME}/.gitconfig
