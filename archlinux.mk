@@ -1,3 +1,6 @@
+ansible:
+	sudo pacman -S --needed ansible
+
 arc-theme:
 	sudo pacman -S --needed arc-gtk-theme arc-icon-theme elementary-icon-theme
 
