@@ -9,6 +9,10 @@ bash:
 	ln -sfnv ${PWD}/.bash_profile ${HOME}/.bash_profile
 	ln -sfnv ${PWD}/.bashrc ${HOME}/.bashrc
 
+bluetooth:
+	sudo pacman -S --needed bluez bluez-utils
+	sudo systemctl enable bluetooth
+
 chromium:
 	sudo pacman -S --needed chromium
 
