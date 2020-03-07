@@ -178,6 +178,10 @@
         "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 資産 負債 資本 --monthly --collapse")
        ("Monthly Expence"
         "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 支出 --monthly --sort -amount")
+       ("Yearly Balance"
+        "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 資産 負債 資本 --yearly --collapse")
+       ("Yearly Expence"
+        "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 支出 --yearly --sort -amount")
        ("Account Statement"
         "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared %(account)")))
   :config
