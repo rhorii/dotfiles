@@ -79,6 +79,7 @@ gnome:
 		networkmanager \
 		xdg-user-dirs
 
+	yay -S --needed gnome-shell-extension-system-monitor-git
 	yay -S --needed gnome-shell-pomodoro
 
 	sudo systemctl enable gdm.service
