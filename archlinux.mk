@@ -150,6 +150,9 @@ systemd-swap:
 	sudo sysctl -p /etc/sysctl.d/99-sysctl.conf
 	sudo systemctl enable systemd-swap.service
 
+unarchiver:
+	sudo pacman -S --needed unarchiver
+
 vagrant:
 	sudo pacman -S --needed vagrant
 
