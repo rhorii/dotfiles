@@ -266,6 +266,9 @@
 (leaf php-mode
   :straight t)
 
+(leaf pocket-reader
+  :straight t)
+
 (leaf projectile
   :straight t
   :custom
