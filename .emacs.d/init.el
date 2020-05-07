@@ -294,6 +294,9 @@
   :custom
   (global-undo-tree-mode . t))
 
+(leaf web-mode
+  :straight t)
+
 (leaf which-key
   :straight t
   :custom
