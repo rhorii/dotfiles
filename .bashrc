@@ -12,6 +12,7 @@ if [ "$(uname)" == 'Darwin' ]; then
   alias ls='ls -G'
 else
   alias ls='ls --color=auto'
+  alias open='xdg-open'
 fi
 
 # prompt
