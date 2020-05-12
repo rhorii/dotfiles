@@ -130,6 +130,9 @@ ripgrep:
 ruby:
 	yay -S --needed rbenv ruby-build
 
+scrcpy:
+	yay -S --needed scrcpy android-udev
+
 slack:
 	yay -S --needed slack-desktop
 
