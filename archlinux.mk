@@ -61,6 +61,7 @@ gimp:
 git:
 	sudo pacman -S --needed git
 	ln -sfnv ${PWD}/.gitconfig ${HOME}/.gitconfig
+	ln -sfnv ${PWD}/.gitignore_global ${HOME}/.gitignore_global
 	touch ${HOME}/.gitconfig.local
 
 gnome:
