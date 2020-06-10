@@ -127,6 +127,15 @@
 (leaf git-timemachine
   :straight t)
 
+(leaf google-translate
+  :straight t
+  :custom
+  (google-translate-pop-up-buffer-set-focus . t)
+  (google-translate-translation-directions-alist . '(("en" . "ja")
+                                                     ("ja" . "en")))
+  :bind
+  ("C-c t" . google-translate-smooth-translate))
+
 (leaf helpful
   :straight t
   :bind
