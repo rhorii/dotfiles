@@ -255,6 +255,7 @@
                                           ("~/Dropbox/org/someday.org" :level    . 1)
                                           ("~/Dropbox/org/tickler.org" :maxlevel . 3)))
   (org-refile-use-outline-path        . 'file)
+  (org-replace-disputed-keys          . t)
   (org-reverse-note-order             . t)
   (org-src-window-setup               . 'current-window)
   (org-tag-alist                      . '(("@office" . ?o)
