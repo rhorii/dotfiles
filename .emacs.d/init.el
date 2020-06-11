@@ -307,7 +307,8 @@
   (global-undo-tree-mode . t))
 
 (leaf web-mode
-  :straight t)
+  :straight t
+  :mode "\\.x[ms]l\\'")
 
 (leaf which-key
   :straight t
