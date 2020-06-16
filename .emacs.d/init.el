@@ -258,6 +258,7 @@
   (org-replace-disputed-keys          . t)
   (org-reverse-note-order             . t)
   (org-src-window-setup               . 'current-window)
+  (org-startup-indented               . t)
   (org-tag-alist                      . '(("@office" . ?o)
                                           ("@home"   . ?h)))
   (org-todo-keywords                  . '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d)" "CANCELED(@c/!)")))
