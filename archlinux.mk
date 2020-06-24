@@ -122,6 +122,9 @@ python:
 	pip install --user --upgrade pip
 	pip install --user flake8
 
+responsively-app:
+	yay -S --needed responsively-bin
+
 ricty:
 	yay -S --needed ttf-ricty
 
