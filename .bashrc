@@ -48,5 +48,6 @@ elif [[ -d /usr/local/opt/fzf/shell ]]; then
 fi
 
 cr() {
-  local repo=$(ghq list | fzf) && cd $(ghq root)/${repo}
+  local repo
+  repo=$(ghq list | fzf) && cd $(ghq root)/${repo}
 }
