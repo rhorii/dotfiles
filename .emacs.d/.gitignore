@@ -1,10 +1,11 @@
 /auto-save-list/*
 /bookmarks
+/elpa/*
 /flycheck_*.el
 /projectile-bookmarks.eld
+/projectile.cache
 /recentf
 /smex-items
-/straight/*
 /tramp
 /transient/*
 /url/*
