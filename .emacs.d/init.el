@@ -95,27 +95,24 @@
 
 (leaf company
   :ensure t
-  :custom
-  (company-minimum-prefix-length . 2)
-  (company-selection-wrap-around . t)
-  (company-show-numbers          . t)
-  (global-company-mode           . t)
-  :config
-  (leaf company-quickhelp
-    :ensure t
-    :custom
-    (company-quickhelp-mode . t)))
+  :custom ((company-idel-delay . 0)
+           (company-minimum-prefix-length . 2)
+           (company-selection-wrap-around . t)
+           (company-show-numbers . t))
+  :global-minor-mode global-company-mode)
 
-(leaf docker-compose-mode
-  :ensure t)
+(leaf company-quickhelp
+  :ensure t
+  :after company
+  :global-minor-mode t)
 
-(leaf dockerfile-mode
-  :ensure t)
+(leaf docker-compose-mode :ensure t)
+
+(leaf dockerfile-mode :ensure t)
 
 (leaf edit-server
   :ensure t
-  :custom
-  (edit-server-new-frame . nil))
+  :custom ((edit-server-new-frame . nil)))
 
 (leaf exec-path-from-shell
   :when window-system
@@ -127,198 +124,170 @@
 
 (leaf expand-region
   :ensure t
-  :bind
-  ("C-=" . er/expand-region))
+  :bind (("C-=" . er/expand-region)))
 
 (leaf flycheck
   :ensure t
-  :custom
-  (global-flycheck-mode . t))
+  :global-minor-mode global-flycheck-mode)
 
-(leaf git-timemachine
-  :ensure t)
+(leaf flycheck-ledger
+  :after flycheck ledger
+  :ensure t
+  :require t)
+
+(leaf git-timemachine :ensure t)
 
 (leaf google-translate
   :ensure t
-  :custom
-  (google-translate-pop-up-buffer-set-focus . t)
-  (google-translate-translation-directions-alist . '(("en" . "ja")
-                                                     ("ja" . "en")))
-  :bind
-  ("C-c t" . google-translate-smooth-translate))
+  :bind (("C-c t" . google-translate-smooth-translate))
+  :custom ((google-translate-pop-up-buffer-set-focus . t)
+           (google-translate-translation-directions-alist . '(("en" . "ja")
+                                                              ("ja" . "en")))))
 
 (leaf helpful
   :ensure t
-  :bind
-  ("C-h k" . helpful-key))
+  :bind (("C-h k" . helpful-key)))
 
 (leaf ivy
   :ensure t
-  :custom
-  (ivy-mode                . t)
-  (ivy-use-virtual-buffers . t)
-  (ivy-virtual-abbreviate  . 'abbreviate)
-  :bind
-  ("C-c C-r" . ivy-resume)
+  :leaf-defer nil
+  :bind (("C-c C-r" . ivy-resume))
+  :custom ((ivy-use-virtual-buffers . t)
+           (ivy-virtual-abbreviate . 'abbreviate))
+  :global-minor-mode t
   :config
   (leaf counsel
     :ensure t
-    :custom
-    (counsel-describe-function-function . 'helpful-callable)
-    (counsel-describe-variable-function . 'helpful-variable)
-    (counsel-mode . t))
+    :bind (("C-S-s" . counsel-imenu)
+           ("C-x C-r" . counsel-recentf))
+    :custom ((counsel-describe-function-function . 'helpful-callable)
+             (counsel-describe-variable-function . 'helpful-variable))
+    :global-minor-mode t)
 
   (leaf swiper
     :ensure t
-    :bind
-    ([remap isearch-forward] . swiper))
+    :bind (("C-s" . swiper))))
 
-  (leaf ivy-hydra
-    :ensure t)
+(leaf ivy-rich
+  :ensure t
+  :after ivy
+  :global-minor-mode t)
 
-  (leaf ivy-rich
-    :ensure t
-    :custom
-    (ivy-rich-mode . t))
-
-  (leaf smex
-    :ensure t))
-
-(leaf json-mode
-  :ensure t)
+(leaf json-mode :ensure t)
 
 (leaf ledger-mode
   :ensure t
-  :custom
-  (ledger-post-amount-alignment-column . 65)
-  (ledger-reports
-   . '(("Balance Sheet"
-        "%(binary) bal -f %(ledger-file) --explicit --pedantic --cleared 資産 負債 資本")
-       ("Monthly Balance"
-        "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 資産 負債 資本 --monthly --collapse")
-       ("Monthly Expence"
-        "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 支出 --monthly --sort -amount")
-       ("Yearly Balance"
-        "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 資産 負債 資本 --yearly --collapse")
-       ("Yearly Expence"
-        "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 支出 --yearly --sort -amount")
-       ("Account Statement"
-        "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared %(account)")))
-  :config
-  (leaf flycheck-ledger
-    :after flycheck
-    :ensure t
-    :require t))
+  :custom ((ledger-post-amount-alignment-column . 65)
+           (ledger-reports
+            . '(("Balance Sheet"
+                 "%(binary) bal -f %(ledger-file) --explicit --pedantic --cleared 資産 負債 資本")
+                ("Monthly Balance"
+                 "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 資産 負債 資本 --monthly --collapse")
+                ("Monthly Expence"
+                 "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 支出 --monthly --sort -amount")
+                ("Yearly Balance"
+                 "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 資産 負債 資本 --yearly --collapse")
+                ("Yearly Expence"
+                 "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 支出 --yearly --sort -amount")
+                ("Account Statement"
+                 "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared %(account)")))))
 
 (leaf magit
   :ensure t
-  :bind
-  ("C-c m" . magit-status))
+  :bind (("C-c m" . magit-status)))
 
 (leaf markdown-mode
   :ensure t
-  :custom
-  (markdown-fontify-code-block-natively . t)
-  :custom-face
-  (markdown-code-face . '((t (:inherit default)))))
+  :custom ((markdown-fontify-code-block-natively . t))
+  :custom-face ((markdown-code-face . '((t (:inherit default))))))
 
 (leaf minions
   :ensure t
-  :custom
-  (minions-direct . '(flycheck-mode))
-  (minions-mode   . t))
+  :custom ((minions-direct . '(flycheck-mode)))
+  :global-minor-mode t)
 
 (leaf mozc
   :when (eq window-system 'x)
   :ensure t
-  :custom
-  (default-input-method . "japanese-mozc")
-  :config
-  (leaf mozc-popup
-    :ensure t
-    :require t
-    :custom
-    (mozc-candidate-style . 'popup)))
+  :custom ((default-input-method . "japanese-mozc")))
+
+(leaf mozc-popup
+  :ensure t
+  :after mozc
+  :custom ((mozc-candidate-style . 'popup))
+  :require t)
 
 (leaf org
   :ensure t
-  :custom
-  (org-agenda-files                   . '("~/Dropbox/org/inbox.org"
-                                          "~/Dropbox/org/gtd.org"
-                                          "~/Dropbox/org/tickler.org"))
-  (org-agenda-text-search-extra-files . '(agenda-archives))
-  (org-babel-load-languages           . '((emacs-lisp . t)
-                                          (shell      . t)))
-  (org-capture-templates              . '(("t" "Task" entry
-                                           (file "~/Dropbox/org/inbox.org")
-                                           "* TODO %?\n%U\n%a"
-                                           :prepend t)
-                                          ("n" "Note" entry
-                                           (file "~/Dropbox/org/inbox.org")
-                                           "* %?\n%U\n%a"
-                                           :prepend t)))
-  (org-edit-src-content-indentation   . 0)
-  (org-log-done                       . 'time)
-  (org-log-into-drawer                . t)
-  (org-modules                        . '(org-docview org-habit org-info))
-  (org-outline-path-complete-in-steps . nil)
-  (org-refile-targets                 . '(("~/Dropbox/org/gtd.org"     :maxlevel . 3)
-                                          ("~/Dropbox/org/someday.org" :level    . 1)
-                                          ("~/Dropbox/org/tickler.org" :maxlevel . 3)))
-  (org-refile-use-outline-path        . 'file)
-  (org-replace-disputed-keys          . t)
-  (org-reverse-note-order             . t)
-  (org-src-window-setup               . 'current-window)
-  (org-startup-folded                 . 'content)
-  (org-startup-indented               . t)
-  (org-tag-alist                      . '(("@office" . ?o)
-                                          ("@home"   . ?h)))
-  (org-todo-keywords                  . '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d)" "CANCELED(@c/!)")))
-  (org-use-speed-commands             . t)
-  :bind
-  ("C-c a" . org-agenda)
-  ("C-c c" . org-capture)
-  ("C-c l" . org-store-link)
+  :bind (("C-c a" . org-agenda)
+         ("C-c c" . org-capture)
+         ("C-c l" . org-store-link))
+  :custom ((org-agenda-files . '("~/Dropbox/org/inbox.org"
+                                 "~/Dropbox/org/gtd.org"
+                                 "~/Dropbox/org/tickler.org"))
+           (org-agenda-text-search-extra-files . '(agenda-archives))
+           (org-babel-load-languages . '((emacs-lisp . t)
+                                         (shell . t)))
+           (org-capture-templates . '(("t" "Task" entry
+                                       (file "~/Dropbox/org/inbox.org")
+                                       "* TODO %?\n%U\n%a"
+                                       :prepend t)
+                                      ("n" "Note" entry
+                                       (file "~/Dropbox/org/inbox.org")
+                                       "* %?\n%U\n%a"
+                                       :prepend t)))
+           (org-edit-src-content-indentation . 0)
+           (org-log-done . 'time)
+           (org-log-into-drawer . t)
+           (org-modules . '(org-docview org-habit org-info))
+           (org-outline-path-complete-in-steps . nil)
+           (org-refile-targets . '(("~/Dropbox/org/gtd.org" :maxlevel . 3)
+                                   ("~/Dropbox/org/someday.org" :level . 1)
+                                   ("~/Dropbox/org/tickler.org" :maxlevel . 3)))
+           (org-refile-use-outline-path . 'file)
+           (org-replace-disputed-keys . t)
+           (org-reverse-note-order . t)
+           (org-src-window-setup . 'current-window)
+           (org-startup-folded . 'content)
+           (org-startup-indented . t)
+           (org-tag-alist . '(("@office" . ?o)
+                              ("@home" . ?h)))
+           (org-todo-keywords . '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d)" "CANCELED(@c/!)")))
+           (org-use-speed-commands . t))
   :config
   (setq system-time-locale "C")
-
   (leaf ob-async
     :ensure t
     :require t))
 
-(leaf php-mode
-  :ensure t)
+(leaf php-mode :ensure t)
 
-(leaf pocket-reader
-  :ensure t)
+(leaf pocket-reader :ensure t)
 
 (leaf projectile
   :ensure t
-  :custom
-  (projectile-completion-system . 'ivy)
-  (projectile-mode              . t)
-  :bind
-  ("C-c p" . projectile-command-map))
+  :bind (("C-c p" . projectile-command-map))
+  :custom ((projectile-completion-system . 'ivy)
+           (projectile-mode . t)))
 
 (leaf rg
   :ensure t
-  :bind
-  ("C-c s" . rg-menu))
+  :bind (("C-c s" . rg-menu)))
+
+(leaf smex :ensure t)
 
 (leaf solarized-theme
   :when window-system
   :ensure t
-  :custom
-  (solarized-scale-org-headlines . nil)
-  (solarized-use-variable-pitch  . nil)
-  (x-underline-at-descent-line   . t)
+  :custom ((solarized-scale-org-headlines . nil)
+           (solarized-use-variable-pitch . nil)
+           (x-underline-at-descent-line . t))
   :config
   (load-theme 'solarized-dark t))
 
 (leaf undo-tree
   :ensure t
-  :custom
-  (global-undo-tree-mode . t))
+  :global-minor-mode global-undo-tree-mode)
 
 (leaf web-mode
   :ensure t
@@ -326,22 +295,20 @@
 
 (leaf which-key
   :ensure t
-  :custom
-  (which-key-mode . t))
+  :global-minor-mode t)
 
 (leaf yasnippet
   :ensure t
-  :custom
-  (yas-global-mode . t)
-  :config
-  (leaf yasnippet-snippets
-    :ensure t))
+  :global-minor-mode yas-global-mode)
+
+(leaf yasnippet-snippets
+  :ensure t
+  :after yasnippet)
 
 (leaf zeal-at-point
   :when (eq window-system 'x)
   :ensure t
-  :bind
-  ("C-c d" . zeal-at-point))
+  :bind (("C-c d" . zeal-at-point)))
 
 (provide 'init)
 ;;; init.el ends here
