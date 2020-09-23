@@ -106,6 +106,11 @@
   :after company
   :global-minor-mode t)
 
+(leaf counsel-projectile
+  :ensure t
+  :after counsel projectile
+  :global-minor-mode t)
+
 (leaf docker-compose-mode :ensure t)
 
 (leaf dockerfile-mode :ensure t)
@@ -267,8 +272,8 @@
 (leaf projectile
   :ensure t
   :bind (("C-c p" . projectile-command-map))
-  :custom ((projectile-completion-system . 'ivy)
-           (projectile-mode . t)))
+  :custom ((projectile-completion-system . 'ivy))
+  :global-minor-mode t)
 
 (leaf rg
   :ensure t
