@@ -17,22 +17,6 @@
     :config
     (leaf-keywords-init)))
 
-(leaf *better-defaults
-  :custom
-  (auto-save-default       . nil)
-  (blink-cursor-mode       . nil)
-  (column-number-mode      . t)
-  (confirm-kill-emacs      . 'yes-or-no-p)
-  (create-lockfiles        . nil)
-  (indent-tabs-mode        . nil)
-  (make-backup-files       . nil)
-  (recentf-max-saved-items . 1024)
-  (require-final-newline   . t)
-  (scroll-bar-mode         . nil)
-  (scroll-conservatively   . 10000)
-  (tab-width               . 2)
-  (tool-bar-mode           . nil))
-
 (leaf *fonts
   :when window-system
   :config
@@ -43,37 +27,67 @@
     (set-face-attribute 'default nil :family "Ricty" :height 140))))
 
 (leaf autorevert
-  :custom
-  (global-auto-revert-mode . t))
+  :custom ((auto-revert-check-vc-info . t))
+  :global-minor-mode global-auto-revert-mode)
+
+(leaf cus-edit
+  :custom `((custom-file . ,(locate-user-emacs-file "custom.el"))))
+
+(leaf cus-start
+  :custom ((create-lockfiles . nil)
+           (indent-tabs-mode . nil)
+           (scroll-conservatively . 100)
+           (tab-width . 2)
+           (tool-bar-mode . nil)))
+
+(leaf delsel
+  :global-minor-mode delete-selection-mode)
 
 (leaf elec-pair
-  :custom
-  (electric-pair-mode . t))
+  :global-minor-mode electric-pair-mode)
+
+(leaf files
+  :custom `((auto-save-file-name-transforms . '((".*" ,(locate-user-emacs-file "backup/") t)))
+            (backup-directory-alist . '((".*" . ,(locate-user-emacs-file "backup"))
+                                        (,tramp-file-name-regexp . nil)))
+            (confirm-kill-emacs . 'yes-or-no-p)
+            (delete-old-versions . t)
+            (require-final-newline . t)
+            (version-control . t)))
 
 (leaf flyspell
-  :hook
-  (prog-mode-hook . flyspell-prog-mode)
-  (text-mode-hook . flyspell-mode))
+  :hook ((prog-mode-hook . flyspell-prog-mode)
+         (text-mode-hook . flyspell-mode)))
+
+(leaf frame
+  :custom ((blink-cursor-mode . nil)))
 
 (leaf hideshow
-  :hook
-  (prog-mode-hook . hs-minor-mode))
+  :hook ((prog-mode-hook . hs-minor-mode)))
 
 (leaf hl-line
-  :custom
-  (global-hl-line-mode . t))
+  :global-minor-mode global-hl-line-mode)
 
 (leaf paren
-  :custom
-  (show-paren-mode . t))
+  :global-minor-mode show-paren-mode)
+
+(leaf recentf
+  :custom ((recentf-max-saved-items . 1024)))
 
 (leaf ruby-mode
-  :custom
-  (ruby-insert-encoding-magic-comment . nil))
+  :custom ((ruby-insert-encoding-magic-comment . nil)))
+
+(leaf scroll-bar
+  :custom (scroll-bar-mode . nil))
 
 (leaf sh-script
-  :custom
-  (sh-basic-offset . 2))
+  :custom ((sh-basic-offset . 2)))
+
+(leaf simple
+  :global-minor-mode column-number-mode)
+
+(leaf startup
+  :custom `((auto-save-list-file-prefix . ,(locate-user-emacs-file "backup/.saves-"))))
 
 (leaf windmove
   :config
@@ -331,107 +345,3 @@
 
 (provide 'init)
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(auto-save-default nil)
- '(blink-cursor-mode nil)
- '(column-number-mode t)
- '(company-minimum-prefix-length 2)
- '(company-quickhelp-mode t)
- '(company-selection-wrap-around t)
- '(company-show-numbers t)
- '(confirm-kill-emacs 'yes-or-no-p)
- '(counsel-describe-function-function 'helpful-callable)
- '(counsel-describe-variable-function 'helpful-variable)
- '(counsel-mode t)
- '(create-lockfiles nil)
- '(default-input-method "japanese-mozc")
- '(edit-server-new-frame nil t)
- '(electric-pair-mode t)
- '(global-auto-revert-mode t)
- '(global-company-mode t)
- '(global-flycheck-mode t)
- '(global-hl-line-mode t)
- '(google-translate-pop-up-buffer-set-focus t t)
- '(google-translate-translation-directions-alist '(("en" . "ja") ("ja" . "en")) t)
- '(indent-tabs-mode nil)
- '(ivy-mode t)
- '(ivy-rich-mode t)
- '(ivy-use-virtual-buffers t)
- '(ivy-virtual-abbreviate 'abbreviate)
- '(ledger-post-amount-alignment-column 65 t)
- '(ledger-reports
-   '(("Balance Sheet" "%(binary) bal -f %(ledger-file) --explicit --pedantic --cleared 資産 負債 資本")
-     ("Monthly Balance" "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 資産 負債 資本 --monthly --collapse")
-     ("Monthly Expence" "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 支出 --monthly --sort -amount")
-     ("Yearly Balance" "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 資産 負債 資本 --yearly --collapse")
-     ("Yearly Expence" "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 支出 --yearly --sort -amount")
-     ("Account Statement" "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared %(account)")) t)
- '(make-backup-files nil)
- '(markdown-fontify-code-block-natively t t)
- '(minions-direct '(flycheck-mode))
- '(minions-mode t)
- '(mozc-candidate-style 'popup)
- '(org-agenda-files
-   '("~/Dropbox/org/inbox.org" "~/Dropbox/org/gtd.org" "~/Dropbox/org/tickler.org") t)
- '(org-agenda-text-search-extra-files '(agenda-archives) t)
- '(org-babel-load-languages '((emacs-lisp . t) (shell . t)) t)
- '(org-capture-templates
-   '(("t" "Task" entry
-      (file "~/Dropbox/org/inbox.org")
-      "* TODO %?
-%U
-%a" :prepend t)
-     ("n" "Note" entry
-      (file "~/Dropbox/org/inbox.org")
-      "* %?
-%U
-%a" :prepend t)) t)
- '(org-edit-src-content-indentation 0 t)
- '(org-log-done 'time t)
- '(org-log-into-drawer t t)
- '(org-modules '(org-docview org-habit org-info) t)
- '(org-outline-path-complete-in-steps nil t)
- '(org-refile-targets
-   '(("~/Dropbox/org/gtd.org" :maxlevel . 3)
-     ("~/Dropbox/org/someday.org" :level . 1)
-     ("~/Dropbox/org/tickler.org" :maxlevel . 3)) t)
- '(org-refile-use-outline-path 'file t)
- '(org-replace-disputed-keys t t)
- '(org-reverse-note-order t t)
- '(org-src-window-setup 'current-window t)
- '(org-startup-folded 'content t)
- '(org-startup-indented t t)
- '(org-tag-alist '(("@office" . 111) ("@home" . 104)) t)
- '(org-todo-keywords
-   '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d)" "CANCELED(@c/!)")) t)
- '(org-use-speed-commands t t)
- '(package-archives
-   '(("gnu" . "https://elpa.gnu.org/packages/")
-     ("melpa" . "https://melpa.org/packages/")
-     ("org" . "https://orgmode.org/elpa/")))
- '(package-selected-packages
-   '(zeal-at-point yasnippet-snippets which-key web-mode undo-tree solarized-theme smex rg projectile pocket-reader php-mode ob-async mozc-popup minions markdown-mode magit ledger-mode leaf-keywords json-mode ivy-rich ivy-hydra helpful google-translate git-timemachine flycheck-ledger expand-region exec-path-from-shell edit-server dockerfile-mode docker-compose-mode counsel company-quickhelp))
- '(projectile-completion-system 'ivy)
- '(projectile-mode t nil (projectile))
- '(recentf-max-saved-items 1024 t)
- '(require-final-newline t)
- '(ruby-insert-encoding-magic-comment nil t)
- '(scroll-bar-mode nil)
- '(scroll-conservatively 10000)
- '(sh-basic-offset 2 t)
- '(show-paren-mode t)
- '(solarized-scale-org-headlines nil)
- '(solarized-use-variable-pitch nil)
- '(tab-width 2)
- '(tool-bar-mode nil)
- '(x-underline-at-descent-line t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(markdown-code-face ((t (:inherit default))) nil "Customized with leaf in markdown-mode block"))
