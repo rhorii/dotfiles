@@ -56,8 +56,7 @@
             (version-control . t)))
 
 (leaf flyspell
-  :hook ((prog-mode-hook . flyspell-prog-mode)
-         (text-mode-hook . flyspell-mode)))
+  :hook (text-mode-hook (prog-mode-hook . flyspell-prog-mode)))
 
 (leaf frame
   :custom ((blink-cursor-mode . nil)))
@@ -133,12 +132,7 @@
 
 (leaf flycheck
   :ensure t
-  :global-minor-mode global-flycheck-mode)
-
-(leaf flycheck-ledger
-  :after flycheck ledger
-  :ensure t
-  :require t)
+  :hook prog-mode-hook ledger-mode-hook)
 
 (leaf git-timemachine :ensure t)
 
@@ -195,7 +189,12 @@
                 ("Yearly Expence"
                  "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 支出 --yearly --sort -amount")
                 ("Account Statement"
-                 "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared %(account)")))))
+                 "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared %(account)"))))
+  :config
+  (leaf flycheck-ledger
+    :after flycheck
+    :ensure t
+    :require t))
 
 (leaf magit
   :ensure t
@@ -304,7 +303,7 @@
 
 (leaf yasnippet
   :ensure t
-  :global-minor-mode yas-global-mode)
+  :hook ((prog-mode-hook . yas-minor-mode)))
 
 (leaf yasnippet-snippets
   :ensure t
