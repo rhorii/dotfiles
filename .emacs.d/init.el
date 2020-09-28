@@ -110,6 +110,10 @@
   :after counsel projectile
   :global-minor-mode t)
 
+(leaf docker
+  :ensure t
+  :bind (("C-c d" . docker)))
+
 (leaf docker-compose-mode :ensure t)
 
 (leaf dockerfile-mode :ensure t)
@@ -312,7 +316,7 @@
 (leaf zeal-at-point
   :when (eq window-system 'x)
   :ensure t
-  :bind (("C-c d" . zeal-at-point)))
+  :bind (("C-c z" . zeal-at-point)))
 
 (provide 'init)
 ;;; init.el ends here
