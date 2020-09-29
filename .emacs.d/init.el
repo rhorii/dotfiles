@@ -202,7 +202,7 @@
 
 (leaf magit
   :ensure t
-  :bind (("C-c m" . magit-status)))
+  :bind (("C-x g" . magit-status)))
 
 (leaf markdown-mode
   :ensure t
