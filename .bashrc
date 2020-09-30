@@ -23,7 +23,7 @@ elif [[ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]]; then
 fi
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
-GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWUNTRACKEDFILES=
 GIT_PS1_SHOWUPSTREAM='auto'
 PS1='\n\u@\h:\[\e[32m\]\]\w\[\e[0m\]$(__git_ps1 " (%s)")\n$ '
 
