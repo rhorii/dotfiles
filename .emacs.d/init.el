@@ -21,7 +21,7 @@
   :when window-system
   :config
   (cond
-   ((eq window-system 'x)
+   ((memq window-system '(x pgtk))
     (set-face-attribute 'default nil :family "Ricty" :height 120))
    ((eq window-system 'ns)
     (set-face-attribute 'default nil :family "Ricty" :height 140))))
@@ -215,7 +215,7 @@
   :global-minor-mode t)
 
 (leaf mozc
-  :when (eq window-system 'x)
+  :when (memq window-system '(x pgtk))
   :ensure t
   :custom ((default-input-method . "japanese-mozc")))
 
@@ -314,7 +314,7 @@
   :after yasnippet)
 
 (leaf zeal-at-point
-  :when (eq window-system 'x)
+  :when (memq window-system '(x pgtk))
   :ensure t
   :bind (("C-c z" . zeal-at-point)))
 

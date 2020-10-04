@@ -1,6 +1,7 @@
 /backup/*
 /bookmarks
 /custom.el
+/eln-cache/*
 /elpa/*
 /flycheck_*.el
 /projectile-bookmarks.eld

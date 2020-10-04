@@ -30,7 +30,9 @@ dropbox:
 	yay -S --needed dropbox nautilus-dropbox
 
 emacs:
-	sudo pacman -S --needed emacs aspell-en ledger
+	sudo pacman -S --needed aspell-en ledger
+	@echo 'ADD OPTIONS: LTO="YES", FAST_BOOT="YES"'
+	yay -S --needed --editmenu emacs-pgtk-native-comp-git
 	ln -sfnv ${PWD}/.aspell.conf ${HOME}/.aspell.conf
 	ln -sfnv ${PWD}/.emacs.d ${HOME}/.emacs.d
 
