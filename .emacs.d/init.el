@@ -155,7 +155,7 @@
   :ensure t
   :leaf-defer nil
   :bind (("C-c C-r" . ivy-resume))
-  :custom ((ivy-use-virtual-buffers . t)
+  :custom ((ivy-use-virtual-buffers . nil)
            (ivy-virtual-abbreviate . 'abbreviate))
   :global-minor-mode t
   :config
