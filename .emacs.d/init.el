@@ -125,8 +125,6 @@
 (leaf exec-path-from-shell
   :when window-system
   :ensure t
-  :defun
-  (exec-path-from-shell-initialize)
   :config
   (exec-path-from-shell-initialize))
 
@@ -208,6 +206,15 @@
   :ensure t
   :custom ((markdown-fontify-code-block-natively . t))
   :custom-face ((markdown-code-face . '((t (:inherit default))))))
+
+(leaf migemo
+  :when (executable-find "cmigemo")
+  :ensure t
+  :defun migemo-init
+  :custom ((migemo-dictionary . "/usr/local/share/migemo/utf-8/migemo-dict"))
+  :require t
+  :config
+  (migemo-init))
 
 (leaf minions
   :ensure t
