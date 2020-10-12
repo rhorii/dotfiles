@@ -94,7 +94,7 @@
 
 (leaf company
   :ensure t
-  :custom ((company-idel-delay . 0)
+  :custom ((company-idle-delay . 0)
            (company-minimum-prefix-length . 2)
            (company-selection-wrap-around . t)
            (company-show-numbers . t))
