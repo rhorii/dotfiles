@@ -3,6 +3,7 @@
 /custom.el
 /eln-cache/*
 /elpa/*
+/eshell/*
 /flycheck_*.el
 /projectile-bookmarks.eld
 /projectile.cache
