@@ -208,12 +208,28 @@
   :custom-face ((markdown-code-face . '((t (:inherit default))))))
 
 (leaf migemo
+  :defun migemo-get-pattern migemo-init
+  :defvar ivy-re-builders-alist
   :when (executable-find "cmigemo")
   :ensure t
-  :defun migemo-init
+  :after ivy
   :custom ((migemo-dictionary . "/usr/local/share/migemo/utf-8/migemo-dict"))
   :require t
   :config
+  (defun my:ivy-migemo-re-builder (str)
+    (car (seq-reduce (lambda (acc char)
+                       (let* ((regex (car acc))
+                              (plain (cdr acc))
+                              (s (char-to-string char))
+                              (sp (cond ((eq #x3 char) "")
+                                        ((eq ?  char) ".*")
+                                        (t s))))
+                         (if (seq-contains-p (concat " .+?[]^$\\" (char-to-string #x3)) char)
+                             (cons (concat regex (migemo-get-pattern plain) sp) nil)
+                           (cons regex (concat plain s)))))
+                     (concat str (char-to-string #x3))
+                     '("" . ""))))
+  (add-to-list 'ivy-re-builders-alist '(swiper . my:ivy-migemo-re-builder))
   (migemo-init))
 
 (leaf minions
