@@ -5,6 +5,7 @@
 /elpa/*
 /eshell/*
 /flycheck_*.el
+/history
 /projectile-bookmarks.eld
 /projectile.cache
 /recentf

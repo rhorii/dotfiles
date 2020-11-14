@@ -86,6 +86,9 @@
   :custom
   (ruby-insert-encoding-magic-comment . nil))
 
+(leaf savehist
+  :global-minor-mode savehist-mode)
+
 (leaf scroll-bar
   :custom
   (scroll-bar-mode . nil))
@@ -268,7 +271,7 @@
   :defun migemo-get-pattern migemo-init
   :defvar ivy-re-builders-alist
   :preface
-  (defun my:ivy-migemo-re-builder (str)
+  (defun ivy-migemo-re-builder (str)
     (car (seq-reduce (lambda (acc char)
                        (let* ((regex (car acc))
                               (plain (cdr acc))
@@ -284,7 +287,7 @@
   :custom
   (migemo-dictionary . "/usr/local/share/migemo/utf-8/migemo-dict")
   :config
-  (add-to-list 'ivy-re-builders-alist '(swiper . my:ivy-migemo-re-builder))
+  (add-to-list 'ivy-re-builders-alist '(swiper . ivy-migemo-re-builder))
   (migemo-init))
 
 (leaf minions
