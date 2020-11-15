@@ -29,7 +29,7 @@
 (leaf autorevert
   :global-minor-mode global-auto-revert-mode
   :custom
-  (auto-revert-check-vc-info . t))
+  (auto-revert-check-vc-info . nil))
 
 (leaf cus-edit
   :custom
