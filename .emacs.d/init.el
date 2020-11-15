@@ -190,6 +190,7 @@
     :defvar recentf-list
     :bind
     ("C-S-s" . counsel-imenu)
+    ("C-x b" . counsel-switch-buffer)
     ("C-x C-b" . counsel-ibuffer)
     ("C-x C-r" . counsel-recentf)
     :preface
