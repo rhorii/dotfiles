@@ -189,7 +189,7 @@
     :defun with-ivy-window
     :defvar recentf-list
     :bind
-    ("C-S-s" . counsel-imenu)
+    ("C-c i" . counsel-imenu)
     ("C-x b" . counsel-switch-buffer)
     ("C-x C-b" . counsel-ibuffer)
     ("C-x C-r" . counsel-recentf)
@@ -364,13 +364,14 @@
   :global-minor-mode t
   :bind
   ("C-c p" . projectile-command-map)
+  ("s-p" . projectile-command-map)
   :custom
   (projectile-completion-system . 'ivy))
 
 (leaf rg
   :ensure t
   :bind
-  ("C-c s" . rg-menu))
+  ("C-c s r" . rg-menu))
 
 (leaf smex :ensure t)
 
