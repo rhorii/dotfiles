@@ -79,6 +79,7 @@
   :global-minor-mode show-paren-mode)
 
 (leaf recentf
+  :global-minor-mode t
   :custom
   (recentf-max-saved-items . 1024))
 
@@ -87,7 +88,7 @@
   (ruby-insert-encoding-magic-comment . nil))
 
 (leaf savehist
-  :global-minor-mode savehist-mode)
+  :global-minor-mode t)
 
 (leaf scroll-bar
   :custom
@@ -180,6 +181,7 @@
   :bind
   ("C-c C-r" . ivy-resume)
   :custom
+  (ivy-height . 24)
   (ivy-use-virtual-buffers . nil)
   (ivy-virtual-abbreviate . 'abbreviate)
   :config
@@ -366,7 +368,8 @@
   ("C-c p" . projectile-command-map)
   ("s-p" . projectile-command-map)
   :custom
-  (projectile-completion-system . 'ivy))
+  (projectile-completion-system . 'ivy)
+  (projectile-enable-caching . t))
 
 (leaf rg
   :ensure t
