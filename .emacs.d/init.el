@@ -24,7 +24,8 @@
    ((memq window-system '(x pgtk))
     (set-face-attribute 'default nil :family "Ricty" :height 120))
    ((eq window-system 'ns)
-    (set-face-attribute 'default nil :family "Ricty" :height 140))))
+    (set-face-attribute 'default nil :family "HackGenNerd" :height 130)
+    (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "HackGenNerd")))))
 
 (leaf autorevert
   :global-minor-mode global-auto-revert-mode
@@ -65,6 +66,8 @@
   (prog-mode-hook . flyspell-prog-mode))
 
 (leaf frame
+  :bind
+  ("C-s-f" . toggle-frame-fullscreen)
   :custom
   (blink-cursor-mode . nil))
 
@@ -319,18 +322,18 @@
   ("C-c c" . org-capture)
   ("C-c l" . org-store-link)
   :custom
-  (org-agenda-files . '("~/Dropbox/org/inbox.org"
-                        "~/Dropbox/org/gtd.org"
-                        "~/Dropbox/org/tickler.org"))
+  (org-agenda-files . '("~/org/inbox.org"
+                        "~/org/gtd.org"
+                        "~/org/tickler.org"))
   (org-agenda-text-search-extra-files . '(agenda-archives))
   (org-babel-load-languages . '((emacs-lisp . t)
                                 (shell . t)))
   (org-capture-templates . '(("t" "Task" entry
-                              (file "~/Dropbox/org/inbox.org")
+                              (file "~/org/inbox.org")
                               "* TODO %?\n%U\n%a"
                               :prepend t)
                              ("n" "Note" entry
-                              (file "~/Dropbox/org/inbox.org")
+                              (file "~/org/inbox.org")
                               "* %?\n%U\n%a"
                               :prepend t)))
   (org-edit-src-content-indentation . 0)
@@ -338,9 +341,9 @@
   (org-log-into-drawer . t)
   (org-modules . '(org-docview org-habit org-info))
   (org-outline-path-complete-in-steps . nil)
-  (org-refile-targets . '(("~/Dropbox/org/gtd.org" :maxlevel . 3)
-                          ("~/Dropbox/org/someday.org" :level . 1)
-                          ("~/Dropbox/org/tickler.org" :maxlevel . 3)))
+  (org-refile-targets . '(("~/org/gtd.org" :maxlevel . 3)
+                          ("~/org/someday.org" :level . 1)
+                          ("~/org/tickler.org" :maxlevel . 3)))
   (org-refile-use-outline-path . 'file)
   (org-replace-disputed-keys . t)
   (org-reverse-note-order . t)
