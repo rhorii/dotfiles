@@ -63,7 +63,7 @@ git:
 	sudo pacman -S --needed git
 	ln -sfnv ${PWD}/.gitconfig ${HOME}/.gitconfig
 	ln -sfnv ${PWD}/.gitignore_global ${HOME}/.gitignore_global
-	touch ${HOME}/.gitconfig.local
+	touch ${HOME}/.gitconfig_local
 
 gnome:
 	sudo pacman -S --needed \
