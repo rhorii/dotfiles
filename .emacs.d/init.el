@@ -17,15 +17,20 @@
     :config
     (leaf-keywords-init)))
 
-(leaf *fonts
-  :when window-system
+(leaf *mac
+  :when (memq window-system '(ns mac))
+  :custom
+  (mac-auto-ascii-mode . t)
+  (mac-command-modifier . 'super)
+  (mac-option-modifier . 'meta)
   :config
-  (cond
-   ((memq window-system '(x pgtk))
-    (set-face-attribute 'default nil :family "Ricty" :height 120))
-   ((eq window-system 'ns)
-    (set-face-attribute 'default nil :family "HackGenNerd" :height 130)
-    (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "HackGenNerd")))))
+  (set-face-attribute 'default nil :family "HackGenNerd" :height 130)
+  (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "HackGenNerd")))
+
+(leaf *linux
+  :when (memq window-system '(x pgtk))
+  :config
+  (set-face-attribute 'default nil :family "Ricty" :height 120))
 
 (leaf autorevert
   :global-minor-mode global-auto-revert-mode
