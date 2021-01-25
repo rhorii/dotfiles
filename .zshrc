@@ -1,6 +1,7 @@
 typeset -gx -U path
 path=(
   /opt/homebrew/bin(N-/)
+  /opt/homebrew/sbin(N-/)
   $path[@]
 )
 
@@ -13,4 +14,8 @@ if type brew &>/dev/null; then
 
   autoload -Uz compinit
   compinit
+fi
+
+if type rbenv &>/dev/null; then
+  eval "$(rbenv init -)"
 fi
