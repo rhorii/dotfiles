@@ -199,6 +199,7 @@
     :defun with-ivy-window
     :defvar recentf-list
     :bind
+    ("C-c m" . counsel-mark-ring)
     ("C-c i" . counsel-imenu)
     ("C-x b" . counsel-switch-buffer)
     ("C-x C-b" . counsel-ibuffer)
