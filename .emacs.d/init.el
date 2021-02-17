@@ -402,7 +402,9 @@
 
 (leaf web-mode
   :ensure t
-  :mode "\\.x[ms]l\\'")
+  :mode "\\.x[ms]l\\'"
+  :custom
+  (web-mode-script-padding . 4))
 
 (leaf which-key
   :ensure t
