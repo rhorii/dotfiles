@@ -44,6 +44,7 @@
 (leaf cus-start
   :custom
   (create-lockfiles . nil)
+  (history-length . t)
   (indent-tabs-mode . nil)
   (scroll-conservatively . 100)
   (tab-width . 2)
