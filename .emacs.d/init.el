@@ -44,6 +44,8 @@
 (leaf cus-start
   :custom
   (create-lockfiles . nil)
+  (frame-resize-pixelwise . t)
+  (history-delete-duplicates . t)
   (history-length . t)
   (indent-tabs-mode . nil)
   (scroll-conservatively . 100)
@@ -125,17 +127,11 @@
   (company-idle-delay . 0)
   (company-minimum-prefix-length . 2)
   (company-selection-wrap-around . t)
-  (company-show-numbers . t))
-
-(leaf company-quickhelp
-  :ensure t
-  :after company
-  :global-minor-mode t)
-
-(leaf counsel-projectile
-  :ensure t
-  :after counsel projectile
-  :global-minor-mode t)
+  (company-show-numbers . t)
+  :config
+  (leaf company-quickhelp
+    :ensure t
+    :global-minor-mode t))
 
 (leaf docker
   :ensure t
@@ -165,7 +161,7 @@
 (leaf flycheck
   :ensure t
   :hook
-  (prog-mode-hook ledger-mode-hook))
+  (prog-mode-hook))
 
 (leaf git-timemachine :ensure t)
 
@@ -229,12 +225,11 @@
   (leaf swiper
     :ensure t
     :bind
-    ("C-s" . swiper)))
+    ("C-s" . swiper))
 
-(leaf ivy-rich
-  :ensure t
-  :after ivy
-  :global-minor-mode t)
+  (leaf ivy-rich
+    :ensure t
+    :global-minor-mode t))
 
 (leaf json-mode :ensure t)
 
@@ -258,7 +253,8 @@
   :config
   (leaf flycheck-ledger
     :ensure t
-    :after flycheck
+    :hook
+    (ledger-mode-hook . flycheck-mode)
     :require t))
 
 (leaf magit
@@ -279,7 +275,6 @@
 (leaf migemo
   :ensure t
   :when (executable-find "cmigemo")
-  :after ivy
   :require t
   :defun migemo-get-pattern migemo-init
   :defvar ivy-re-builders-alist
@@ -313,14 +308,13 @@
   :ensure t
   :when (memq window-system '(x pgtk))
   :custom
-  (default-input-method . "japanese-mozc"))
-
-(leaf mozc-popup
-  :ensure t
-  :after mozc
-  :require t
-  :custom
-  (mozc-candidate-style . 'popup))
+  (default-input-method . "japanese-mozc")
+  :config
+  (leaf mozc-popup
+    :ensure t
+    :require t
+    :custom
+    (mozc-candidate-style . 'popup)))
 
 (leaf org
   :ensure t
@@ -379,7 +373,12 @@
   ("s-p" . projectile-command-map)
   :custom
   (projectile-completion-system . 'ivy)
-  (projectile-enable-caching . t))
+  (projectile-enable-caching . t)
+  :config
+  (leaf counsel-projectile
+    :ensure t
+    :after counsel
+    :global-minor-mode t))
 
 (leaf rg
   :ensure t
@@ -415,11 +414,9 @@
 (leaf yasnippet
   :ensure t
   :hook
-  (prog-mode-hook . yas-minor-mode))
-
-(leaf yasnippet-snippets
-  :ensure t
-  :after yasnippet)
+  (prog-mode-hook . yas-minor-mode)
+  :config
+  (leaf yasnippet-snippets :ensure t))
 
 (leaf zeal-at-point
   :ensure t
