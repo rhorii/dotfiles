@@ -142,7 +142,13 @@
 (leaf google-translate
   :ensure t
   :bind ("C-c t" . google-translate-smooth-translate)
-  :custom ((google-translate-pop-up-buffer-set-focus . t)
+  :preface
+  (defun ad:google-translate--search-tkk ()
+    "Search TKK."
+    (list 430675 2721866130))
+  :advice (:override google-translate--search-tkk ad:google-translate--search-tkk)
+  :custom ((google-translate-backend-method . 'curl)
+           (google-translate-pop-up-buffer-set-focus . t)
            (google-translate-translation-directions-alist . '(("en" . "ja")
                                                               ("ja" . "en")))))
 
