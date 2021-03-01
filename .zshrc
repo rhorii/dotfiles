@@ -19,3 +19,5 @@ fi
 if type rbenv &>/dev/null; then
   eval "$(rbenv init -)"
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
