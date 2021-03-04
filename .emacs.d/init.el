@@ -75,6 +75,11 @@
            (company-show-numbers . t))
   :global-minor-mode global-company-mode)
 
+(leaf company-statistics
+  :package t
+  :after company
+  :global-minor-mode t)
+
 (leaf company-quickhelp
   :package t
   :after company
@@ -147,6 +152,11 @@
 (leaf flycheck
   :package t
   :global-minor-mode global-flycheck-mode)
+
+(leaf flycheck-color-mode-line
+  :package t
+  :after flycheck
+  :hook (flycheck-mode-hook . flycheck-color-mode-line-mode))
 
 (leaf flycheck-ledger
   :package t
@@ -330,7 +340,7 @@
   :global-minor-mode t)
 
 (leaf recentf
-  :custom (recentf-max-saved-items . 1024)
+  :custom (recentf-max-saved-items . nil)
   :global-minor-mode t)
 
 (leaf rg
