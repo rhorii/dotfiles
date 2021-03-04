@@ -14,6 +14,8 @@
 
   (leaf leaf-keywords
     :ensure t
+    :init
+    (leaf blackout :ensure t)
     :config
     (leaf-keywords-init)))
 
@@ -70,10 +72,12 @@
   :global-minor-mode electric-pair-mode)
 
 (leaf flyspell
+  :blackout t
   :hook ((text-mode-hook)
          (prog-mode-hook . flyspell-prog-mode)))
 
 (leaf hideshow
+  :blackout hs-minor-mode
   :hook (prog-mode-hook . hs-minor-mode))
 
 (leaf hl-line
@@ -90,7 +94,8 @@
   :custom (ruby-insert-encoding-magic-comment . nil))
 
 (leaf savehist
-  :global-minor-mode t)
+  :global-minor-mode t
+  :custom ((savehist-additional-variables . '(projectile-project-command-history))))
 
 (leaf sh-script
   :custom (sh-basic-offset . 2))
@@ -101,11 +106,12 @@
 
 (leaf company
   :ensure t
-  :global-minor-mode global-company-mode
+  :blackout t
   :custom ((company-idle-delay . 0)
            (company-minimum-prefix-length . 2)
            (company-selection-wrap-around . t)
            (company-show-numbers . t))
+  :global-minor-mode global-company-mode
   :config
   (leaf company-quickhelp
     :ensure t
@@ -158,16 +164,17 @@
 
 (leaf ivy
   :ensure t
+  :blackout t
   :leaf-defer nil
-  :global-minor-mode t
   :bind ("C-c C-r" . ivy-resume)
   :custom ((ivy-height . 24)
            (ivy-use-virtual-buffers . nil)
            (ivy-virtual-abbreviate . 'abbreviate))
+  :global-minor-mode t
   :config
   (leaf counsel
     :ensure t
-    :global-minor-mode t
+    :blackout t
     :defun with-ivy-window
     :defvar recentf-list
     :bind (("C-c m" . counsel-mark-ring)
@@ -192,7 +199,8 @@
                 :caller 'counsel-recentf))
     :advice (:override counsel-recentf ad:counsel-recentf)
     :custom ((counsel-describe-function-function . 'helpful-callable)
-             (counsel-describe-variable-function . 'helpful-variable)))
+             (counsel-describe-variable-function . 'helpful-variable))
+    :global-minor-mode t)
 
   (leaf swiper
     :ensure t
@@ -263,6 +271,7 @@
   (migemo-init))
 
 (leaf minions
+  :disabled t
   :ensure t
   :global-minor-mode t
   :custom (minions-direct . '(flycheck-mode)))
@@ -326,11 +335,11 @@
 
 (leaf projectile
   :ensure t
-  :global-minor-mode t
   :bind (("C-c p" . projectile-command-map)
          ("s-p" . projectile-command-map))
   :custom ((projectile-completion-system . 'ivy)
            (projectile-enable-caching . t))
+  :global-minor-mode t
   :config
   (leaf counsel-projectile
     :ensure t
@@ -340,6 +349,12 @@
 (leaf rg
   :ensure t
   :bind ("C-c s r" . rg-menu))
+
+(leaf shackle
+  :ensure t
+  :global-minor-mode t
+  :custom ((shackle-rules . '((compilation-mode :select t)
+                              ("\\*Async Shell.*\\*" :regexp t :popup t :align below :size 0.3)))))
 
 (leaf smex :ensure t)
 
@@ -354,6 +369,7 @@
 
 (leaf undo-tree
   :ensure t
+  :blackout t
   :global-minor-mode global-undo-tree-mode)
 
 (leaf web-mode
@@ -363,10 +379,12 @@
 
 (leaf which-key
   :ensure t
+  :blackout t
   :global-minor-mode t)
 
 (leaf yasnippet
   :ensure t
+  :blackout yas-minor-mode
   :hook (prog-mode-hook . yas-minor-mode)
   :config
   (leaf yasnippet-snippets :ensure t))
