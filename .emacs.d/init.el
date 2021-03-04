@@ -8,6 +8,7 @@
                        ("melpa" . "https://melpa.org/packages/")
                        ("org"   . "https://orgmode.org/elpa/")))
   (package-initialize)
+
   (unless (package-installed-p 'leaf)
     (package-refresh-contents)
     (package-install 'leaf))
@@ -62,91 +63,105 @@
   (set-face-attribute 'default nil :family "Ricty" :height 120))
 
 (leaf autorevert
-  :global-minor-mode global-auto-revert-mode
-  :custom (auto-revert-check-vc-info . nil))
+  :custom (auto-revert-check-vc-info . nil)
+  :global-minor-mode global-auto-revert-mode)
+
+(leaf company
+  :package t
+  :blackout t
+  :custom ((company-idle-delay . 0)
+           (company-minimum-prefix-length . 2)
+           (company-selection-wrap-around . t)
+           (company-show-numbers . t))
+  :global-minor-mode global-company-mode)
+
+(leaf company-quickhelp
+  :package t
+  :after company
+  :global-minor-mode t)
+
+(leaf counsel
+  :package t
+  :blackout t
+  :after ivy
+  :defun with-ivy-window
+  :defvar recentf-list
+  :preface
+  (defun ad:counsel-recentf ()
+    "Find a file on `recentf-list'."
+    (interactive)
+    (require 'recentf)
+    (recentf-mode)
+    (ivy-read "Recentf: "
+              (mapcar (lambda (x) (abbreviate-file-name  ;; ~/
+                                   (substring-no-properties x)))
+                      recentf-list)
+              :action (lambda (f)
+                        (with-ivy-window
+                          (find-file f)))
+              :require-match t
+              :caller 'counsel-recentf))
+  :bind (("C-c m" . counsel-mark-ring)
+         ("C-c i" . counsel-imenu)
+         ("C-x b" . counsel-switch-buffer)
+         ("C-x C-b" . counsel-ibuffer)
+         ("C-x C-r" . counsel-recentf))
+  :advice (:override counsel-recentf ad:counsel-recentf)
+  :custom ((counsel-describe-function-function . 'helpful-callable)
+           (counsel-describe-variable-function . 'helpful-variable))
+  :global-minor-mode t)
+
+(leaf counsel-projectile
+  :package t
+  :after counsel projectile
+  :global-minor-mode t)
 
 (leaf delsel
   :global-minor-mode delete-selection-mode)
 
+(leaf docker
+  :package t
+  :bind ("C-c d" . docker))
+
+(leaf docker-compose-mode :package t)
+
+(leaf dockerfile-mode :package t)
+
+(leaf edit-server
+  :package t
+  :custom (edit-server-new-frame . nil))
+
 (leaf elec-pair
   :global-minor-mode electric-pair-mode)
+
+(leaf exec-path-from-shell
+  :when window-system
+  :package t
+  :config
+  (exec-path-from-shell-initialize))
+
+(leaf expand-region
+  :package t
+  :bind ("C-=" . er/expand-region))
+
+(leaf flycheck
+  :package t
+  :global-minor-mode global-flycheck-mode)
+
+(leaf flycheck-ledger
+  :package t
+  :after flycheck
+  :require t)
 
 (leaf flyspell
   :blackout t
   :hook ((text-mode-hook)
          (prog-mode-hook . flyspell-prog-mode)))
 
-(leaf hideshow
-  :blackout hs-minor-mode
-  :hook (prog-mode-hook . hs-minor-mode))
-
-(leaf hl-line
-  :global-minor-mode global-hl-line-mode)
-
-(leaf paren
-  :global-minor-mode show-paren-mode)
-
-(leaf recentf
-  :global-minor-mode t
-  :custom (recentf-max-saved-items . 1024))
-
-(leaf ruby-mode
-  :custom (ruby-insert-encoding-magic-comment . nil))
-
-(leaf savehist
-  :global-minor-mode t
-  :custom ((savehist-additional-variables . '(projectile-project-command-history))))
-
-(leaf sh-script
-  :custom (sh-basic-offset . 2))
-
-(leaf windmove
-  :config
-  (windmove-default-keybindings))
-
-(leaf company
-  :ensure t
-  :blackout t
-  :custom ((company-idle-delay . 0)
-           (company-minimum-prefix-length . 2)
-           (company-selection-wrap-around . t)
-           (company-show-numbers . t))
-  :global-minor-mode global-company-mode
-  :config
-  (leaf company-quickhelp
-    :ensure t
-    :global-minor-mode t))
-
-(leaf docker
-  :ensure t
-  :bind ("C-c d" . docker))
-
-(leaf docker-compose-mode :ensure t)
-
-(leaf dockerfile-mode :ensure t)
-
-(leaf edit-server
-  :ensure t
-  :custom (edit-server-new-frame . nil))
-
-(leaf exec-path-from-shell
-  :ensure t
-  :when window-system
-  :config
-  (exec-path-from-shell-initialize))
-
-(leaf expand-region
-  :ensure t
-  :bind ("C-=" . er/expand-region))
-
-(leaf flycheck
-  :ensure t
-  :hook (prog-mode-hook))
-
-(leaf git-timemachine :ensure t)
+(leaf git-timemachine :package t)
 
 (leaf google-translate
-  :ensure t
+  :package t
   :bind ("C-c t" . google-translate-smooth-translate)
   :preface
   (defun ad:google-translate--search-tkk ()
@@ -159,62 +174,34 @@
                                                               ("ja" . "en")))))
 
 (leaf helpful
-  :ensure t
+  :package t
   :bind ("C-h k" . helpful-key))
 
+(leaf hideshow
+  :blackout hs-minor-mode
+  :hook (prog-mode-hook . hs-minor-mode))
+
+(leaf hl-line
+  :global-minor-mode global-hl-line-mode)
+
 (leaf ivy
-  :ensure t
+  :package t
   :blackout t
-  :leaf-defer nil
   :bind ("C-c C-r" . ivy-resume)
   :custom ((ivy-height . 24)
            (ivy-use-virtual-buffers . nil)
            (ivy-virtual-abbreviate . 'abbreviate))
-  :global-minor-mode t
-  :config
-  (leaf counsel
-    :ensure t
-    :blackout t
-    :defun with-ivy-window
-    :defvar recentf-list
-    :bind (("C-c m" . counsel-mark-ring)
-           ("C-c i" . counsel-imenu)
-           ("C-x b" . counsel-switch-buffer)
-           ("C-x C-b" . counsel-ibuffer)
-           ("C-x C-r" . counsel-recentf))
-    :preface
-    (defun ad:counsel-recentf ()
-      "Find a file on `recentf-list'."
-      (interactive)
-      (require 'recentf)
-      (recentf-mode)
-      (ivy-read "Recentf: "
-                (mapcar (lambda (x) (abbreviate-file-name  ;; ~/
-                                     (substring-no-properties x)))
-                        recentf-list)
-                :action (lambda (f)
-                          (with-ivy-window
-                            (find-file f)))
-                :require-match t
-                :caller 'counsel-recentf))
-    :advice (:override counsel-recentf ad:counsel-recentf)
-    :custom ((counsel-describe-function-function . 'helpful-callable)
-             (counsel-describe-variable-function . 'helpful-variable))
-    :global-minor-mode t)
+  :global-minor-mode t)
 
-  (leaf swiper
-    :ensure t
-    :bind ("C-s" . swiper))
+(leaf ivy-rich
+  :package t
+  :after ivy
+  :global-minor-mode t)
 
-  (leaf ivy-rich
-    :ensure t
-    :global-minor-mode t))
-
-(leaf json-mode :ensure t)
+(leaf json-mode :package t)
 
 (leaf ledger-mode
-  :ensure t
-  :mode-hook (flycheck-mode)
+  :package t
   :custom ((ledger-post-amount-alignment-column . 65)
            (ledger-reports
             . '(("Balance Sheet"
@@ -228,26 +215,22 @@
                 ("Yearly Expence"
                  "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 支出 --yearly --sort -amount")
                 ("Account Statement"
-                 "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared %(account)"))))
-  :config
-  (leaf flycheck-ledger
-    :ensure t
-    :require t))
+                 "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared %(account)")))))
 
 (leaf magit
-  :ensure t
+  :package t
   :bind ("C-x g" . magit-status)
   :custom ((magit-completing-read-function . 'ivy-completing-read)
            (magit-display-buffer-function . 'magit-display-buffer-same-window-except-diff-v1)))
 
 (leaf markdown-mode
-  :ensure t
+  :package t
   :custom (markdown-fontify-code-block-natively . t)
   :custom-face (markdown-code-face . '((t (:inherit default)))))
 
 (leaf migemo
-  :ensure t
   :when (executable-find "cmigemo")
+  :package t
   :require t
   :defun migemo-get-pattern migemo-init
   :defvar ivy-re-builders-alist
@@ -272,22 +255,24 @@
 
 (leaf minions
   :disabled t
-  :ensure t
-  :global-minor-mode t
-  :custom (minions-direct . '(flycheck-mode)))
+  :package t
+  :custom (minions-direct . '(flycheck-mode))
+  :global-minor-mode t)
 
 (leaf mozc
-  :ensure t
   :when (memq window-system '(x pgtk))
-  :custom (default-input-method . "japanese-mozc")
-  :config
-  (leaf mozc-popup
-    :ensure t
-    :require t
-    :custom (mozc-candidate-style . 'popup)))
+  :package t
+  :custom (default-input-method . "japanese-mozc"))
+
+(leaf mozc-popup
+  :when (memq window-system '(x pgtk))
+  :package t
+  :after mozc
+  :require t
+  :custom (mozc-candidate-style . 'popup))
 
 (leaf org
-  :ensure t
+  :package t
   :bind (("C-c a" . org-agenda)
          ("C-c c" . org-capture)
          ("C-c l" . org-store-link))
@@ -326,72 +311,99 @@
   :config
   (setq system-time-locale "C")
   (leaf ob-async
-    :ensure t
+    :package t
     :require t))
 
-(leaf php-mode :ensure t)
+(leaf paren
+  :global-minor-mode show-paren-mode)
 
-(leaf pocket-reader :ensure t)
+(leaf php-mode :package t)
+
+(leaf pocket-reader :package t)
 
 (leaf projectile
-  :ensure t
+  :package t
   :bind (("C-c p" . projectile-command-map)
          ("s-p" . projectile-command-map))
   :custom ((projectile-completion-system . 'ivy)
            (projectile-enable-caching . t))
-  :global-minor-mode t
-  :config
-  (leaf counsel-projectile
-    :ensure t
-    :after counsel
-    :global-minor-mode t))
+  :global-minor-mode t)
+
+(leaf recentf
+  :custom (recentf-max-saved-items . 1024)
+  :global-minor-mode t)
 
 (leaf rg
-  :ensure t
+  :package t
   :bind ("C-c s r" . rg-menu))
 
-(leaf shackle
-  :ensure t
-  :global-minor-mode t
-  :custom ((shackle-rules . '((compilation-mode :select t)
-                              ("\\*Async Shell.*\\*" :regexp t :popup t :align below :size 0.3)))))
+(leaf ruby-mode
+  :custom (ruby-insert-encoding-magic-comment . nil))
 
-(leaf smex :ensure t)
+(leaf savehist
+  :custom ((savehist-additional-variables . '(projectile-project-command-history)))
+  :global-minor-mode t)
+
+(leaf sh-script
+  :custom (sh-basic-offset . 2))
+
+(leaf shackle
+  :package t
+  :custom ((shackle-rules . '((compilation-mode :select t)
+                              ("\\*Async Shell.*\\*" :regexp t :popup t :align below :size 0.3))))
+  :global-minor-mode t)
+
+(leaf smex :package t)
 
 (leaf solarized-theme
-  :ensure t
   :when window-system
+  :package t
   :custom ((solarized-scale-org-headlines . nil)
            (solarized-use-variable-pitch . nil)
            (x-underline-at-descent-line . t))
   :config
   (load-theme 'solarized-dark t))
 
+(leaf swiper
+  :package t
+  :after ivy
+  :bind ("C-s" . swiper))
+
 (leaf undo-tree
-  :ensure t
+  :package t
   :blackout t
   :global-minor-mode global-undo-tree-mode)
 
+(leaf uniquify
+  :custom (uniquify-buffer-name-style . 'forward))
+
 (leaf web-mode
-  :ensure t
+  :package t
   :mode "\\.x[ms]l\\'"
   :custom (web-mode-script-padding . 4))
 
 (leaf which-key
-  :ensure t
+  :package t
   :blackout t
   :global-minor-mode t)
 
-(leaf yasnippet
-  :ensure t
-  :blackout yas-minor-mode
-  :hook (prog-mode-hook . yas-minor-mode)
+(leaf windmove
+  :custom (windmove-wrap-around . t)
   :config
-  (leaf yasnippet-snippets :ensure t))
+  (windmove-default-keybindings))
+
+(leaf yasnippet
+  :package t
+  :blackout yas-minor-mode
+  :hook (prog-mode-hook . yas-minor-mode))
+
+(leaf yasnippet-snippets
+  :package t
+  :after yasnippet)
 
 (leaf zeal-at-point
-  :ensure t
   :when (memq window-system '(x pgtk))
+  :package t
   :bind ("C-c z" . zeal-at-point))
 
 (provide 'init)
