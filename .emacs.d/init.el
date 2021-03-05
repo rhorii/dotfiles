@@ -20,47 +20,61 @@
     :config
     (leaf-keywords-init)))
 
-(leaf general
-  :bind ("C-s-f" . toggle-frame-fullscreen)
-  :custom `((custom-file . ,(locate-user-emacs-file "custom.el"))
-            (create-lockfiles . nil)
-            (frame-resize-pixelwise . t)
-            (history-delete-duplicates . t)
-            (history-length . t)
-            (indent-tabs-mode . nil)
-            (scroll-conservatively . 100)
+(leaf *Editing
+  :custom `(;; Editing Basics
+            (require-final-newline . t)
             (tab-width . 2)
-            (tool-bar-mode . nil)
-            ;; files
+            ;; Indent
+            (indent-tabs-mode . nil)))
+
+(leaf *Convenience
+  :custom `((confirm-kill-emacs . 'yes-or-no-p)))
+
+(leaf *Files
+  :custom `((create-lockfiles . nil)
+            ;; Auto Save
             (auto-save-file-name-transforms . '((".*" ,(locate-user-emacs-file "backup/") t)))
+            (auto-save-list-file-prefix . ,(locate-user-emacs-file "backup/.saves-"))
+            ;; Backup
             (backup-directory-alist . '((".*" . ,(locate-user-emacs-file "backup"))
                                         (,tramp-file-name-regexp . nil)))
-            (confirm-kill-emacs . 'yes-or-no-p)
             (delete-old-versions . t)
-            (require-final-newline . t)
-            (version-control . t)
-            ;; frames
-            (blink-cursor-mode . nil)
-            ;; scroll-bar
-            (scroll-bar-mode . nil)
-            ;; simple
-            (column-number-mode . t)
-            ;; startup
-            (auto-save-list-file-prefix . ,(locate-user-emacs-file "backup/.saves-"))))
+            (version-control . t)))
 
-(leaf *mac
+(leaf *Environment
+  :bind ("C-s-f" . toggle-frame-fullscreen)
+  :custom `(;; Frames
+            (frame-resize-pixelwise . t)
+            (tool-bar-mode . nil)
+            (scroll-bar-mode . nil)
+            ;; Frames > Cursor
+            (blink-cursor-mode . nil)
+            ;; Minibuffer
+            (history-delete-duplicates . t)
+            (history-length . t)
+            ;; Mode Line
+            (column-number-mode . t)
+            ;; Windows
+            (scroll-conservatively . 100)))
+
+(leaf *Faces
+  :config
+  (cond
+   ((memq window-system '(ns mac))
+    (set-face-attribute 'default nil :family "HackGenNerd" :height 130)
+    (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "HackGenNerd")))
+   ((memq window-system '(x pgtk))
+    (set-face-attribute 'default nil :family "Ricty" :height 120))))
+
+(leaf *Help
+  :custom `(;; Customize
+            (custom-file . ,(locate-user-emacs-file "custom.el"))))
+
+(leaf *macOS
   :when (memq window-system '(ns mac))
   :custom ((mac-auto-ascii-mode . t)
            (mac-command-modifier . 'super)
-           (mac-option-modifier . 'meta))
-  :config
-  (set-face-attribute 'default nil :family "HackGenNerd" :height 130)
-  (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "HackGenNerd")))
-
-(leaf *linux
-  :when (memq window-system '(x pgtk))
-  :config
-  (set-face-attribute 'default nil :family "Ricty" :height 120))
+           (mac-option-modifier . 'meta)))
 
 (leaf autorevert
   :custom (auto-revert-check-vc-info . nil)

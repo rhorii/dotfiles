@@ -1,5 +1,6 @@
 /backup/*
 /bookmarks
+/company-statistics-cache.el
 /custom.el
 /eln-cache/*
 /elpa/*
