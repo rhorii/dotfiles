@@ -17,6 +17,7 @@
     :ensure t
     :init
     (leaf blackout :ensure t)
+    (leaf hydra :ensure t)
     :config
     (leaf-keywords-init)))
 
@@ -81,7 +82,7 @@
   :global-minor-mode global-auto-revert-mode)
 
 (leaf company
-  :package t
+  :ensure t
   :blackout t
   :custom ((company-idle-delay . 0)
            (company-minimum-prefix-length . 2)
@@ -90,17 +91,17 @@
   :global-minor-mode global-company-mode)
 
 (leaf company-statistics
-  :package t
+  :ensure t
   :after company
   :global-minor-mode t)
 
 (leaf company-quickhelp
-  :package t
+  :ensure t
   :after company
   :global-minor-mode t)
 
 (leaf counsel
-  :package t
+  :ensure t
   :blackout t
   :after ivy
   :defun with-ivy-window
@@ -131,7 +132,7 @@
   :global-minor-mode t)
 
 (leaf counsel-projectile
-  :package t
+  :ensure t
   :after counsel projectile
   :global-minor-mode t)
 
@@ -139,15 +140,15 @@
   :global-minor-mode delete-selection-mode)
 
 (leaf docker
-  :package t
+  :ensure t
   :bind ("C-c d" . docker))
 
-(leaf docker-compose-mode :package t)
+(leaf docker-compose-mode :ensure t)
 
-(leaf dockerfile-mode :package t)
+(leaf dockerfile-mode :ensure t)
 
 (leaf edit-server
-  :package t
+  :ensure t
   :custom (edit-server-new-frame . nil))
 
 (leaf elec-pair
@@ -155,25 +156,25 @@
 
 (leaf exec-path-from-shell
   :when window-system
-  :package t
+  :ensure t
   :config
   (exec-path-from-shell-initialize))
 
 (leaf expand-region
-  :package t
+  :ensure t
   :bind ("C-=" . er/expand-region))
 
 (leaf flycheck
-  :package t
+  :ensure t
   :global-minor-mode global-flycheck-mode)
 
 (leaf flycheck-color-mode-line
-  :package t
+  :ensure t
   :after flycheck
   :hook (flycheck-mode-hook . flycheck-color-mode-line-mode))
 
 (leaf flycheck-ledger
-  :package t
+  :ensure t
   :after flycheck
   :require t)
 
@@ -182,10 +183,10 @@
   :hook ((text-mode-hook)
          (prog-mode-hook . flyspell-prog-mode)))
 
-(leaf git-timemachine :package t)
+(leaf git-timemachine :ensure t)
 
 (leaf google-translate
-  :package t
+  :ensure t
   :bind ("C-c t" . google-translate-smooth-translate)
   :preface
   (defun ad:google-translate--search-tkk ()
@@ -198,7 +199,7 @@
                                                               ("ja" . "en")))))
 
 (leaf helpful
-  :package t
+  :ensure t
   :bind ("C-h k" . helpful-key))
 
 (leaf hideshow
@@ -209,7 +210,7 @@
   :global-minor-mode global-hl-line-mode)
 
 (leaf ivy
-  :package t
+  :ensure t
   :blackout t
   :bind ("C-c C-r" . ivy-resume)
   :custom ((ivy-height . 24)
@@ -217,15 +218,20 @@
            (ivy-virtual-abbreviate . 'abbreviate))
   :global-minor-mode t)
 
+(leaf ivy-hydra
+  :ensure t
+  :after ivy hydra
+  :custom (ivy-read-action-function . 'ivy-hydra-read-action))
+
 (leaf ivy-rich
-  :package t
+  :ensure t
   :after ivy
   :global-minor-mode t)
 
-(leaf json-mode :package t)
+(leaf json-mode :ensure t)
 
 (leaf ledger-mode
-  :package t
+  :ensure t
   :custom ((ledger-post-amount-alignment-column . 65)
            (ledger-reports
             . '(("Balance Sheet"
@@ -242,19 +248,19 @@
                  "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared %(account)")))))
 
 (leaf magit
-  :package t
+  :ensure t
   :bind ("C-x g" . magit-status)
   :custom ((magit-completing-read-function . 'ivy-completing-read)
            (magit-display-buffer-function . 'magit-display-buffer-same-window-except-diff-v1)))
 
 (leaf markdown-mode
-  :package t
+  :ensure t
   :custom (markdown-fontify-code-block-natively . t)
   :custom-face (markdown-code-face . '((t (:inherit default)))))
 
 (leaf migemo
   :when (executable-find "cmigemo")
-  :package t
+  :ensure t
   :require t
   :defun migemo-get-pattern migemo-init
   :defvar ivy-re-builders-alist
@@ -279,24 +285,24 @@
 
 (leaf minions
   :disabled t
-  :package t
+  :ensure t
   :custom (minions-direct . '(flycheck-mode))
   :global-minor-mode t)
 
 (leaf mozc
   :when (memq window-system '(x pgtk))
-  :package t
+  :ensure t
   :custom (default-input-method . "japanese-mozc"))
 
 (leaf mozc-popup
   :when (memq window-system '(x pgtk))
-  :package t
+  :ensure t
   :after mozc
   :require t
   :custom (mozc-candidate-style . 'popup))
 
 (leaf org
-  :package t
+  :ensure t
   :bind (("C-c a" . org-agenda)
          ("C-c c" . org-capture)
          ("C-c l" . org-store-link))
@@ -335,18 +341,18 @@
   :config
   (setq system-time-locale "C")
   (leaf ob-async
-    :package t
+    :ensure t
     :require t))
 
 (leaf paren
   :global-minor-mode show-paren-mode)
 
-(leaf php-mode :package t)
+(leaf php-mode :ensure t)
 
-(leaf pocket-reader :package t)
+(leaf pocket-reader :ensure t)
 
 (leaf projectile
-  :package t
+  :ensure t
   :bind (("C-c p" . projectile-command-map)
          ("s-p" . projectile-command-map))
   :custom ((projectile-completion-system . 'ivy)
@@ -358,7 +364,7 @@
   :global-minor-mode t)
 
 (leaf rg
-  :package t
+  :ensure t
   :bind ("C-c s r" . rg-menu))
 
 (leaf ruby-mode
@@ -372,16 +378,16 @@
   :custom (sh-basic-offset . 2))
 
 (leaf shackle
-  :package t
+  :ensure t
   :custom ((shackle-rules . '((compilation-mode :select t)
                               ("\\*Async Shell.*\\*" :regexp t :popup t :align below :size 0.3))))
   :global-minor-mode t)
 
-(leaf smex :package t)
+(leaf smex :ensure t)
 
 (leaf solarized-theme
   :when window-system
-  :package t
+  :ensure t
   :custom ((solarized-scale-org-headlines . nil)
            (solarized-use-variable-pitch . nil)
            (x-underline-at-descent-line . t))
@@ -389,12 +395,12 @@
   (load-theme 'solarized-dark t))
 
 (leaf swiper
-  :package t
+  :ensure t
   :after ivy
   :bind ("C-s" . swiper))
 
 (leaf undo-tree
-  :package t
+  :ensure t
   :blackout t
   :global-minor-mode global-undo-tree-mode)
 
@@ -402,12 +408,12 @@
   :custom (uniquify-buffer-name-style . 'forward))
 
 (leaf web-mode
-  :package t
+  :ensure t
   :mode "\\.x[ms]l\\'"
   :custom (web-mode-script-padding . 4))
 
 (leaf which-key
-  :package t
+  :ensure t
   :blackout t
   :global-minor-mode t)
 
@@ -417,17 +423,17 @@
   (windmove-default-keybindings))
 
 (leaf yasnippet
-  :package t
+  :ensure t
   :blackout yas-minor-mode
   :hook (prog-mode-hook . yas-minor-mode))
 
 (leaf yasnippet-snippets
-  :package t
+  :ensure t
   :after yasnippet)
 
 (leaf zeal-at-point
   :when (memq window-system '(x pgtk))
-  :package t
+  :ensure t
   :bind ("C-c z" . zeal-at-point))
 
 (provide 'init)
