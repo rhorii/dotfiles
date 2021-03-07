@@ -90,6 +90,11 @@
            (company-show-numbers . t))
   :global-minor-mode global-company-mode)
 
+(leaf company-prescient
+  :ensure t
+  :after prescient company
+  :global-minor-mode t)
+
 (leaf company-statistics
   :ensure t
   :after company
@@ -133,7 +138,7 @@
 
 (leaf counsel-projectile
   :ensure t
-  :after counsel projectile
+  :after projectile counsel
   :global-minor-mode t)
 
 (leaf delsel
@@ -220,8 +225,14 @@
 
 (leaf ivy-hydra
   :ensure t
-  :after ivy hydra
+  :after hydra ivy
   :custom (ivy-read-action-function . 'ivy-hydra-read-action))
+
+(leaf ivy-prescient
+  :ensure t
+  :after prescient ivy
+  :custom (ivy-prescient-retain-classic-highlighting . t)
+  :global-minor-mode t)
 
 (leaf ivy-rich
   :ensure t
@@ -347,6 +358,11 @@
 (leaf paren
   :global-minor-mode show-paren-mode)
 
+(leaf prescient
+  :ensure t
+  :custom (prescient-aggressive-file-save . t)
+  :global-minor-mode prescient-persist-mode)
+
 (leaf php-mode :ensure t)
 
 (leaf pocket-reader :ensure t)
@@ -383,7 +399,9 @@
                               ("\\*Async Shell.*\\*" :regexp t :popup t :align below :size 0.3))))
   :global-minor-mode t)
 
-(leaf smex :ensure t)
+(leaf smex
+  :disabled t
+  :ensure t)
 
 (leaf solarized-theme
   :when window-system
