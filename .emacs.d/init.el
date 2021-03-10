@@ -77,6 +77,11 @@
            (mac-command-modifier . 'super)
            (mac-option-modifier . 'meta)))
 
+(leaf ace-window
+  :ensure t
+  :bind ("M-o" . ace-window)
+  :custom (aw-keys . '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
+
 (leaf autorevert
   :custom (auto-revert-check-vc-info . nil)
   :global-minor-mode global-auto-revert-mode)
