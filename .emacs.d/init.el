@@ -105,6 +105,9 @@
   :after company
   :global-minor-mode t)
 
+(leaf compile
+  :custom (compilation-scroll-output . 'first-error))
+
 (leaf counsel
   :ensure t
   :blackout t
@@ -155,6 +158,9 @@
 (leaf edit-server
   :ensure t
   :custom (edit-server-new-frame . nil))
+
+(leaf eldoc
+  :custom (eldoc-minor-mode-string . nil))
 
 (leaf elec-pair
   :global-minor-mode electric-pair-mode)
@@ -369,10 +375,12 @@
 
 (leaf projectile
   :ensure t
+  :blackout t
   :bind (("C-c p" . projectile-command-map)
          ("s-p" . projectile-command-map))
   :custom ((projectile-completion-system . 'ivy)
-           (projectile-enable-caching . t))
+           (projectile-enable-caching . t)
+           (projectile-project-search-path . '("~/src")))
   :global-minor-mode t)
 
 (leaf recentf
