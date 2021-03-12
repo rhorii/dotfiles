@@ -79,7 +79,7 @@
 
 (leaf ace-window
   :ensure t
-  :bind ("M-o" . ace-window)
+  :bind ([remap other-window] . ace-window)
   :custom (aw-keys . '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
 
 (leaf autorevert
@@ -216,7 +216,7 @@
 
 (leaf helpful
   :ensure t
-  :bind ("C-h k" . helpful-key))
+  :bind ([remap describe-key] . helpful-key))
 
 (leaf hideshow
   :blackout hs-minor-mode
