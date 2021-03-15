@@ -453,6 +453,9 @@
   :config
   (windmove-default-keybindings))
 
+(leaf winner-mode
+  :global-minor-mode t)
+
 (leaf yasnippet
   :ensure t
   :blackout yas-minor-mode
