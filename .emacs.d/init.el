@@ -79,8 +79,8 @@
 
 (leaf ace-window
   :ensure t
-  :bind ([remap other-window] . ace-window)
-  :custom (aw-keys . '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
+  :bind ("M-o" . ace-window)
+  :custom (aw-keys . '(?a ?s ?d ?f ?j ?k ?l)))
 
 (leaf autorevert
   :custom (auto-revert-check-vc-info . nil)
@@ -413,7 +413,7 @@
 (leaf shackle
   :ensure t
   :custom ((shackle-rules . '((compilation-mode :select t)
-                              ("\\*Async Shell.*\\*" :regexp t :popup t :align below :size 0.3))))
+                              ("\\*Async Shell.*\\*" :regexp t :popup t :align below :size 0.2))))
   :global-minor-mode t)
 
 (leaf smex
@@ -453,7 +453,6 @@
   :global-minor-mode t)
 
 (leaf windmove
-  :custom (windmove-wrap-around . t)
   :config
   (windmove-default-keybindings))
 
