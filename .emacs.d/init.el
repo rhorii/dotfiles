@@ -406,6 +406,10 @@
 (leaf sh-script
   :custom (sh-basic-offset . 2))
 
+(leaf shell-pop
+  :ensure t
+  :bind ("C-`" . shell-pop))
+
 (leaf shackle
   :ensure t
   :custom ((shackle-rules . '((compilation-mode :select t)
