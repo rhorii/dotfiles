@@ -203,11 +203,11 @@
 
 (leaf google-translate
   :ensure t
-  :bind ("C-c t" . google-translate-smooth-translate)
   :preface
   (defun ad:google-translate--search-tkk ()
     "Search TKK."
     (list 430675 2721866130))
+  :bind ("C-c t" . google-translate-smooth-translate)
   :advice (:override google-translate--search-tkk ad:google-translate--search-tkk)
   :custom ((google-translate-backend-method . 'curl)
            (google-translate-pop-up-buffer-set-focus . t)
@@ -381,8 +381,16 @@
 (leaf projectile
   :ensure t
   :blackout t
+  :defun projectile-project-root
+  :preface
+  (defun ad:shell-pop (orig-fun &rest args)
+    (if (projectile-project-root)
+        (let ((default-directory (projectile-project-root)))
+          (apply orig-fun args))
+      (apply orig-fun args)))
   :bind (("C-c p" . projectile-command-map)
          ("s-p" . projectile-command-map))
+  :advice (:around shell-pop ad:shell-pop)
   :custom ((projectile-completion-system . 'ivy)
            (projectile-enable-caching . t)
            (projectile-project-search-path . '("~/src")))
@@ -408,7 +416,12 @@
 
 (leaf shell-pop
   :ensure t
-  :bind ("C-`" . shell-pop))
+  :bind ("C-`" . shell-pop)
+  :custom ((shell-pop-full-span . t)
+           (shell-pop-shell-type . '("ansi-term" "*ansi-term*"
+                                     (lambda nil
+                                       (ansi-term shell-pop-term-shell))))
+           (shell-pop-window-size . 20)))
 
 (leaf shackle
   :ensure t
