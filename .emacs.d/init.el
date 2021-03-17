@@ -174,6 +174,7 @@
   :when window-system
   :ensure t
   :config
+  (setenv "LANG" "ja_JP.UTF-8")
   (exec-path-from-shell-initialize))
 
 (leaf expand-region
