@@ -383,20 +383,12 @@
 (leaf projectile
   :ensure t
   :blackout t
-  :defun projectile-project-root
-  :preface
-  (defun ad:let-default-directory-to-projectile-project-root (orig-fun &rest args)
-    (if (projectile-project-root)
-        (let ((default-directory (projectile-project-root)))
-          (apply orig-fun args))
-      (apply orig-fun args)))
-  :bind (("C-c p" . projectile-command-map)
-         ("s-p" . projectile-command-map))
-  :advice ((:around shell-pop ad:let-default-directory-to-projectile-project-root)
-           (:around vterm-toggle-cd ad:let-default-directory-to-projectile-project-root))
+  :bind (:projectile-mode-map
+         ("s-p" . projectile-command-map)
+         ("C-c p" . projectile-command-map))
   :custom ((projectile-completion-system . 'ivy)
            (projectile-enable-caching . t)
-           (projectile-project-search-path . '("~/src")))
+           (projectile-project-search-path . '("~/src/")))
   :global-minor-mode t)
 
 (leaf recentf
@@ -417,21 +409,9 @@
 (leaf sh-script
   :custom (sh-basic-offset . 2))
 
-(leaf shell-pop
-  :disabled t
-  :ensure t
-  ;; :bind ("C-`" . shell-pop)
-  :custom ((shell-pop-full-span . t)
-           (shell-pop-shell-type . '("ansi-term" "*ansi-term*"
-                                     (lambda nil
-                                       (ansi-term shell-pop-term-shell))))
-           (shell-pop-window-size . 20)))
-
 (leaf shackle
   :ensure t
-  :custom ((shackle-rules . '((compilation-mode :select t)
-                              ("\\*Async Shell.*\\*" :regexp t :popup t :align below :size 0.2)
-                              (vterm-mode :popup t :align below :size 0.2))))
+  :custom ((shackle-rules . '((vterm-mode :same t))))
   :global-minor-mode t)
 
 (leaf smex
@@ -466,7 +446,8 @@
 
 (leaf vterm-toggle
   :ensure t
-  :bind ("C-`" . vterm-toggle-cd))
+  :custom (vterm-toggle-scope . 'project)
+  :bind ("C-`" . vterm-toggle))
 
 (leaf web-mode
   :ensure t
