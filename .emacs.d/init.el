@@ -249,6 +249,7 @@
 (leaf ivy-rich
   :ensure t
   :after ivy
+  :custom (ivy-rich-parse-remote-buffer . nil)
   :global-minor-mode t)
 
 (leaf json-mode :ensure t)
