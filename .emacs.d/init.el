@@ -411,7 +411,7 @@
 
 (leaf shackle
   :ensure t
-  :custom ((shackle-rules . '((vterm-mode :same t))))
+  :custom ((shackle-rules . '((vterm-mode :align 'below :size 0.2))))
   :global-minor-mode t)
 
 (leaf smex
