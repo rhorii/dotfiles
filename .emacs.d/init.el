@@ -418,6 +418,9 @@
   :disabled t
   :ensure t)
 
+(leaf so-long
+  :global-minor-mode global-so-long-mode)
+
 (leaf solarized-theme
   :when window-system
   :ensure t
