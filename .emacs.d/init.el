@@ -375,9 +375,8 @@
 
 (leaf paradox
   :ensure t
-  :custom (paradox-execute-asynchronously . t)
-  :config
-  (paradox-enable))
+  :custom ((paradox-execute-asynchronously . t)
+           (paradox-github-token . t)))
 
 (leaf paren
   :global-minor-mode show-paren-mode)
