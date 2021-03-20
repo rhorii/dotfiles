@@ -200,6 +200,11 @@
   :hook ((text-mode-hook)
          (prog-mode-hook . flyspell-prog-mode)))
 
+(leaf gcmh
+  :ensure t
+  :blackout t
+  :global-minor-mode t)
+
 (leaf git-timemachine :ensure t)
 
 (leaf google-translate
