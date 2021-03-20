@@ -368,6 +368,12 @@
     :ensure t
     :require t))
 
+(leaf paradox
+  :ensure t
+  :custom (paradox-execute-asynchronously . t)
+  :config
+  (paradox-enable))
+
 (leaf paren
   :global-minor-mode show-paren-mode)
 
