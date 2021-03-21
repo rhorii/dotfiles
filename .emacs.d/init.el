@@ -287,6 +287,9 @@
   :custom (markdown-fontify-code-block-natively . t)
   :custom-face (markdown-code-face . '((t (:inherit default)))))
 
+(leaf midnight
+  :global-minor-mode t)
+
 (leaf migemo
   :when (executable-find "cmigemo")
   :ensure t
