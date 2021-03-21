@@ -207,6 +207,10 @@
 
 (leaf git-timemachine :ensure t)
 
+(leaf google-this
+  :ensure t
+  :bind ("C-c s g" . google-this))
+
 (leaf google-translate
   :ensure t
   :preface
