@@ -160,6 +160,11 @@
 
 (leaf dockerfile-mode :ensure t)
 
+(leaf dumb-jump
+  :ensure t
+  :hook (xref-backend-functions . dumb-jump-xref-activate)
+  :custom ((dumb-jump-selector . 'ivy)))
+
 (leaf edit-server
   :ensure t
   :custom (edit-server-new-frame . nil))
@@ -485,6 +490,10 @@
 
 (leaf winner-mode
   :global-minor-mode t)
+
+(leaf xref
+  :ensure t
+  :custom ((xref-show-definitions-function . 'xref-show-definitions-completing-read)))
 
 (leaf yasnippet
   :ensure t
