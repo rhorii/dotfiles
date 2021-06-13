@@ -395,7 +395,8 @@
 
 (leaf prescient
   :ensure t
-  :custom (prescient-aggressive-file-save . t)
+  :custom ((prescient-aggressive-file-save . t)
+           (prescient-sort-length-enable . nil))
   :global-minor-mode prescient-persist-mode)
 
 (leaf php-mode :ensure t)
