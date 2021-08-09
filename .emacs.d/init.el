@@ -342,6 +342,11 @@
   :require t
   :custom (mozc-candidate-style . 'popup))
 
+(leaf mwim
+  :ensure t
+  :bind (("C-a" . mwim-beginning)
+         ("C-e" . mwim-end)))
+
 (leaf org
   :ensure t
   :bind (("C-c a" . org-agenda)
