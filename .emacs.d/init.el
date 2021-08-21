@@ -210,6 +210,31 @@
   :blackout t
   :global-minor-mode t)
 
+(leaf git-link
+  :ensure t
+  :defvar git-link-remote-alist git-link-commit-remote-alist
+  :preface
+  (defun git-link-backlog (hostname dirname filename branch commit start end)
+    (format "https://%s.backlog.jp/git/%s/blob/%s/%s"
+            (car (split-string hostname "\\."))
+	          dirname
+	          (or branch commit)
+	          (concat filename
+                    (when start
+                      (concat "#"
+                              (if end
+                                  (format "L%s-L%s" start end)
+                                (format "L%s" start)))))))
+  (defun git-link-commit-backlog (hostname dirname commit)
+    (format "https://%s.backlog.jp/git/%s/commit/%s"
+	          (car (split-string hostname "\\."))
+	          dirname
+	          commit))
+  :bind ("C-c g l" . git-link)
+  :config
+  (add-to-list 'git-link-remote-alist '("backlog" git-link-backlog))
+  (add-to-list 'git-link-commit-remote-alist '("backlog" git-link-commit-backlog)))
+
 (leaf git-timemachine :ensure t)
 
 (leaf google-this
