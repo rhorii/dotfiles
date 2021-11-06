@@ -277,6 +277,11 @@
   :custom
   (magit-display-buffer-function . 'magit-display-buffer-same-window-except-diff-v1))
 
+(leaf git-gutter-fringe
+  :ensure t
+  :require t
+  :global-minor-mode global-git-gutter-mode)
+
 (leaf markdown-mode
   :ensure t
   :custom
@@ -617,3 +622,4 @@
 
 (provide 'init)
 ;;; init.el ends here
+(put 'set-goal-column 'disabled nil)
