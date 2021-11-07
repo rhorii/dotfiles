@@ -462,7 +462,7 @@
 
 (leaf uniquify
   :custom
-  (uniquify-buffer-name-style . 'forward))
+  (uniquify-buffer-name-style . 'post-forward-angle-brackets))
 
 (leaf vterm
   :ensure t
