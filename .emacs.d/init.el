@@ -108,6 +108,7 @@
 
 (leaf company-box
   :ensure t
+  :blackout t
   :hook
   (company-mode-hook . company-box-mode))
 
@@ -285,6 +286,7 @@
 (leaf git-gutter-fringe
   :ensure t
   :require t
+  :blackout git-gutter-mode
   :global-minor-mode global-git-gutter-mode)
 
 (leaf markdown-mode
@@ -624,6 +626,11 @@
   :ensure t
   :after embark consult
   :require t)
+
+(leaf volatile-highlights
+  :ensure t
+  :blackout t
+  :global-minor-mode t)
 
 (provide 'init)
 ;;; init.el ends here
