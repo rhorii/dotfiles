@@ -106,6 +106,11 @@
   (company-show-numbers . t)
   :global-minor-mode global-company-mode)
 
+(leaf company-box
+  :ensure t
+  :hook
+  (company-mode-hook . company-box-mode))
+
 (leaf company-prescient
   :disabled t
   :ensure t
