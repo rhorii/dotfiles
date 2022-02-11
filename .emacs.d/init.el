@@ -411,7 +411,6 @@
    ("s-p" . projectile-command-map)
    ("C-c p" . projectile-command-map))
   :custom
-  (projectile-enable-caching . t)
   (projectile-project-search-path . '("~/src/"))
   :global-minor-mode t)
 
@@ -591,6 +590,7 @@
   ("M-s g" . consult-grep)
   ("M-s G" . consult-git-grep)
   ("M-s r" . consult-ripgrep)
+  ([remap isearch-forward] . consult-line)
   ("M-s l" . consult-line)
   ("M-s L" . consult-line-multi)
   ("M-s m" . consult-multi-occur)
@@ -634,4 +634,3 @@
 
 (provide 'init)
 ;;; init.el ends here
-(put 'set-goal-column 'disabled nil)
