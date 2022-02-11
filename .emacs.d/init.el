@@ -15,8 +15,6 @@
 
   (leaf leaf-keywords
     :ensure t
-    :init
-    (leaf blackout :ensure t)
     :config
     (leaf-keywords-init)))
 
@@ -98,7 +96,6 @@
 
 (leaf company
   :ensure t
-  :blackout t
   :custom
   (company-idle-delay . 0)
   (company-minimum-prefix-length . 2)
@@ -108,7 +105,6 @@
 
 (leaf company-box
   :ensure t
-  :blackout t
   :hook
   (company-mode-hook . company-box-mode))
 
@@ -186,14 +182,12 @@
   :require t)
 
 (leaf flyspell
-  :blackout t
   :hook
   (text-mode-hook)
   (prog-mode-hook . flyspell-prog-mode))
 
 (leaf gcmh
   :ensure t
-  :blackout t
   :global-minor-mode t)
 
 (leaf git-link
@@ -226,7 +220,7 @@
 (leaf google-this
   :ensure t
   :bind
-  ("C-c s g" . google-this))
+  ("C-c s" . google-this))
 
 (leaf google-translate
   :ensure t
@@ -252,7 +246,6 @@
   ([remap describe-key] . helpful-key))
 
 (leaf hideshow
-  :blackout hs-minor-mode
   :hook
   (prog-mode-hook . hs-minor-mode))
 
@@ -286,7 +279,6 @@
 (leaf git-gutter-fringe
   :ensure t
   :require t
-  :blackout git-gutter-mode
   :global-minor-mode global-git-gutter-mode)
 
 (leaf markdown-mode
@@ -300,7 +292,6 @@
   :global-minor-mode t)
 
 (leaf minions
-  :disabled t
   :ensure t
   :custom
   (minions-direct . '(flycheck-mode))
@@ -405,7 +396,6 @@
 
 (leaf projectile
   :ensure t
-  :blackout t
   :bind
   (:projectile-mode-map
    ("s-p" . projectile-command-map)
@@ -419,10 +409,7 @@
   (recentf-max-saved-items . nil)
   :global-minor-mode t)
 
-(leaf rg
-  :ensure t
-  :bind
-  ("C-c s r" . rg-menu))
+(leaf rg :ensure t)
 
 (leaf ruby-mode
   :custom
@@ -458,7 +445,6 @@
 
 (leaf undo-tree
   :ensure t
-  :blackout t
   :global-minor-mode global-undo-tree-mode)
 
 (leaf uniquify
@@ -485,7 +471,6 @@
 
 (leaf which-key
   :ensure t
-  :blackout t
   :global-minor-mode t)
 
 (leaf windmove
@@ -502,7 +487,6 @@
 
 (leaf yasnippet
   :ensure t
-  :blackout yas-minor-mode
   :hook (prog-mode-hook . yas-minor-mode))
 
 (leaf yasnippet-snippets
@@ -629,7 +613,6 @@
 
 (leaf volatile-highlights
   :ensure t
-  :blackout t
   :global-minor-mode t)
 
 (provide 'init)
