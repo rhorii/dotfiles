@@ -549,7 +549,7 @@
   :defun project-roots consult-customize
   :defvar consult-ripgrep consult-git-grep consult-grep
           consult-bookmark consult-recent-file consult-xref
-          consult--source-file consult--source-project-file consult--source-bookmark
+          consult--source-recent-file consult--source-project-recent-file consult--source-bookmark
   :bind
   ;; C-c bindings (mode-specific-map)
   ("C-c h" . consult-history)
@@ -594,7 +594,7 @@
   (consult-customize
    consult-ripgrep consult-git-grep consult-grep
    consult-bookmark consult-recent-file consult-xref
-   consult--source-file consult--source-project-file consult--source-bookmark
+   consult--source-recent-file consult--source-project-recent-file consult--source-bookmark
    :preview-key (kbd "M-.")))
 
 (leaf marginalia
