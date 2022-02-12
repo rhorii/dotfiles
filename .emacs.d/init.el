@@ -194,7 +194,7 @@
   :ensure t
   :defvar git-link-remote-alist git-link-commit-remote-alist
   :bind
-  ("C-c g l" . git-link)
+  ("C-c L" . git-link)
   :config
   (defun git-link-backlog (hostname dirname filename branch commit start end)
     (format "https://%s.backlog.jp/git/%s/blob/%s/%s"
@@ -323,6 +323,10 @@
   ("C-c c" . org-capture)
   ("C-c l" . org-store-link)
   :custom
+  (org-capture-templates . '(("t" "Task" entry (file+headline "" "Tasks")
+		                          "* TODO %?\n%i\n%a")
+                             ("j" "Journal" entry (file+datetree "" "Journals")
+                              "* %?\n%i\n%a\nAdded: %U")))
   (org-default-notes-file . "~/org/notes.org")
   (org-replace-disputed-keys . t)
   (org-startup-folded . 'content)
