@@ -319,18 +319,45 @@
 
 (leaf org
   :ensure t
-  :bind
-  ("C-c c" . org-capture)
-  ("C-c l" . org-store-link)
-  :custom
-  (org-capture-templates . '(("t" "Task" entry (file+headline "" "Tasks")
-		                          "* TODO %?\n%i\n%a")
-                             ("j" "Journal" entry (file+datetree "" "Journals")
-                              "* %?\n%i\n%a\nAdded: %U")))
-  (org-default-notes-file . "~/org/notes.org")
-  (org-replace-disputed-keys . t)
-  (org-startup-folded . 'content)
-  (org-startup-indented . t))
+  :bind (("C-c a" . org-agenda)
+         ("C-c c" . org-capture)
+         ("C-c l" . org-store-link))
+  :custom `((org-adapt-indentation . nil)
+            (org-agenda-breadcrumbs-separator . "/")
+            (org-agenda-files . '("inbox.org" "agenda.org" "projects.org" "notes.org"))
+            (org-agenda-format-date . "%F %a")
+            (org-capture-templates . '(("t" "Task" entry
+                                        (file "inbox.org")
+		                                    ,(concat "* TODO %?\n"
+                                                 ":PROPERTIES:\n"
+                                                 ":CREATED: %U\n"
+                                                 ":END:"))
+                                       ("n" "Note" entry
+                                        (file "inbox.org")
+                                        ,(concat "* %? :note:\n"
+                                                 ":PROPERTIES:\n"
+                                                 ":CREATED: %U\n"
+                                                 ":END:"))
+                                       ("m" "Meeting" entry
+                                        (file "inbox.org")
+                                        ,(concat "* %? :meeting:\n"
+                                                 "<%<%Y-%m-%d %a %H:00>>"))
+                                       ("j" "Journal" entry
+                                        (file+olp+datetree "notes.org" "Journal")
+                                        "* %?"
+                                        :tree-type week)))
+            (org-clock-out-remove-zero-time-clocks . t)
+            (org-clock-clocked-in-display . 'frame-title)
+            (org-default-notes-file . "~/org/notes.org")
+            (org-log-done . 'time)
+            (org-log-into-drawer . t)
+            (org-outline-path-complete-in-steps . nil)
+            (org-refile-use-outline-path . 'file)
+            (org-refile-targets . '(("notes.org" :maxlevel . 2)))
+            (org-replace-disputed-keys . t)
+            (org-use-speed-commands . t)
+            (org-todo-keywords . '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
+                                   (sequence "WAIT(w@/!)" "|" "CANCELED(@c/!)")))))
 
 (leaf org
   :disabled t
