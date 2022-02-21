@@ -324,7 +324,18 @@
          ("C-c l" . org-store-link))
   :custom `((org-adapt-indentation . nil)
             (org-agenda-breadcrumbs-separator . "/")
-            (org-agenda-files . '("inbox.org" "agenda.org" "projects.org" "notes.org"))
+            (org-agenda-custom-commands . '(("n" "GTD"
+                                             ((agenda ""
+                                                      ((org-agenda-span 'day)
+                                                       (org-deadline-warning-days 365)))
+                                              (todo "NEXT"
+                                                    ((org-agenda-overriding-header "Tasks")
+                                                     (org-agenda-skip-function
+                                                      '(org-agenda-skip-entry-if 'deadline))))
+                                              (tags "inbox"
+                                                    ((org-agenda-overriding-header "Inbox")
+                                                     (org-agenda-prefix-format "  %?-12t% s")))))))
+            (org-agenda-files . '("~/org/inbox.org" "~/org/notes.org"))
             (org-agenda-format-date . "%F %a")
             (org-capture-templates . '(("t" "Task" entry
                                         (file "inbox.org")
