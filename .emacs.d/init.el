@@ -592,8 +592,8 @@
   ;; C-c bindings (mode-specific-map)
   ("C-c h" . consult-history)
   ("C-c m" . consult-mode-command)
-  ("C-c b" . consult-bookmark)
   ("C-c k" . consult-kmacro)
+  ("C-c b" . consult-bookmark)
   ;; C-x bindings (ctl-x-map)
   ([remap switch-to-buffer] . consult-buffer)
   ([remap switch-to-buffer-other-window] . consult-buffer-other-window)
@@ -656,6 +656,13 @@
 (leaf volatile-highlights
   :ensure t
   :global-minor-mode t)
+
+(leaf perspective
+  :disabled t
+  :ensure t
+  :bind (([remap switch-to-buffer] . persp-switch-to-buffer*)
+         ([remap kill-buffer] . persp-kill-buffer*))
+  :global-minor-mode persp-mode)
 
 (provide 'init)
 ;;; init.el ends here
