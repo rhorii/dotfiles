@@ -321,14 +321,11 @@
          ("C-c l" . org-store-link))
   :custom `((org-adapt-indentation . nil)
             (org-agenda-breadcrumbs-separator . "/")
-            (org-agenda-custom-commands . '(("n" "GTD"
+            (org-agenda-custom-commands . '((" " "Agenda"
                                              ((agenda ""
-                                                      ((org-agenda-span 'day)
-                                                       (org-deadline-warning-days 365)))
+                                                      ((org-deadline-warning-days 365)))
                                               (todo "NEXT"
-                                                    ((org-agenda-overriding-header "Tasks")
-                                                     (org-agenda-skip-function
-                                                      '(org-agenda-skip-entry-if 'deadline))))
+                                                    ((org-agenda-overriding-header "Tasks")))
                                               (tags "inbox"
                                                     ((org-agenda-overriding-header "Inbox")
                                                      (org-agenda-prefix-format "  %?-12t% s")))))))
@@ -355,7 +352,6 @@
                                         "* %?"
                                         :tree-type week)))
             (org-clock-out-remove-zero-time-clocks . t)
-            (org-clock-clocked-in-display . 'frame-title)
             (org-default-notes-file . "~/org/notes.org")
             (org-log-done . 'time)
             (org-log-into-drawer . t)
