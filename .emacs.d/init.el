@@ -18,6 +18,10 @@
     :config
     (leaf-keywords-init)))
 
+(leaf no-littering
+  :ensure t
+  :require t)
+
 (leaf *Editing
   :custom
   ;; Editing Basics
@@ -31,16 +35,9 @@
   (confirm-kill-emacs . 'yes-or-no-p))
 
 (leaf *Files
-  :custom
-  (create-lockfiles . nil)
-  ;; Auto Save
-  `(auto-save-file-name-transforms . '((".*" ,(locate-user-emacs-file "backup/") t)))
-  `(auto-save-list-file-prefix . ,(locate-user-emacs-file "backup/.saves-"))
-  ;; Backup
-  `(backup-directory-alist . '((".*" . ,(locate-user-emacs-file "backup"))
-                               (,tramp-file-name-regexp . nil)))
-  (delete-old-versions . t)
-  (version-control . t))
+  :custom ((create-lockfiles . nil)
+           (delete-old-versions . t)
+           (version-control . t)))
 
 (leaf *Environment
   :bind
