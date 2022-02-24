@@ -544,17 +544,14 @@
 (leaf migemo
   :when (executable-find "cmigemo")
   :ensure t
-  :hook
-  (after-init-hook . migemo-init)
-  :custom
-  (migemo-dictionary . "/usr/local/share/migemo/utf-8/migemo-dict"))
+  :hook (after-init-hook . migemo-init)
+  :custom (migemo-dictionary . "/usr/local/share/migemo/utf-8/migemo-dict"))
 
 (leaf orderless
   :ensure t
   :require t
-  :custom
-  (completion-styles . '(orderless))
-  (completion-category-overrides . '((file (styles basic partial-completion)))))
+  :custom ((completion-styles . '(orderless))
+           (completion-category-overrides . '((file (styles basic partial-completion))))))
 
 (leaf *orderless-migemo
   :after orderless migemo
@@ -574,9 +571,8 @@
 
 (leaf vertico
   :ensure t
-  :custom
-  (vertico-count . 20)
-  (vertico-cycle . t)
+  :custom ((vertico-count . 20)
+           (vertico-cycle . t))
   :global-minor-mode t)
 
 (leaf consult
@@ -585,44 +581,42 @@
   :defvar consult-ripgrep consult-git-grep consult-grep
           consult-bookmark consult-recent-file consult-xref
           consult--source-recent-file consult--source-project-recent-file consult--source-bookmark
-  :bind
-  ;; C-c bindings (mode-specific-map)
-  ("C-c h" . consult-history)
-  ("C-c m" . consult-mode-command)
-  ("C-c k" . consult-kmacro)
-  ("C-c b" . consult-bookmark)
-  ;; C-x bindings (ctl-x-map)
-  ([remap switch-to-buffer] . consult-buffer)
-  ([remap switch-to-buffer-other-window] . consult-buffer-other-window)
-  ([remap switch-to-buffer-other-frame] . consult-buffer-other-frame)
-  ;; Other custom bindings
-  ([remap yank-pop] . consult-yank-pop)
-  ([remap apropos-command] . consult-apropos)
-  ;; M-g bindings (goto-map)
-  ("M-g e" . consult-compile-error)
-  ("M-g f" . consult-flycheck)
-  ([remap goto-line] . consult-goto-line)
-  ("M-g o" . consult-outline)
-  ("M-g m" . consult-mark)
-  ("M-g k" . consult-global-mark)
-  ("M-g i" . consult-imenu)
-  ("M-g I" . consult-imenu-multi)
-  ;; M-s bindings (search-map)
-  ("M-s f" . consult-find)
-  ("M-s F" . consult-locate)
-  ("M-s g" . consult-grep)
-  ("M-s G" . consult-git-grep)
-  ("M-s r" . consult-ripgrep)
-  ([remap isearch-forward] . consult-line)
-  ("M-s l" . consult-line)
-  ("M-s L" . consult-line-multi)
-  ("M-s m" . consult-multi-occur)
-  ("M-s k" . consult-keep-lines)
-  ("M-s u" . consult-focus-lines)
-  :custom
-  (consult-project-root-function . (lambda ()
-                                     (when-let (project (project-current))
-                                       (car (project-roots project)))))
+  :bind (;; C-c bindings (mode-specific-map)
+         ("C-c h" . consult-history)
+         ("C-c m" . consult-mode-command)
+         ("C-c k" . consult-kmacro)
+         ("C-c b" . consult-bookmark)
+         ;; C-x bindings (ctl-x-map)
+         ([remap switch-to-buffer] . consult-buffer)
+         ([remap switch-to-buffer-other-window] . consult-buffer-other-window)
+         ([remap switch-to-buffer-other-frame] . consult-buffer-other-frame)
+         ;; Other custom bindings
+         ([remap yank-pop] . consult-yank-pop)
+         ([remap apropos-command] . consult-apropos)
+         ;; M-g bindings (goto-map)
+         ("M-g e" . consult-compile-error)
+         ("M-g f" . consult-flycheck)
+         ([remap goto-line] . consult-goto-line)
+         ("M-g o" . consult-outline)
+         ("M-g m" . consult-mark)
+         ("M-g k" . consult-global-mark)
+         ("M-g i" . consult-imenu)
+         ("M-g I" . consult-imenu-multi)
+         ;; M-s bindings (search-map)
+         ("M-s f" . consult-find)
+         ("M-s F" . consult-locate)
+         ("M-s g" . consult-grep)
+         ("M-s G" . consult-git-grep)
+         ("M-s r" . consult-ripgrep)
+         ([remap isearch-forward] . consult-line)
+         ("M-s l" . consult-line)
+         ("M-s L" . consult-line-multi)
+         ("M-s m" . consult-multi-occur)
+         ("M-s k" . consult-keep-lines)
+  ("M-s u" . consult-focus-lines))
+  :custom ((consult-project-root-function . (lambda ()
+                                              (when-let (project (project-current))
+                                                (car (project-roots project))))))
   :init
   (leaf consult-flycheck :ensure t)
   :config
@@ -634,16 +628,14 @@
 
 (leaf marginalia
   :ensure t
+  :custom (marginalia-field-width . 120)
   :global-minor-mode t)
 
 (leaf embark
   :ensure t
-  :bind
-  ("C-h B" . embark-bindings)
-  :bind*
-  ("C-." . embark-act)
-  :custom
-  (embark-verbose-indicator-display-action . '(display-buffer-at-bottom (window-height . fit-window-to-buffer))))
+  :bind ("C-h B" . embark-bindings)
+  :bind* ("C-." . embark-act)
+  :custom (embark-verbose-indicator-display-action . '(display-buffer-at-bottom (window-height . fit-window-to-buffer))))
 
 (leaf embark-consult
   :ensure t
