@@ -65,6 +65,40 @@
            (mac-command-modifier . 'super)
            (mac-option-modifier . 'meta)))
 
+(leaf exec-path-from-shell
+  :when window-system
+  :package t
+  :config
+  (setenv "LANG" "ja_JP.UTF-8")
+  (exec-path-from-shell-initialize))
+
+(leaf gcmh
+  :package t
+  :global-minor-mode t)
+
+(leaf midnight
+  :global-minor-mode t)
+
+(leaf so-long
+  :global-minor-mode global-so-long-mode)
+
+(leaf helpful
+  :package t
+  :bind (([remap describe-function] . helpful-callable)
+         ([remap describe-variable] . helpful-variable)
+         ([remap describe-key] . helpful-key)))
+
+(leaf which-key
+  :package t
+  :global-minor-mode t)
+
+(leaf windmove
+  :config
+  (windmove-default-keybindings))
+
+(leaf winner-mode
+  :global-minor-mode t)
+
 (leaf ace-window
   :package t
   :bind ([remap other-window] . ace-window)
@@ -73,6 +107,33 @@
 (leaf autorevert
   :custom (auto-revert-check-vc-info . nil)
   :global-minor-mode global-auto-revert-mode)
+
+(leaf recentf
+  :custom (recentf-max-saved-items . nil)
+  :global-minor-mode t)
+
+(leaf savehist
+  :custom (savehist-additional-variables . '(projectile-project-command-history))
+  :global-minor-mode t)
+
+(leaf elec-pair
+  :global-minor-mode electric-pair-mode)
+
+(leaf hideshow
+  :hook (prog-mode-hook . hs-minor-mode))
+
+(leaf hl-line
+  :global-minor-mode global-hl-line-mode)
+
+(leaf paren
+  :global-minor-mode show-paren-mode)
+
+(leaf uniquify
+  :custom (uniquify-buffer-name-style . 'post-forward-angle-brackets))
+
+(leaf volatile-highlights
+  :package t
+  :global-minor-mode t)
 
 (leaf company
   :package t
@@ -96,156 +157,15 @@
   :after company
   :global-minor-mode t)
 
-(leaf compile
-  :custom (compilation-scroll-output . 'first-error))
-
-(leaf delsel
-  :global-minor-mode delete-selection-mode)
-
-(leaf docker
+(leaf yasnippet
   :package t
-  :bind ("C-c d" . docker))
+  :hook (prog-mode-hook . yas-minor-mode)
+  :init
+  (leaf yasnippet-snippets :package t))
 
-(leaf docker-compose-mode :package t)
-
-(leaf dockerfile-mode :package t)
-
-(leaf dumb-jump
+(leaf undo-tree
   :package t
-  :hook (xref-backend-functions . dumb-jump-xref-activate)
-  :custom (dumb-jump-selector . 'completing-read))
-
-(leaf eldoc
-  :custom (eldoc-minor-mode-string . nil))
-
-(leaf elec-pair
-  :global-minor-mode electric-pair-mode)
-
-(leaf exec-path-from-shell
-  :when window-system
-  :package t
-  :config
-  (setenv "LANG" "ja_JP.UTF-8")
-  (exec-path-from-shell-initialize))
-
-(leaf expand-region
-  :package t
-  :bind ("C-=" . er/expand-region))
-
-(leaf flycheck
-  :package t
-  :global-minor-mode global-flycheck-mode
-  :defer-config
-  (leaf flycheck-color-mode-line
-    :package t
-    :hook (flycheck-mode-hook . flycheck-color-mode-line-mode)))
-
-(leaf flyspell
-  :hook ((text-mode-hook)
-         (prog-mode-hook . flyspell-prog-mode)))
-
-(leaf gcmh
-  :package t
-  :global-minor-mode t)
-
-(leaf git-link
-  :package t
-  :defvar git-link-remote-alist git-link-commit-remote-alist
-  :bind ("C-c L" . git-link)
-  :config
-  (defun git-link-backlog (hostname dirname filename branch commit start end)
-    (format "https://%s.backlog.jp/git/%s/blob/%s/%s"
-            (car (split-string hostname "\\."))
-	          dirname
-	          (or branch commit)
-	          (concat filename
-                    (when start
-                      (concat "#"
-                              (if end
-                                  (format "%s-%s" start end)
-                                (format "%s" start)))))))
-  (defun git-link-commit-backlog (hostname dirname commit)
-    (format "https://%s.backlog.jp/git/%s/commit/%s"
-	          (car (split-string hostname "\\."))
-	          dirname
-	          commit))
-  (add-to-list 'git-link-remote-alist '("backlog" git-link-backlog))
-  (add-to-list 'git-link-commit-remote-alist '("backlog" git-link-commit-backlog)))
-
-(leaf git-timemachine :package t)
-
-(leaf google-this
-  :package t
-  :bind ("C-c s" . google-this))
-
-(leaf google-translate
-  :package t
-  :preface
-  (defun ad:google-translate--search-tkk ()
-    "Search TKK."
-    (list 430675 2721866130))
-  :bind ("C-c t" . google-translate-smooth-translate)
-  :advice (:override google-translate--search-tkk ad:google-translate--search-tkk)
-  :custom ((google-translate-translation-directions-alist . '(("en" . "ja")
-                                                              ("ja" . "en")))
-           (google-translate-pop-up-buffer-set-focus . t)))
-
-(leaf helpful
-  :package t
-  :bind (([remap describe-function] . helpful-callable)
-         ([remap describe-variable] . helpful-variable)
-         ([remap describe-key] . helpful-key)))
-
-(leaf hideshow
-  :hook (prog-mode-hook . hs-minor-mode))
-
-(leaf hl-line
-  :global-minor-mode global-hl-line-mode)
-
-(leaf json-mode :package t)
-
-(leaf ledger-mode
-  :package t
-  :custom ((ledger-post-amount-alignment-column . 65)
-           (ledger-reports . '(("Balance Sheet"
-                                "%(binary) bal -f %(ledger-file) --explicit --pedantic --cleared 資産 負債 資本")
-                               ("Monthly Balance"
-                                "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 資産 負債 資本 --monthly --collapse")
-                               ("Monthly Expence"
-                                "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 支出 --monthly --sort -amount")
-                               ("Yearly Balance"
-                                "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 資産 負債 資本 --yearly --collapse")
-                               ("Yearly Expence"
-                                "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 支出 --yearly --sort -amount")
-                               ("Account Statement"
-                                "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared %(account)"))))
-  :defer-config
-  (leaf flycheck-ledger
-    :package t
-    :after flycheck
-    :require t))
-
-(leaf magit
-  :package t
-  :custom (magit-display-buffer-function . 'magit-display-buffer-same-window-except-diff-v1))
-
-(leaf git-gutter-fringe
-  :package t
-  :require t
-  :global-minor-mode global-git-gutter-mode)
-
-(leaf markdown-mode
-  :package t
-  :custom (markdown-fontify-code-block-natively . t)
-  :custom-face (markdown-code-face . '((t (:inherit default)))))
-
-(leaf midnight
-  :global-minor-mode t)
-
-(leaf minions
-  :package t
-  :custom (minions-direct . '(flycheck-mode))
-  :global-minor-mode t)
+  :global-minor-mode global-undo-tree-mode)
 
 (leaf mozc
   :when (memq window-system '(x pgtk))
@@ -262,154 +182,41 @@
   :bind (([remap move-beginning-of-line] . mwim-beginning)
          ([remap move-end-of-line] . mwim-end)))
 
-(leaf org
+(leaf expand-region
   :package t
-  :bind (("C-c a" . org-agenda)
-         ("C-c c" . org-capture)
-         ("C-c l" . org-store-link))
-  :custom `((org-adapt-indentation . nil)
-            ;; org-agenda
-            (org-agenda-files . '("~/org/inbox.org" "~/org/notes.org"))
-            (org-agenda-custom-commands . '((" " "Agenda"
-                                             ((agenda ""
-                                                      ((org-deadline-warning-days 365)))
-                                              (todo "NEXT"
-                                                    ((org-agenda-overriding-header "Tasks")))
-                                              (tags "inbox"
-                                                    ((org-agenda-overriding-header "Inbox")
-                                                     (org-agenda-prefix-format "  %?-12t% s")))))))
-            (org-agenda-restore-windows-after-quit . t)
-            (org-agenda-format-date . "%F %a")
-            (org-agenda-breadcrumbs-separator . "/")
-            (org-capture-templates . '(("t" "Task" entry
-                                        (file "inbox.org")
-		                                    ,(concat "* TODO %?\n"
-                                                 ":PROPERTIES:\n"
-                                                 ":CREATED: %U\n"
-                                                 ":END:"))
-                                       ("n" "Note" entry
-                                        (file "inbox.org")
-                                        ,(concat "* %? :note:\n"
-                                                 ":PROPERTIES:\n"
-                                                 ":CREATED: %U\n"
-                                                 ":END:"))
-                                       ("m" "Meeting" entry
-                                        (file "inbox.org")
-                                        ,(concat "* %? :meeting:\n"
-                                                 "<%<%Y-%m-%d %a %H:00>>"))
-                                       ("j" "Journal" entry
-                                        (file+olp+datetree "notes.org" "Journal")
-                                        "* %?"
-                                        :tree-type week)))
-            (org-clock-out-remove-zero-time-clocks . t)
-            (org-default-notes-file . "~/org/notes.org")
-            (org-log-done . 'time)
-            (org-log-into-drawer . t)
-            (org-outline-path-complete-in-steps . nil)
-            (org-refile-use-outline-path . 'file)
-            (org-refile-targets . '(("notes.org" :maxlevel . 2)))
-            (org-replace-disputed-keys . t)
-            (org-use-speed-commands . t)
-            (org-todo-keywords . '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
-                                   (sequence "WAIT(w@/!)" "|" "CANCELED(@c/!)")))))
+  :bind ("C-=" . er/expand-region))
 
-(leaf paren
-  :global-minor-mode show-paren-mode)
+(leaf delsel
+  :global-minor-mode delete-selection-mode)
 
-(leaf php-mode :package t)
+(leaf compile
+  :custom (compilation-scroll-output . 'first-error))
 
-(leaf projectile
+(leaf docker
   :package t
-  :bind (:projectile-mode-map
-         ("s-p" . projectile-command-map)
-         ("C-c p" . projectile-command-map))
-  :custom (projectile-project-search-path . '("~/src/"))
+  :bind ("C-c d" . docker))
+
+(leaf flycheck
+  :package t
+  :global-minor-mode global-flycheck-mode
+  :defer-config
+  (leaf flycheck-color-mode-line
+    :package t
+    :hook (flycheck-mode-hook . flycheck-color-mode-line-mode)))
+
+(leaf flyspell
+  :hook ((text-mode-hook)
+         (prog-mode-hook . flyspell-prog-mode)))
+
+(leaf minions
+  :package t
+  :custom (minions-direct . '(flycheck-mode))
   :global-minor-mode t)
-
-(leaf recentf
-  :custom (recentf-max-saved-items . nil)
-  :global-minor-mode t)
-
-(leaf rg :package t)
-
-(leaf ruby-mode
-  :custom (ruby-insert-encoding-magic-comment . nil))
-
-(leaf savehist
-  :custom (savehist-additional-variables . '(projectile-project-command-history))
-  :global-minor-mode t)
-
-(leaf sh-script
-  :custom (sh-basic-offset . 2))
 
 (leaf shackle
   :package t
   :custom (shackle-rules . '((vterm-mode :align 'below :size 0.2)))
   :global-minor-mode t)
-
-(leaf so-long
-  :global-minor-mode global-so-long-mode)
-
-(leaf solarized-theme
-  :when window-system
-  :package t
-  :custom ((solarized-scale-org-headlines . nil)
-           (solarized-use-variable-pitch . nil)
-           (x-underline-at-descent-line . t))
-  :config
-  (load-theme 'solarized-dark t))
-
-(leaf undo-tree
-  :package t
-  :global-minor-mode global-undo-tree-mode)
-
-(leaf uniquify
-  :custom (uniquify-buffer-name-style . 'post-forward-angle-brackets))
-
-(leaf vterm
-  :package t
-  :custom (vterm-max-scrollback . 10000))
-
-(leaf vterm-toggle
-  :package t
-  :bind ("C-`" . vterm-toggle)
-  :custom (vterm-toggle-scope . 'project))
-
-(leaf web-mode
-  :package t
-  :mode "\\.x[ms]l\\'"
-  :custom (web-mode-script-padding . 4))
-
-(leaf which-key
-  :package t
-  :global-minor-mode t)
-
-(leaf windmove
-  :config
-  (windmove-default-keybindings))
-
-(leaf winner-mode
-  :global-minor-mode t)
-
-(leaf xref
-  :package t
-  :custom (xref-show-definitions-function . 'xref-show-definitions-completing-read))
-
-(leaf yasnippet
-  :package t
-  :hook (prog-mode-hook . yas-minor-mode)
-  :init
-  (leaf yasnippet-snippets :package t))
-
-(leaf dash-at-point
-  :when (memq window-system '(ns mac))
-  :package t
-  :bind ([remap apropos-documentation] . dash-at-point-with-docset))
-
-(leaf zeal-at-point
-  :when (memq window-system '(x pgtk))
-  :package t
-  :bind ([remap apropos-documentation] . zeal-at-point))
 
 (leaf migemo
   :when (executable-find "cmigemo")
@@ -512,8 +319,30 @@
   :after embark consult
   :require t)
 
-(leaf volatile-highlights
+(leaf solarized-theme
+  :when window-system
   :package t
+  :custom ((solarized-scale-org-headlines . nil)
+           (solarized-use-variable-pitch . nil)
+           (x-underline-at-descent-line . t))
+  :config
+  (load-theme 'solarized-dark t))
+
+(leaf vterm
+  :package t
+  :custom (vterm-max-scrollback . 10000))
+
+(leaf vterm-toggle
+  :package t
+  :bind ("C-`" . vterm-toggle)
+  :custom (vterm-toggle-scope . 'project))
+
+(leaf projectile
+  :package t
+  :bind (:projectile-mode-map
+         ("s-p" . projectile-command-map)
+         ("C-c p" . projectile-command-map))
+  :custom (projectile-project-search-path . '("~/src/"))
   :global-minor-mode t)
 
 (leaf perspective
@@ -522,6 +351,174 @@
   :bind (([remap switch-to-buffer] . persp-switch-to-buffer*)
          ([remap kill-buffer] . persp-kill-buffer*))
   :global-minor-mode persp-mode)
+
+(leaf magit
+  :package t
+  :custom (magit-display-buffer-function . 'magit-display-buffer-same-window-except-diff-v1))
+
+(leaf git-gutter-fringe
+  :package t
+  :require t
+  :global-minor-mode global-git-gutter-mode)
+
+(leaf git-link
+  :package t
+  :defvar git-link-remote-alist git-link-commit-remote-alist
+  :bind ("C-c L" . git-link)
+  :config
+  (defun git-link-backlog (hostname dirname filename branch commit start end)
+    (format "https://%s.backlog.jp/git/%s/blob/%s/%s"
+            (car (split-string hostname "\\."))
+	          dirname
+	          (or branch commit)
+	          (concat filename
+                    (when start
+                      (concat "#"
+                              (if end
+                                  (format "%s-%s" start end)
+                                (format "%s" start)))))))
+  (defun git-link-commit-backlog (hostname dirname commit)
+    (format "https://%s.backlog.jp/git/%s/commit/%s"
+	          (car (split-string hostname "\\."))
+	          dirname
+	          commit))
+  (add-to-list 'git-link-remote-alist '("backlog" git-link-backlog))
+  (add-to-list 'git-link-commit-remote-alist '("backlog" git-link-commit-backlog)))
+
+(leaf git-timemachine :package t)
+
+(leaf rg :package t)
+
+(leaf xref
+  :package t
+  :custom (xref-show-definitions-function . 'xref-show-definitions-completing-read))
+
+(leaf dumb-jump
+  :package t
+  :hook (xref-backend-functions . dumb-jump-xref-activate)
+  :custom (dumb-jump-selector . 'completing-read))
+
+(leaf google-this
+  :package t
+  :bind ("C-c s" . google-this))
+
+(leaf google-translate
+  :package t
+  :preface
+  (defun ad:google-translate--search-tkk ()
+    "Search TKK."
+    (list 430675 2721866130))
+  :bind ("C-c t" . google-translate-smooth-translate)
+  :advice (:override google-translate--search-tkk ad:google-translate--search-tkk)
+  :custom ((google-translate-translation-directions-alist . '(("en" . "ja")
+                                                              ("ja" . "en")))
+           (google-translate-pop-up-buffer-set-focus . t)))
+
+(leaf dash-at-point
+  :when (memq window-system '(ns mac))
+  :package t
+  :bind ([remap apropos-documentation] . dash-at-point-with-docset))
+
+(leaf zeal-at-point
+  :when (memq window-system '(x pgtk))
+  :package t
+  :bind ([remap apropos-documentation] . zeal-at-point))
+
+(leaf docker-compose-mode :package t)
+
+(leaf dockerfile-mode :package t)
+
+(leaf json-mode :package t)
+
+(leaf ledger-mode
+  :package t
+  :custom ((ledger-post-amount-alignment-column . 65)
+           (ledger-reports . '(("Balance Sheet"
+                                "%(binary) bal -f %(ledger-file) --explicit --pedantic --cleared 資産 負債 資本")
+                               ("Monthly Balance"
+                                "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 資産 負債 資本 --monthly --collapse")
+                               ("Monthly Expence"
+                                "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 支出 --monthly --sort -amount")
+                               ("Yearly Balance"
+                                "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 資産 負債 資本 --yearly --collapse")
+                               ("Yearly Expence"
+                                "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared 支出 --yearly --sort -amount")
+                               ("Account Statement"
+                                "%(binary) reg -f %(ledger-file) --explicit --pedantic --cleared %(account)"))))
+  :defer-config
+  (leaf flycheck-ledger
+    :package t
+    :after flycheck
+    :require t))
+
+(leaf markdown-mode
+  :package t
+  :custom (markdown-fontify-code-block-natively . t)
+  :custom-face (markdown-code-face . '((t (:inherit default)))))
+
+(leaf org
+  :package t
+  :bind (("C-c a" . org-agenda)
+         ("C-c c" . org-capture)
+         ("C-c l" . org-store-link))
+  :custom `((org-adapt-indentation . nil)
+            ;; org-agenda
+            (org-agenda-files . '("~/org/inbox.org" "~/org/notes.org"))
+            (org-agenda-custom-commands . '((" " "Agenda"
+                                             ((agenda ""
+                                                      ((org-deadline-warning-days 365)))
+                                              (todo "NEXT"
+                                                    ((org-agenda-overriding-header "Tasks")))
+                                              (tags "inbox"
+                                                    ((org-agenda-overriding-header "Inbox")
+                                                     (org-agenda-prefix-format "  %?-12t% s")))))))
+            (org-agenda-restore-windows-after-quit . t)
+            (org-agenda-format-date . "%F %a")
+            (org-agenda-breadcrumbs-separator . "/")
+            (org-capture-templates . '(("t" "Task" entry
+                                        (file "inbox.org")
+		                                    ,(concat "* TODO %?\n"
+                                                 ":PROPERTIES:\n"
+                                                 ":CREATED: %U\n"
+                                                 ":END:"))
+                                       ("n" "Note" entry
+                                        (file "inbox.org")
+                                        ,(concat "* %? :note:\n"
+                                                 ":PROPERTIES:\n"
+                                                 ":CREATED: %U\n"
+                                                 ":END:"))
+                                       ("m" "Meeting" entry
+                                        (file "inbox.org")
+                                        ,(concat "* %? :meeting:\n"
+                                                 "<%<%Y-%m-%d %a %H:00>>"))
+                                       ("j" "Journal" entry
+                                        (file+olp+datetree "notes.org" "Journal")
+                                        "* %?"
+                                        :tree-type week)))
+            (org-clock-out-remove-zero-time-clocks . t)
+            (org-default-notes-file . "~/org/notes.org")
+            (org-log-done . 'time)
+            (org-log-into-drawer . t)
+            (org-outline-path-complete-in-steps . nil)
+            (org-refile-use-outline-path . 'file)
+            (org-refile-targets . '(("notes.org" :maxlevel . 2)))
+            (org-replace-disputed-keys . t)
+            (org-use-speed-commands . t)
+            (org-todo-keywords . '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
+                                   (sequence "WAIT(w@/!)" "|" "CANCELED(@c/!)")))))
+
+(leaf php-mode :package t)
+
+(leaf ruby-mode
+  :custom (ruby-insert-encoding-magic-comment . nil))
+
+(leaf sh-script
+  :custom (sh-basic-offset . 2))
+
+(leaf web-mode
+  :package t
+  :mode "\\.x[ms]l\\'"
+  :custom (web-mode-script-padding . 4))
 
 (provide 'init)
 ;;; init.el ends here
