@@ -1,4 +1,10 @@
-# history
+# Changing Directories
+setopt AUTO_CD
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHD_MINUS
+
+# History
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
@@ -10,6 +16,10 @@ setopt HIST_SAVE_NO_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
 setopt SHARE_HISTORY
+
+# Input/Output
+setopt CORRECT
+setopt CORRECT_ALL
 
 # homebrew
 typeset -gx -U path
