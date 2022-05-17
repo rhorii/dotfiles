@@ -50,6 +50,7 @@
 
 (leaf cus-start
   :custom ((tab-width . 2)
+           (delete-by-moving-to-trash . t)
            (create-lockfiles . nil)
            (tool-bar-mode . nil)
            (frame-resize-pixelwise . t)
@@ -330,19 +331,23 @@
 
 (leaf vterm
   :package t
-  :custom (vterm-max-scrollback . 10000))
-
-(leaf vterm-toggle
-  :package t
-  :bind ("C-`" . vterm-toggle)
-  :custom (vterm-toggle-scope . 'project))
+  :custom ((vterm-max-scrollback . 10000)
+           (vterm-buffer-name-string . "vterm: %s"))
+  :config
+  (leaf vterm-toggle
+    :package t
+    :bind (("C-`" . vterm-toggle)
+           ("s-{" . vterm-toggle-backward)
+           ("s-}" . vterm-toggle-forward))
+    :custom (vterm-toggle-scope . 'project)))
 
 (leaf projectile
   :package t
   :bind (:projectile-mode-map
          ("s-p" . projectile-command-map)
          ("C-c p" . projectile-command-map))
-  :custom (projectile-project-search-path . '("~/src/"))
+  :custom ((projectile-project-search-path . '("~/src/"))
+           (projectile-switch-project-action . 'projectile-vc))
   :global-minor-mode t)
 
 (leaf perspective
@@ -517,7 +522,7 @@
 
 (leaf web-mode
   :package t
-  :mode "\\.x[ms]l\\'"
+  :mode "\\.x[ms]l\\'" "\\.html?\\'"
   :custom (web-mode-script-padding . 4))
 
 (provide 'init)
