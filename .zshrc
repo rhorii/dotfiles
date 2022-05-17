@@ -47,3 +47,8 @@ fi
 if type rbenv &>/dev/null; then
   eval "$(rbenv init -)"
 fi
+
+# nodenv
+if type nodenv &>/dev/null; then
+  eval "$(nodenv init -)"
+fi
