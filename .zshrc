@@ -52,3 +52,11 @@ fi
 if type nodenv &>/dev/null; then
   eval "$(nodenv init -)"
 fi
+
+# vterm
+if [[ "$INSIDE_EMACS" = 'vterm' ]] \
+     && [[ -n ${EMACS_VTERM_PATH} ]] \
+     && [[ -f ${EMACS_VTERM_PATH}/etc/emacs-vterm-zsh.sh ]]; then
+  source ${EMACS_VTERM_PATH}/etc/emacs-vterm-zsh.sh
+  print -Pn "\e]2;%m:%2~\a" # Initialize TITLE
+fi
