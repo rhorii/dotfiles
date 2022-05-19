@@ -136,27 +136,39 @@
   :package t
   :global-minor-mode t)
 
-(leaf company
+(leaf corfu
   :package t
-  :custom ((company-idle-delay . 0)
-           (company-minimum-prefix-length . 2)
-           (company-selection-wrap-around . t)
-           (company-show-numbers . t))
-  :global-minor-mode global-company-mode)
+  :global-minor-mode global-corfu-mode
+  :custom
+  (corfu-auto . t)
+  (corfu-cycle . t)
+  (corfu-quit-at-boundary . nil)
+  (corfu-quit-no-match . nil))
 
-(leaf company-box
+(leaf corfu-doc
   :package t
-  :hook (company-mode-hook . company-box-mode))
+  :after corfu
+  :bind (:corfu-map
+         ("M-p" . corfu-doc-scroll-down)
+         ("M-n" . corfu-doc-scroll-up))
+  :hook (corfu-mode-hook))
 
-(leaf company-statistics
+(leaf kind-icon
   :package t
-  :after company
-  :global-minor-mode t)
+  :after corfu
+  :require t
+  :defun kind-icon-margin-formatter
+  :defvar corfu-margin-formatters
+  :config
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
-(leaf company-quickhelp
+(leaf cape
   :package t
-  :after company
-  :global-minor-mode t)
+  :config
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-keyword)
+  (add-to-list 'completion-at-point-functions #'cape-symbol))
 
 (leaf yasnippet
   :package t
@@ -164,9 +176,11 @@
   :init
   (leaf yasnippet-snippets :package t))
 
-(leaf undo-tree
+(leaf vundo
   :package t
-  :global-minor-mode global-undo-tree-mode)
+  :bind ([remap undo] . vundo)
+  :custom
+  (vundo-roll-back-on-quit . nil))
 
 (leaf mozc
   :when (memq window-system '(x pgtk))
@@ -182,6 +196,9 @@
   :package t
   :bind (([remap move-beginning-of-line] . mwim-beginning)
          ([remap move-end-of-line] . mwim-end)))
+
+(leaf subword
+  :global-minor-mode global-subword-mode)
 
 (leaf expand-region
   :package t
@@ -228,7 +245,7 @@
 (leaf orderless
   :package t
   :require t
-  :custom ((completion-styles . '(orderless))
+  :custom ((completion-styles . '(orderless partial-completion basic))
            (completion-category-overrides . '((file (styles basic partial-completion))))))
 
 (leaf *orderless-migemo
@@ -292,9 +309,10 @@
          ("M-s m" . consult-multi-occur)
          ("M-s k" . consult-keep-lines)
          ("M-s u" . consult-focus-lines))
-  :custom (consult-project-root-function . (lambda ()
-                                             (when-let (project (project-current))
-                                               (car (project-roots project)))))
+  :custom
+  (consult-project-root-function . (lambda ()
+                                     (when-let (project (project-current))
+                                       (car (project-roots project)))))
   :init
   (leaf consult-flycheck :package t)
   :config
@@ -393,6 +411,18 @@
 (leaf git-timemachine :package t)
 
 (leaf rg :package t)
+
+(leaf lsp-mode
+  :package t
+  :preface
+  (defun lsp-mode-setup-completion ()
+    (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
+          '(orderless)))
+  :hook
+  (lsp-completion-mode-hook . lsp-mode-setup-completion)
+  ((css-mode-hook php-mode-hook) . lsp-deferred)
+  :custom
+  (lsp-completion-provider . :none))
 
 (leaf xref
   :package t
