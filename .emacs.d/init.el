@@ -142,8 +142,7 @@
   :custom
   (corfu-auto . t)
   (corfu-cycle . t)
-  (corfu-quit-at-boundary . nil)
-  (corfu-quit-no-match . nil))
+  (corfu-quit-at-boundary . nil))
 
 (leaf corfu-doc
   :package t
@@ -245,8 +244,9 @@
 (leaf orderless
   :package t
   :require t
-  :custom ((completion-styles . '(orderless partial-completion basic))
-           (completion-category-overrides . '((file (styles basic partial-completion))))))
+  :custom
+  (completion-styles . '(orderless basic))
+  (completion-category-overrides . '((file (styles basic partial-completion)))))
 
 (leaf *orderless-migemo
   :after orderless migemo
@@ -276,50 +276,57 @@
   :defvar consult-ripgrep consult-git-grep consult-grep
   consult-bookmark consult-recent-file consult-xref
   consult--source-recent-file consult--source-project-recent-file consult--source-bookmark
-  :bind (;; C-c bindings (mode-specific-map)
-         ("C-c h" . consult-history)
-         ("C-c m" . consult-mode-command)
-         ("C-c k" . consult-kmacro)
-         ("C-c b" . consult-bookmark)
-         ;; C-x bindings (ctl-x-map)
-         ([remap switch-to-buffer] . consult-buffer)
-         ([remap switch-to-buffer-other-window] . consult-buffer-other-window)
-         ([remap switch-to-buffer-other-frame] . consult-buffer-other-frame)
-         ;; Other custom bindings
-         ([remap yank-pop] . consult-yank-pop)
-         ([remap apropos-command] . consult-apropos)
-         ;; M-g bindings (goto-map)
-         ("M-g e" . consult-compile-error)
-         ("M-g f" . consult-flycheck)
-         ([remap goto-line] . consult-goto-line)
-         ("M-g o" . consult-outline)
-         ("M-g m" . consult-mark)
-         ("M-g k" . consult-global-mark)
-         ("M-g i" . consult-imenu)
-         ("M-g I" . consult-imenu-multi)
-         ;; M-s bindings (search-map)
-         ("M-s f" . consult-find)
-         ("M-s F" . consult-locate)
-         ("M-s g" . consult-grep)
-         ("M-s G" . consult-git-grep)
-         ("M-s r" . consult-ripgrep)
-         ([remap isearch-forward] . consult-line)
-         ("M-s l" . consult-line)
-         ("M-s L" . consult-line-multi)
-         ("M-s m" . consult-multi-occur)
-         ("M-s k" . consult-keep-lines)
-         ("M-s u" . consult-focus-lines))
+  :bind
+  ;; C-c bindings (mode-specific-map)
+  ("C-c h" . consult-history)
+  ("C-c m" . consult-mode-command)
+  ("C-c k" . consult-kmacro)
+  ("C-c b" . consult-bookmark)
+  ;; C-x bindings (ctl-x-map)
+  ([remap switch-to-buffer] . consult-buffer)
+  ([remap switch-to-buffer-other-window] . consult-buffer-other-window)
+  ([remap switch-to-buffer-other-frame] . consult-buffer-other-frame)
+  ([remap project-switch-to-buffer] . consult-project-buffer)
+  ;; Other custom bindings
+  ([remap yank-pop] . consult-yank-pop)
+  ([remap apropos-command] . consult-apropos)
+  ;; M-g bindings (goto-map)
+  ("M-g e" . consult-compile-error)
+  ("M-g f" . consult-flycheck)
+  ([remap goto-line] . consult-goto-line)
+  ("M-g o" . consult-outline)
+  ("M-g m" . consult-mark)
+  ("M-g k" . consult-global-mark)
+  ("M-g i" . consult-imenu)
+  ("M-g I" . consult-imenu-multi)
+  ;; M-s bindings (search-map)
+  ("M-s f" . consult-find)
+  ("M-s F" . consult-locate)
+  ("M-s g" . consult-grep)
+  ("M-s G" . consult-git-grep)
+  ("M-s r" . consult-ripgrep)
+  ([remap isearch-forward] . consult-line)
+  ("M-s l" . consult-line)
+  ("M-s L" . consult-line-multi)
+  ("M-s m" . consult-multi-occur)
+  ("M-s k" . consult-keep-lines)
+  ("M-s u" . consult-focus-lines)
+  :hook
+  (completion-list-mode-hook . consult-preview-at-point-mode)
   :custom
   (consult-project-root-function . (lambda ()
                                      (when-let (project (project-current))
                                        (car (project-roots project)))))
+  (xref-show-xrefs-function . 'consult-xref)
+  (xref-show-definitions-function . 'consult-xref)
   :init
   (leaf consult-flycheck :package t)
   :config
   (consult-customize
    consult-ripgrep consult-git-grep consult-grep
    consult-bookmark consult-recent-file consult-xref
-   consult--source-recent-file consult--source-project-recent-file consult--source-bookmark
+   consult--source-bookmark consult--source-recent-file
+   consult--source-project-recent-file
    :preview-key (kbd "M-.")))
 
 (leaf marginalia
@@ -329,14 +336,26 @@
 
 (leaf embark
   :package t
-  :bind ("C-h B" . embark-bindings)
-  :bind* ("C-." . embark-act)
-  :custom (embark-verbose-indicator-display-action . '(display-buffer-at-bottom (window-height . fit-window-to-buffer))))
+  :bind
+  ("C-h B" . embark-bindings)
+  :bind*
+  ("C-." . embark-act)
+  ("C-;" . embark-dwim)
+  :custom
+  (embark-verbose-indicator-display-action . '(display-buffer-at-bottom (window-height . fit-window-to-buffer)))
+  (prefix-help-command . 'embark-prefix-help-command)
+  :config
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
 
 (leaf embark-consult
   :package t
   :after embark consult
-  :require t)
+  :require t
+  :hook
+  (embark-collect-mode-hook . consult-preview-at-point-mode))
 
 (leaf solarized-theme
   :when window-system
@@ -410,8 +429,6 @@
 
 (leaf git-timemachine :package t)
 
-(leaf rg :package t)
-
 (leaf lsp-mode
   :package t
   :preface
@@ -420,13 +437,18 @@
           '(orderless)))
   :hook
   (lsp-completion-mode-hook . lsp-mode-setup-completion)
-  ((css-mode-hook php-mode-hook) . lsp-deferred)
+  (php-mode-hook . lsp-deferred)
   :custom
   (lsp-completion-provider . :none))
 
-(leaf xref
+(leaf lsp-ui
+  :disabled t
   :package t
-  :custom (xref-show-definitions-function . 'xref-show-definitions-completing-read))
+  :after lsp-mode)
+
+(leaf rg :package t)
+
+(leaf xref :package t)
 
 (leaf dumb-jump
   :package t
