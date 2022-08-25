@@ -36,8 +36,8 @@
   :config
   (cond
    ((memq window-system '(ns mac))
-    (set-face-attribute 'default nil :family "HackGenNerd" :height 130)
-    (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "HackGenNerd")))
+    (set-face-attribute 'default nil :family "HackGen Console NFJ" :height 130)
+    (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "HackGen Console NFJ")))
    ((memq window-system '(x pgtk))
     (set-face-attribute 'default nil :family "Ricty" :height 120))))
 
