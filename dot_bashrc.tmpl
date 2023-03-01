@@ -1,0 +1,16 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# env
+export EDITOR='code'
+
+# fzf
+. /usr/share/fzf/key-bindings.bash
+. /usr/share/fzf/completion.bash
+
+# Starship
+eval "$(starship init bash)"
