@@ -3,3 +3,8 @@
 #
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
+
+# Rust
+{{- if eq .chezmoi.os "darwin" }}
+. "$HOME/.cargo/env"
+{{- end }}

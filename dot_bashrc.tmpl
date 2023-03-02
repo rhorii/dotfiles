@@ -9,8 +9,17 @@
 export EDITOR={{ .editor | quote }}
 
 # fzf
+{{- if eq .chezmoi.os "darwin" }}
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+{{- else }}
 . /usr/share/fzf/key-bindings.bash
 . /usr/share/fzf/completion.bash
+{{- end }}
+
+# Rust
+{{- if eq .chezmoi.os "darwin" }}
+. "$HOME/.cargo/env"
+{{- end }}
 
 # Starship
 eval "$(starship init bash)"
