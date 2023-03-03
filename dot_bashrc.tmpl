@@ -9,7 +9,7 @@
 export EDITOR={{ .editor | quote }}
 
 # fzf
-{{- if eq .osid "darwin" }}
+{{- if or (eq .osid "darwin") (eq .osid "linux-centos") }}
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 {{- else if eq .osid "linux-arch" }}
 . /usr/share/fzf/key-bindings.bash
