@@ -5,6 +5,13 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+{{- if eq .osid "linux-centos" }}
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+  . /etc/bashrc
+fi
+{{- end }}
+
 # env
 export EDITOR={{ .editor | quote }}
 
