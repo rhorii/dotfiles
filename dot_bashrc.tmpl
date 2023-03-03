@@ -9,15 +9,15 @@
 export EDITOR={{ .editor | quote }}
 
 # fzf
-{{- if eq .chezmoi.os "darwin" }}
+{{- if eq .osid "darwin" }}
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-{{- else }}
+{{- else if eq .osid "linux-arch" }}
 . /usr/share/fzf/key-bindings.bash
 . /usr/share/fzf/completion.bash
 {{- end }}
 
 # Rust
-{{- if eq .chezmoi.os "darwin" }}
+{{- if eq .osid "darwin" }}
 . "$HOME/.cargo/env"
 {{- end }}
 

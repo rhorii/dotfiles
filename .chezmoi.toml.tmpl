@@ -1,6 +1,12 @@
 {{- $editor := promptStringOnce . "editor" "Editor" -}}
 {{- $email := promptStringOnce . "email" "Email" -}}
 
+{{- $osid := .chezmoi.os -}}
+{{- if hasKey .chezmoi.osRelease "id" -}}
+{{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{- end -}}
+
 [data]
     editor = {{ $editor | quote }}
     email = {{ $email | quote }}
+    osid = {{ $osid | quote }}

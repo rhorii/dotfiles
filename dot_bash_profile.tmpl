@@ -5,6 +5,6 @@
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 # Rust
-{{- if eq .chezmoi.os "darwin" }}
+{{- if eq .osid "darwin" }}
 . "$HOME/.cargo/env"
 {{- end }}
