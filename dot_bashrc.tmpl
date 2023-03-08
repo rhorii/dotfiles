@@ -3,7 +3,7 @@
 #
 
 # If not running interactively, don't do anything
-[ $- != *i* ] && return
+[[ $- != *i* ]] && return
 
 {{- if eq .osid "linux-centos" }}
 # Source global definitions
@@ -14,6 +14,20 @@ fi
 
 # env
 export EDITOR={{ .editor | quote }}
+
+# alias
+alias la='ls -alh'
+alias ll='ls -lh'
+{{- if eq .osid "darwin" }}
+alias ls='ls -G'
+{{- else }}
+alias ls='ls --color=auto'
+{{- end }}
+
+# history
+HISTSIZE=32768
+HISTFILESIZE="${HISTSIZE}"
+HISTCONTROL='ignoreboth'
 
 # fzf
 {{- if or (eq .osid "darwin") (eq .osid "linux-centos") }}
