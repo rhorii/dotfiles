@@ -1,8 +1,0 @@
-[include]
-	path = ~/.gitconfig_local
-[push]
-	default = simple
-[ghq]
-	root = ~/src
-[status]
-	showUntrackedFiles = all
