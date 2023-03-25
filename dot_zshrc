@@ -28,6 +28,11 @@ setopt SHARE_HISTORY
 setopt CORRECT
 setopt CORRECT_ALL
 
+# alias
+alias la='ls -alh'
+alias ll='ls -lh'
+alias ls='ls -G'
+
 # homebrew
 typeset -gx -U path
 path=(
