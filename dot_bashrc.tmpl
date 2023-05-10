@@ -42,5 +42,8 @@ HISTCONTROL='ignoreboth'
 . "$HOME/.cargo/env"
 {{- end }}
 
+# rbenv
+eval "$(rbenv init - bash)"
+
 # Starship
 eval "$(starship init bash)"
