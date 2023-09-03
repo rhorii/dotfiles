@@ -72,3 +72,7 @@ if [[ "$INSIDE_EMACS" = 'vterm' ]] \
   source ${EMACS_VTERM_PATH}/etc/emacs-vterm-zsh.sh
   print -Pn "\e]2;%m:%2~\a" # Initialize TITLE
 fi
+
+# Starship
+eval "$(starship init zsh)"
+
