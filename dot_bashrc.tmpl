@@ -29,6 +29,17 @@ HISTSIZE=32768
 HISTFILESIZE="${HISTSIZE}"
 HISTCONTROL='ignoreboth'
 
+# homebrew
+{{- if eq .osid "darwin" }}
+if [ -d '/opt/homebrew/bin' ]; then
+  export PATH="/opt/homebrew/bin:$PATH"
+fi
+
+if [ -d '/opt/homebrew/sbin' ]; then
+  export PATH="/opt/homebrew/sbin:$PATH"
+fi
+{{- end }}
+
 # fzf
 {{- if or (eq .osid "darwin") (eq .osid "linux-centos") }}
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
