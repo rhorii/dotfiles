@@ -55,14 +55,9 @@ fi
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# rbenv
-if type rbenv &>/dev/null; then
-  eval "$(rbenv init -)"
-fi
-
-# nodenv
-if type nodenv &>/dev/null; then
-  eval "$(nodenv init -)"
+# asdf
+if type asdf &>/dev/null; then
+  . /opt/homebrew/opt/asdf/libexec/asdf.sh
 fi
 
 # vterm
