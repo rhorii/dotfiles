@@ -13,4 +13,4 @@
 # @raycast.author rhorii
 # @raycast.authorURL https://github.com/rhorii
 
-open -na 'Firefox' --args -new-window about:blank
+open -na 'Firefox'

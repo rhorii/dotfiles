@@ -13,4 +13,4 @@
 # @raycast.author rhorii
 # @raycast.authorURL https://github.com/rhorii
 
-open -na 'Safari' --args -new-window about:blank
+osascript -e 'tell application "Safari" to make new document'
