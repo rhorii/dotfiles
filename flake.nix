@@ -24,7 +24,7 @@
     in
     {
       darwinConfigurations."hank" = nix-darwin.lib.darwinSystem {
-        modules = [ ./nix/darwin.nix ];
+        modules = [ ./nix/darwin ];
       };
 
       homeConfigurations."rhorii" = home-manager.lib.homeManagerConfiguration {
@@ -32,7 +32,7 @@
 
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
-        modules = [ ./nix/home.nix ];
+      modules = [ ./nix/home ];
 
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
