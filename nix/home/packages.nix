@@ -11,6 +11,7 @@
 
     # Shell
     zsh
+    fzf
     starship
   ];
 }
