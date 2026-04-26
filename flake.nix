@@ -1,8 +1,7 @@
 {
-  description = "Home Manager configuration of rhorii";
+  description = "rhorii's nix-darwin + home-manager configurations";
 
   inputs = {
-    # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     nix-darwin = {
@@ -18,12 +17,21 @@
 
   outputs =
     { nix-darwin, home-manager, ... }:
+    let
+      mkDarwin =
+        {
+          hostname,
+          system ? "aarch64-darwin",
+        }:
+        nix-darwin.lib.darwinSystem {
+          modules = [
+            { nixpkgs.hostPlatform = system; }
+            ./nix/hosts/${hostname}
+            home-manager.darwinModules.home-manager
+          ];
+        };
+    in
     {
-      darwinConfigurations."hank" = nix-darwin.lib.darwinSystem {
-        modules = [
-          ./nix/darwin
-          home-manager.darwinModules.home-manager
-        ];
-      };
+      darwinConfigurations.hank = mkDarwin { hostname = "hank"; };
     };
 }

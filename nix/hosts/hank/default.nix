@@ -2,9 +2,11 @@
   ...
 }:
 {
-  nixpkgs.hostPlatform = "aarch64-darwin";
+  imports = [ ../../modules/darwin/common.nix ];
+
+  # Must match the darwinConfigurations attr name in flake.nix.
+  networking.hostName = "hank";
   system.stateVersion = 6;
-  nix.enable = false;
 
   users.users.rhorii = {
     name = "rhorii";
@@ -14,6 +16,6 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.rhorii = import ../home;
+    users.rhorii = import ../../users/rhorii;
   };
 }
