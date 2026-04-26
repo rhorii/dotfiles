@@ -8,5 +8,9 @@
     git
     gh
     ghq
+
+    # Shell
+    zsh
+    starship
   ];
 }
