@@ -21,7 +21,6 @@
     let
       hostname = "hank";
       username = "rhorii";
-      system = "aarch64-darwin";
     in
     {
       darwinConfigurations.${hostname} = nix-darwin.lib.darwinSystem {
@@ -41,16 +40,5 @@
           }
         ];
       };
-
-      # homeConfigurations."rhorii" = home-manager.lib.homeManagerConfiguration {
-      #   inherit pkgs;
-
-      #   # Specify your home configuration modules here, for example,
-      #   # the path to your home.nix.
-      # modules = [ ./nix/home ];
-
-      #   # Optionally use extraSpecialArgs
-      #   # to pass through arguments to home.nix
-      # };
     };
 }
