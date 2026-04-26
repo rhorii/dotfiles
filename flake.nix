@@ -14,10 +14,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-homebrew = {
+      url = "github:zhaofengli/nix-homebrew";
+    };
   };
 
   outputs =
-    { nixpkgs, nix-darwin, home-manager, ... }:
+    { nixpkgs, nix-darwin, home-manager, nix-homebrew, ... }:
     let
       hostname = "hank";
       username = "rhorii";
@@ -30,6 +34,7 @@
         modules = [
           ./nix/darwin
           home-manager.darwinModules.home-manager
+          nix-homebrew.darwinModules.nix-homebrew
           {
             home-manager = {
               useGlobalPkgs = true;
@@ -37,6 +42,13 @@
               backupFileExtension = "backup";
               extraSpecialArgs = { inherit username; };
               users.${username} = import ./nix/home;
+            };
+
+            nix-homebrew = {
+              enable = true;
+              enableRosetta = true;
+              user = username;
+              autoMigrate = true;
             };
           }
         ];
