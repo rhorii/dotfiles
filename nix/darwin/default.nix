@@ -1,8 +1,13 @@
 {
+  username,
   ...
 }:
 {
-  nixpkgs.hostPlatform = "aarch64-darwin";
   system.stateVersion = 6;
-  nix.enable = false;
+  nixpkgs.hostPlatform = "aarch64-darwin";
+
+  users.users.${username} = {
+    name = username;
+    home = "/Users/${username}";
+  };
 }

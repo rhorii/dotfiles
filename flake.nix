@@ -1,5 +1,5 @@
 {
-  description = "Home Manager configuration of rhorii";
+  description = "rhorii's nix-darwin + home-manager configuration";
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
@@ -19,23 +19,38 @@
   outputs =
     { nixpkgs, nix-darwin, home-manager, ... }:
     let
+      hostname = "hank";
+      username = "rhorii";
       system = "aarch64-darwin";
-      pkgs = nixpkgs.legacyPackages.${system};
     in
     {
-      darwinConfigurations."hank" = nix-darwin.lib.darwinSystem {
-        modules = [ ./nix/darwin ];
+      darwinConfigurations.${hostname} = nix-darwin.lib.darwinSystem {
+        specialArgs = { inherit username hostname; };
+
+        modules = [
+          ./nix/darwin
+          home-manager.darwinModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              backupFileExtension = "backup";
+              extraSpecialArgs = { inherit username; };
+              users.${username} = import ./nix/home;
+            };
+          }
+        ];
       };
 
-      homeConfigurations."rhorii" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+      # homeConfigurations."rhorii" = home-manager.lib.homeManagerConfiguration {
+      #   inherit pkgs;
 
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
-      modules = [ ./nix/home ];
+      #   # Specify your home configuration modules here, for example,
+      #   # the path to your home.nix.
+      # modules = [ ./nix/home ];
 
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
-      };
+      #   # Optionally use extraSpecialArgs
+      #   # to pass through arguments to home.nix
+      # };
     };
 }
