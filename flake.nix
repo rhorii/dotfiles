@@ -2,7 +2,6 @@
   description = "rhorii's nix-darwin + home-manager configuration";
 
   inputs = {
-    # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     nix-darwin = {
@@ -24,21 +23,16 @@
     in
     {
       darwinConfigurations.${hostname} = nix-darwin.lib.darwinSystem {
-        specialArgs = { inherit username hostname; };
-
+        specialArgs = { inherit username; };
         modules = [
           ./nix/darwin
-          home-manager.darwinModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              backupFileExtension = "backup";
-              extraSpecialArgs = { inherit username; };
-              users.${username} = import ./nix/home;
-            };
-          }
         ];
+      };
+
+      homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages."aarch64-darwin";
+        extraSpecialArgs = { inherit username; };
+        modules = [ ./nix/home ];
       };
     };
 }
