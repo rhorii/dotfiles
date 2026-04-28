@@ -13,5 +13,8 @@
     zsh
     fzf
     starship
+
+    # Nix
+    nixd
   ];
 }
