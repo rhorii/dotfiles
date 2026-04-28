@@ -1,7 +1,4 @@
-{
-  config,
-  ...
-}:
+{ config, ... }:
 {
   programs.zsh = {
     enable = true;
@@ -26,28 +23,6 @@
       expireDuplicatesFirst = true;
       extended = true;
       share = true;
-    };
-  };
-
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
-  programs.starship = {
-    enable = true;
-    settings = {
-      command_timeout = 1000;
-      battery.disabled = true;
-    };
-  };
-
-  programs.git = {
-    enable = true;
-
-    settings = {
-      status.showUntrackedFiles = "all";
-      ghq.root = "~/src";
     };
   };
 }

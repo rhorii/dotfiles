@@ -5,7 +5,7 @@
 {
   imports = [
     ./packages.nix
-    ./programs.nix
+    ./programs
   ];
 
   home.username = username;
