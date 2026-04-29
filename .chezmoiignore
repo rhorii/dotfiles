@@ -1,6 +1,6 @@
 # Managed by home-manager instead
 bin/**
-dot_emacs.d/**
+emacs/**
 
 # Not for home directory
 README.md
