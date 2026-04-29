@@ -1,0 +1,8 @@
+# Managed by home-manager instead
+bin/**
+
+# Not for home directory
+README.md
+flake.lock
+flake.nix
+nix/**
