@@ -5,5 +5,6 @@
     ./fzf.nix
     ./starship.nix
     ./git.nix
+    ./emacs.nix
   ];
 }
