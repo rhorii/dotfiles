@@ -1,9 +1,0 @@
-# Managed by home-manager instead
-bin/**
-emacs/**
-
-# Not for home directory
-README.md
-flake.lock
-flake.nix
-nix/**
