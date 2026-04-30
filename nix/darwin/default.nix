@@ -1,4 +1,5 @@
 {
+  pkgs,
   username,
   ...
 }:
@@ -19,4 +20,9 @@
     name = username;
     home = "/Users/${username}";
   };
+
+  fonts.packages = [
+    pkgs.hackgen-font
+    pkgs.hackgen-nf-font
+  ];
 }
