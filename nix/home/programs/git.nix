@@ -7,5 +7,10 @@
       status.showUntrackedFiles = "all";
       ghq.root = "~/src";
     };
+
+    ignores = [
+      ".direnv/"
+      ".envrc.local"
+    ];
   };
 }
