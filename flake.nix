@@ -18,8 +18,10 @@
   outputs =
     { nixpkgs, nix-darwin, home-manager, ... }:
     let
+      system = "aarch64-darwin";
       hostname = "hank";
       username = "rhorii";
+      pkgs = nixpkgs.legacyPackages.${system};
     in
     {
       darwinConfigurations.${hostname} = nix-darwin.lib.darwinSystem {
@@ -30,9 +32,15 @@
       };
 
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages."aarch64-darwin";
+        pkgs = pkgs;
         extraSpecialArgs = { inherit username; };
         modules = [ ./nix/home ];
+      };
+
+      devShells.${system}.default = pkgs.mkShell {
+        packages = with pkgs; [
+          nixd
+        ];
       };
     };
 }

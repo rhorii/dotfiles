@@ -6,5 +6,6 @@
     ./starship.nix
     ./git.nix
     ./emacs.nix
+    ./direnv.nix
   ];
 }
