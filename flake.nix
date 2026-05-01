@@ -18,9 +18,10 @@
   outputs =
     { nixpkgs, nix-darwin, home-manager, ... }:
     let
+      system = "aarch64-darwin";
       hostname = "hank";
       username = "rhorii";
-      pkgs = nixpkgs.legacyPackages."aarch64-darwin";
+      pkgs = nixpkgs.legacyPackages.${system};
     in
     {
       darwinConfigurations.${hostname} = nix-darwin.lib.darwinSystem {
@@ -36,8 +37,7 @@
         modules = [ ./nix/home ];
       };
 
-      devShells."aarch64-darwin".default = pkgs.mkShell {
-        name = "dotfiles-dev";
+      devShells.${system}.default = pkgs.mkShell {
         packages = with pkgs; [
           nixd
         ];
