@@ -14,6 +14,9 @@
     fzf
     starship
 
+    # Finance
+    ledger
+
     # Nix
     nixd
   ];
