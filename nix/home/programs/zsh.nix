@@ -25,7 +25,7 @@
       share = true;
     };
 
-    initExtra = ''
+    initContent = ''
       ghq-fzf() {
         local repo
         repo=$(ghq list | fzf \
