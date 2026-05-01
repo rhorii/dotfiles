@@ -13,6 +13,7 @@
     zsh
     fzf
     starship
+    bat
 
     # Finance
     ledger
