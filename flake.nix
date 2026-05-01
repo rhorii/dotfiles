@@ -20,6 +20,7 @@
     let
       hostname = "hank";
       username = "rhorii";
+      pkgs = nixpkgs.legacyPackages."aarch64-darwin";
     in
     {
       darwinConfigurations.${hostname} = nix-darwin.lib.darwinSystem {
@@ -30,9 +31,16 @@
       };
 
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages."aarch64-darwin";
+        pkgs = pkgs;
         extraSpecialArgs = { inherit username; };
         modules = [ ./nix/home ];
+      };
+
+      devShells."aarch64-darwin".default = pkgs.mkShell {
+        name = "dotfiles-dev";
+        packages = with pkgs; [
+          nixd
+        ];
       };
     };
 }

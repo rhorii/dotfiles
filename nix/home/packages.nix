@@ -18,7 +18,5 @@
     # Finance
     ledger
 
-    # Nix
-    nixd
   ];
 }
