@@ -24,5 +24,24 @@
       extended = true;
       share = true;
     };
+
+    initExtra = ''
+      ghq-fzf() {
+        local repo
+        repo=$(ghq list | fzf \
+          --preview "bat --color=always --style=plain \$(ghq root)/{}/README.md 2>/dev/null || ls -la \$(ghq root)/{}" \
+          --prompt="repo> " \
+          --height 40% \
+          --layout=reverse \
+          --border)
+        if [ -n "$repo" ]; then
+          BUFFER="cd -- \$(ghq root)/$repo"
+          zle accept-line
+        fi
+        zle reset-prompt
+      }
+      zle -N ghq-fzf
+      bindkey "^g" ghq-fzf
+    '';
   };
 }
