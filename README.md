@@ -30,3 +30,11 @@ darwin-rebuild switch --flake .
 ```bash
 home-manager switch --flake .
 ```
+
+### Update
+
+```bash
+nix flake update
+```
+
+After updating, run `darwin-rebuild switch` and `home-manager switch` to apply the changes.
