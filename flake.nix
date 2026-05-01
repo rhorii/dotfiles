@@ -16,7 +16,12 @@
   };
 
   outputs =
-    { nixpkgs, nix-darwin, home-manager, ... }:
+    {
+      nixpkgs,
+      nix-darwin,
+      home-manager,
+      ...
+    }:
     let
       system = "aarch64-darwin";
       hostname = "hank";
@@ -37,12 +42,12 @@
         modules = [ ./nix/home ];
       };
 
-      formatter.${system} = pkgs.nixfmt-rfc-style;
+      formatter.${system} = pkgs.nixfmt-tree;
 
       devShells.${system}.default = pkgs.mkShell {
         packages = with pkgs; [
           nixd
-          nixfmt-rfc-style
+          nixfmt
         ];
       };
     };

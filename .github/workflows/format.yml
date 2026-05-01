@@ -13,5 +13,5 @@ jobs:
       - uses: cachix/install-nix-action@ab739621df7a23f52766f9ccc97f38da6b7af14f # v31.10.5
       - name: Check Nix formatting
         run: |
-          nix run nixpkgs#nixfmt-rfc-style -- --check \
+          nix run nixpkgs#nixfmt -- --check \
             $(find . -name '*.nix' -not -path './.git/*')
