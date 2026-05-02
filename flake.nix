@@ -32,14 +32,14 @@
       darwinConfigurations.${hostname} = nix-darwin.lib.darwinSystem {
         specialArgs = { inherit username; };
         modules = [
-          ./nix/darwin
+          ./nix-darwin
         ];
       };
 
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgs;
         extraSpecialArgs = { inherit username; };
-        modules = [ ./nix/home ];
+        modules = [ ./home-manager ];
       };
 
       formatter.${system} = pkgs.nixfmt-tree;
