@@ -1,11 +1,17 @@
 { ... }:
 {
   imports = [
+    # Shell
     ./zsh.nix
     ./fzf.nix
     ./starship.nix
-    ./git.nix
-    ./emacs.nix
     ./direnv.nix
+
+    # VCS
+    ./git.nix
+
+    # Editors
+    ./emacs.nix
+    ./zed.nix
   ];
 }

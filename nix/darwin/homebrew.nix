@@ -23,6 +23,5 @@
     "obsidian"
     "raycast"
     "visual-studio-code"
-    "zed"
   ];
 }
