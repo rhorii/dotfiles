@@ -26,6 +26,8 @@
     };
 
     initContent = ''
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+
       ghq-fzf() {
         local repo
         repo=$(ghq list | fzf \
