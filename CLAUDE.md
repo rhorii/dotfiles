@@ -29,19 +29,19 @@ flake は単一ホスト `hank` / 単一ユーザー `rhorii`、`aarch64-darwin`
 
 `flake.nix` が 2 つの独立した output を公開する:
 
-- `darwinConfigurations.hank` → `nix/darwin/` （システム層: macOS 設定、フォント、Homebrew）
-- `homeConfigurations.rhorii` → `nix/home/` （ユーザー層: シェル、CLI ツール、設定ファイル）
+- `darwinConfigurations.hank` → `nix-darwin/` （システム層: macOS 設定、フォント、Homebrew）
+- `homeConfigurations.rhorii` → `home-manager/` （ユーザー層: シェル、CLI ツール、設定ファイル）
 
 両方に `username` を `specialArgs` / `extraSpecialArgs` 経由で注入しているので、新しいモジュールも `{ username, ... }:` で受け取れる。
 
-### システム層 (`nix/darwin/`)
+### システム層 (`nix-darwin/`)
 
 - `default.nix`: `system.primaryUser`、`fonts.packages`、ユーザー定義
 - `homebrew.nix`: GUI アプリ（cask）のみを宣言的に管理
 - **`nix.enable = false`** ―― 有効にした場合、不安定になるので、意図的に無効化している
 - Homebrew は `onActivation.cleanup = "none"`、`autoUpdate = false`。手元でインストールした未管理 cask を勝手に消さない方針
 
-### ユーザー層 (`nix/home/`)
+### ユーザー層 (`home-manager/`)
 
 - `default.nix` が `packages.nix` / `programs/` / `scripts.nix` を import するハブ
 - `programs/`: プログラムごとに 1 ファイル（`zsh.nix`、`git.nix`、`starship.nix`、`fzf.nix`、`emacs.nix`）。新しいツールの設定を足すときはここに `<tool>.nix` を作って `programs/default.nix` に import 行を追加する
@@ -50,9 +50,9 @@ flake は単一ホスト `hank` / 単一ユーザー `rhorii`、`aarch64-darwin`
 
 ### パッケージの置き場所
 
-- **GUI アプリ** → `nix/darwin/homebrew.nix` の `casks` （Nix にパッケージがない場合のみ）
-- **CLI ツール** → `nix/home/packages.nix`
-- **プログラム単位で設定が必要なもの** → `nix/home/programs/<tool>.nix` で `programs.<tool>.enable = true` を使う
+- **GUI アプリ** → `nix-darwin/homebrew.nix` の `casks` （Nix にパッケージがない場合のみ）
+- **CLI ツール** → `home-manager/packages.nix`
+- **プログラム単位で設定が必要なもの** → `home-manager/programs/<tool>.nix` で `programs.<tool>.enable = true` を使う
 
 ## 注意点
 
