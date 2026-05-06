@@ -44,9 +44,9 @@ flake は単一ホスト `hank` / 単一ユーザー `rhorii`、`aarch64-darwin`
 ### ユーザー層 (`home-manager/`)
 
 - `default.nix` が `packages.nix` / `programs/` / `scripts.nix` を import するハブ
-- `programs/`: プログラムごとに 1 ファイル（`zsh.nix`、`git.nix`、`starship.nix`、`fzf.nix`、`emacs.nix`）。新しいツールの設定を足すときはここに `<tool>.nix` を作って `programs/default.nix` に import 行を追加する
+- `programs/`: プログラムごとに 1 ファイル（`zsh.nix`、`git.nix`、`starship.nix`、`fzf.nix`）、または設定ファイルを持つ場合はサブディレクトリ（`emacs/`、`raycast/`）。新しいツールの設定を足すときはここに `<tool>.nix` を作って `programs/default.nix` に import 行を追加する
 - `scripts.nix`: `bin/` 配下の AppleScript / シェルスクリプトを `~/bin/` に `home.file` で配置（`executable = true` を忘れない）
-- `emacs/init.el` は `programs/emacs.nix` 経由で `~/.emacs.d/init.el` にリンクされる。設定本体はリポジトリ直下の `emacs/` を編集する
+- `programs/emacs/init.el` は `programs/emacs/default.nix` 経由で `~/.emacs.d/init.el` にリンクされる。設定本体は `home-manager/programs/emacs/` を編集する
 
 ### パッケージの置き場所
 

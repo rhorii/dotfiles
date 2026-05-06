@@ -11,7 +11,7 @@
     ./git.nix
 
     # Editors
-    ./emacs.nix
+    ./emacs
     ./zed.nix
 
     # Raycast
