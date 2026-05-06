@@ -13,5 +13,8 @@
     # Editors
     ./emacs.nix
     ./zed.nix
+
+    # Raycast
+    ./raycast
   ];
 }
