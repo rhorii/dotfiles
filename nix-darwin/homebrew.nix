@@ -15,7 +15,6 @@
     "claude-code"
     "emacs-mac"
     "firefox"
-    "ghostty"
     "google-chrome"
     "karabiner-elements"
     "netnewswire"

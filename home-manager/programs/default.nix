@@ -16,5 +16,8 @@
 
     # Raycast
     ./raycast
+
+    # Terminal
+    ./ghostty.nix
   ];
 }
