@@ -15,8 +15,10 @@
     starship
     bat
 
+    # Terminal
+    ghostty-bin
+
     # Finance
     ledger
-
   ];
 }
