@@ -1,13 +1,8 @@
 {
-  pkgs,
   username,
   ...
 }:
 {
-  imports = [
-    ./homebrew.nix
-  ];
-
   system = {
     stateVersion = 6;
     primaryUser = username;
@@ -21,8 +16,8 @@
     home = "/Users/${username}";
   };
 
-  fonts.packages = [
-    pkgs.hackgen-font
-    pkgs.hackgen-nf-font
+  imports = [
+    ./fonts.nix
+    ./homebrew.nix
   ];
 }
