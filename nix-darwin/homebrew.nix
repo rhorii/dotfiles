@@ -20,7 +20,6 @@
     "netnewswire"
     "notion"
     "obsidian"
-    "raycast"
     "visual-studio-code"
   ];
 }
