@@ -12,7 +12,6 @@
   homebrew.casks = [
     "anki"
     "claude"
-    "claude-code"
     "emacs-mac"
     "firefox"
     "google-chrome"
