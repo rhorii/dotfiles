@@ -26,7 +26,10 @@
       system = "aarch64-darwin";
       hostname = "hank";
       username = "rhorii";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfreePredicate = pkg: builtins.elem (pkg.pname or pkg.name) [ "raycast" ];
+      };
     in
     {
       darwinConfigurations.${hostname} = nix-darwin.lib.darwinSystem {
