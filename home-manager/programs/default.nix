@@ -18,7 +18,7 @@
     ./ghostty.nix
 
     # Claude Code
-    ./claude-code.nix
+    ./claude-code
 
     # Raycast
     ./raycast
