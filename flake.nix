@@ -24,7 +24,6 @@
     }:
     let
       system = "aarch64-darwin";
-      hostname = "hank";
       username = "rhorii";
       pkgs = import nixpkgs {
         inherit system;
@@ -35,14 +34,19 @@
             "raycast"
           ];
       };
+
+      mkDarwin =
+        { hostname }:
+        nix-darwin.lib.darwinSystem {
+          specialArgs = { inherit username hostname; };
+          modules = [
+            ./hosts/${hostname}
+            ./nix-darwin
+          ];
+        };
     in
     {
-      darwinConfigurations.${hostname} = nix-darwin.lib.darwinSystem {
-        specialArgs = { inherit username; };
-        modules = [
-          ./nix-darwin
-        ];
-      };
+      darwinConfigurations.hank = mkDarwin { hostname = "hank"; };
 
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgs;

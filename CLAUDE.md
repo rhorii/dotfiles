@@ -29,10 +29,15 @@ flake は単一ホスト `hank` / 単一ユーザー `rhorii`、`aarch64-darwin`
 
 `flake.nix` が 2 つの独立した output を公開する:
 
-- `darwinConfigurations.hank` → `nix-darwin/` （システム層: macOS 設定、フォント、Homebrew）
+- `darwinConfigurations.hank` → `nix-darwin/` + `hosts/hank/` （システム層: macOS 設定、フォント、Homebrew、ホスト固有設定）
 - `homeConfigurations.rhorii` → `home-manager/` （ユーザー層: シェル、CLI ツール、設定ファイル）
 
-両方に `username` を `specialArgs` / `extraSpecialArgs` 経由で注入しているので、新しいモジュールも `{ username, ... }:` で受け取れる。
+`darwinConfigurations` は `flake.nix` の `mkDarwin { hostname = ...; }` ヘルパー経由で構築する。`username` は両方に、`hostname` は nix-darwin 側に `specialArgs` / `extraSpecialArgs` 経由で注入されるので、モジュールは `{ username, hostname, ... }:` で受け取れる。
+
+ホスト固有設定 (`nixpkgs.hostPlatform`、将来は `networking.hostName` やホスト依存の cask など) は `hosts/<hostname>/` に置き、ホスト非依存の共通設定は `nix-darwin/` に置く。新しいマシンを追加するときは:
+
+1. `hosts/<新ホスト名>/default.nix` を作る
+2. `flake.nix` の `darwinConfigurations` に `<新ホスト名> = mkDarwin { hostname = "<新ホスト名>"; };` を追加
 
 ### システム層 (`nix-darwin/`)
 
