@@ -3,15 +3,16 @@
   programs.git = {
     enable = true;
 
-    userName = "Ryota Horii";
-    userEmail = "rhorii@gmail.com";
-
     settings = {
-      status.showUntrackedFiles = "all";
-      ghq.root = "~/src";
+      user = {
+        name = "Ryota Horii";
+        email = "rhorii@gmail.com";
+      };
       init.defaultBranch = "main";
+      status.showUntrackedFiles = "all";
       pull.rebase = true;
       push.autoSetupRemote = true;
+      ghq.root = "~/src";
     };
 
     ignores = [
