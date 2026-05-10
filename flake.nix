@@ -26,20 +26,17 @@
       system = "aarch64-darwin";
       hostname = "hank";
       username = "rhorii";
+      nixpkgsConfig = import ./nixpkgs-config.nix;
       pkgs = import nixpkgs {
         inherit system;
-        config.allowUnfreePredicate =
-          pkg:
-          builtins.elem (pkg.pname or pkg.name) [
-            "claude-code"
-            "raycast"
-          ];
+        config = nixpkgsConfig;
       };
     in
     {
       darwinConfigurations.${hostname} = nix-darwin.lib.darwinSystem {
         specialArgs = { inherit username; };
         modules = [
+          { nixpkgs.config = nixpkgsConfig; }
           ./nix-darwin
         ];
       };
