@@ -28,7 +28,10 @@
       username = "rhorii";
       pkgs = import nixpkgs {
         inherit system;
-        config.allowUnfreePredicate = pkg: builtins.elem (pkg.pname or pkg.name) [ "raycast" ];
+        config.allowUnfreePredicate = pkg: builtins.elem (pkg.pname or pkg.name) [
+          "claude-code"
+          "raycast"
+        ];
       };
     in
     {
