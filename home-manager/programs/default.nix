@@ -19,5 +19,8 @@
 
     # Terminal
     ./ghostty.nix
+
+    # Input
+    ./karabiner
   ];
 }
