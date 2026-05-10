@@ -15,7 +15,6 @@
     "emacs-mac"
     "firefox"
     "google-chrome"
-    "karabiner-elements"
     "netnewswire"
     "notion"
     "obsidian"

@@ -14,13 +14,16 @@
     ./emacs
     ./zed.nix
 
-    # Raycast
-    ./raycast
-
     # Terminal
     ./ghostty.nix
 
     # Claude Code
     ./claude-code.nix
+
+    # Raycast
+    ./raycast
+
+    # Input
+    ./karabiner
   ];
 }
