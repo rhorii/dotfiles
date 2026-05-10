@@ -1,5 +1,16 @@
 { config, ... }:
 {
+  home.sessionPath = [
+    "/opt/homebrew/bin"
+    "/opt/homebrew/sbin"
+  ];
+
+  home.sessionVariables = {
+    HOMEBREW_PREFIX = "/opt/homebrew";
+    HOMEBREW_CELLAR = "/opt/homebrew/Cellar";
+    HOMEBREW_REPOSITORY = "/opt/homebrew";
+  };
+
   programs.zsh = {
     enable = true;
 
@@ -26,8 +37,6 @@
     };
 
     initContent = ''
-      eval "$(/opt/homebrew/bin/brew shellenv)"
-
       ghq-fzf() {
         local repo
         repo=$(ghq list | fzf \
