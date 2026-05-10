@@ -9,6 +9,7 @@
 
     # VCS
     ./git.nix
+    ./gh.nix
 
     # Editors
     ./emacs
