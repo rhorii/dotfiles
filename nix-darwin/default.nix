@@ -23,5 +23,6 @@
   imports = [
     ./fonts.nix
     ./homebrew.nix
+    ./system-defaults.nix
   ];
 }
