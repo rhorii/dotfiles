@@ -17,13 +17,13 @@
     dock = {
       autohide = true;
       mru-spaces = false;
-      show-recents = false;
+      show-recents = true;
       tilesize = 48;
     };
 
     finder = {
       AppleShowAllExtensions = true;
-      FXPreferredViewStyle = "Nlsv";
+      FXPreferredViewStyle = "clmv";
       ShowPathbar = true;
       ShowStatusBar = true;
       _FXShowPosixPathInTitle = true;
