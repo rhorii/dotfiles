@@ -1,7 +1,5 @@
-{ pkgs, ... }:
+{ ... }:
 {
-  home.packages = [ pkgs.raycast ];
-
   home.file = {
     ".config/raycast/scripts/create-new-window-firefox.sh" = {
       source = ./scripts/create-new-window-firefox.sh;
