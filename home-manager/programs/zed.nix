@@ -6,8 +6,8 @@
     mutableUserSettings = true;
     userSettings = {
       base_keymap = "Emacs";
-      ui_font_size = 16;
-      buffer_font_size = 15;
+      ui_font_size = 12;
+      buffer_font_size = 12;
       terminal = {
         font_family = "HackGen Console NF";
         font_size = 12.0;
