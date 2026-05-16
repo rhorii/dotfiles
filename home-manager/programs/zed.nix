@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ ... }:
 {
   programs.zed-editor = {
     enable = true;
-    package = pkgs.zed-editor;
+    package = null;
     mutableUserSettings = true;
     userSettings = {
       base_keymap = "Emacs";
