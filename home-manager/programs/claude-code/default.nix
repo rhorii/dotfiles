@@ -5,6 +5,7 @@
     settings = {
       autoUpdaterStatus = "disabled";
       language = "japanese";
+      skipAutoPermissionPrompt = true;
       statusLine = {
         type = "command";
         command = "~/.claude/statusline.sh";
