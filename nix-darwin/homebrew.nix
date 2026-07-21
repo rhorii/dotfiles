@@ -12,6 +12,7 @@
   homebrew.casks = [
     "anki"
     "claude"
+    "cmux"
     "emacs-mac"
     "firefox"
     "ghostty"
