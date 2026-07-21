@@ -5,30 +5,37 @@
     package = null;
     mutableUserSettings = true;
     userSettings = {
-      base_keymap = "Emacs";
-      ui_font_size = 12;
-      buffer_font_size = 12;
-      terminal = {
-        font_family = "HackGen Console NF";
-        font_size = 12.0;
-      };
+      # Appearance
       theme = {
         mode = "system";
         light = "One Light";
         dark = "One Dark";
       };
+
+      buffer_font_family = "HackGen Console NF";
+      buffer_font_size = 12;
+
+      # Keymap
+      base_keymap = "Emacs";
+
+      # Languages & Tools
+      languages = {
+        Nix = {
+          language_servers = [
+            "nixd"
+            "!nil"
+          ];
+        };
+      };
+
+      # Panels
       project_panel.dock = "right";
       outline_panel.dock = "right";
-      collaboration_panel.dock = "right";
       git_panel = {
         dock = "right";
         tree_view = true;
       };
-      agent = {
-        dock = "left";
-        favorite_models = [ ];
-        model_parameters = [ ];
-      };
+      collaboration_panel.dock = "right";
     };
   };
 }
