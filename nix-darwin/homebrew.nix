@@ -9,6 +9,10 @@
   # "zap"       - リストにない cask を完全削除する（破壊的）
   homebrew.onActivation.cleanup = "none";
 
+  homebrew.taps = [
+    "stablyai/orca"
+  ];
+
   homebrew.casks = [
     "anki"
     "claude"
@@ -22,6 +26,7 @@
     "notion"
     "obsidian"
     "raycast"
+    "stablyai/orca/orca"
     "visual-studio-code"
     "zed"
   ];
