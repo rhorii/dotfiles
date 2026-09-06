@@ -6,6 +6,7 @@
     ./fzf.nix
     ./starship.nix
     ./direnv.nix
+    ./mise.nix
 
     # VCS
     ./git.nix
