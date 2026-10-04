@@ -21,6 +21,8 @@ nix run nix-darwin -- switch --flake .
 nix run home-manager -- switch --flake .
 ```
 
+flake input の定期更新（更新 → 実機ビルド → PR 作成）は `/update-flake` skill（`.claude/skills/update-flake/`）で行う。
+
 flake は単一ホスト `hank` / 単一ユーザー `rhorii`、`aarch64-darwin` 固定。現在は別マシンで使う想定はない。
 
 ## Architecture
